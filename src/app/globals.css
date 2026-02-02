@@ -1,32 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #171717;
-  --accent: #7c3aed;
-  --accent-light: #a78bfa;
+  --background: #fffbf5;
+  --foreground: #1a1a1a;
+  --accent: #e85d04;
+  --accent-dark: #d45a04;
+  --surface: #fff8f0;
+  --muted: #6b5c4c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f0d0a;
+    --foreground: #f5f0e8;
+    --surface: #1a1714;
+    --muted: #a89580;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Georgia, serif;
 }
 
 /* Smooth scrolling */
@@ -34,11 +39,115 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Card hover animations */
+/* Layered background pattern */
+.hero-bg {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(232, 93, 4, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(232, 93, 4, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 60% 80%, rgba(180, 120, 60, 0.05) 0%, transparent 45%),
+    linear-gradient(180deg, var(--background) 0%, var(--surface) 100%);
+}
+
+/* Subtle grid pattern overlay */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(232, 93, 4, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 93, 4, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Staggered entrance animations */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+.animate-fade-up {
+  animation: fadeSlideUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fadeSlideIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.7s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-wiggle:hover {
+  animation: wiggle 0.4s ease-in-out;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+
+/* Card hover with personality */
 .product-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) rotate(-1deg);
+}
+
+/* Decorative border style */
+.ornate-border {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(135deg, var(--accent), transparent 50%, var(--accent)) border-box;
+}
+
+/* Typography scale with contrast */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: var(--font-body), Georgia, serif;
 }

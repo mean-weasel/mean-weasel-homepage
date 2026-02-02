@@ -10,12 +10,12 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Background circle */}
+      {/* Background circle - warm orange */}
       <circle
         cx="50"
         cy="50"
         r="48"
-        className="fill-violet-600"
+        fill="#e85d04"
       />
 
       {/* Weasel body - elongated shape */}
@@ -24,7 +24,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="58"
         rx="28"
         ry="20"
-        className="fill-amber-200"
+        fill="#fcd9b6"
       />
 
       {/* Weasel head */}
@@ -32,7 +32,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cx="50"
         cy="35"
         r="18"
-        className="fill-amber-200"
+        fill="#fcd9b6"
       />
 
       {/* Snout */}
@@ -41,7 +41,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="42"
         rx="8"
         ry="6"
-        className="fill-amber-100"
+        fill="#fff5eb"
       />
 
       {/* Nose */}
@@ -50,7 +50,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="40"
         rx="3"
         ry="2.5"
-        className="fill-zinc-800"
+        fill="#1a1a1a"
       />
 
       {/* Left eye */}
@@ -59,14 +59,14 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="32"
         rx="4"
         ry="5"
-        className="fill-zinc-800"
+        fill="#1a1a1a"
       />
       {/* Left eye shine */}
       <circle
         cx="41"
         cy="31"
         r="1.5"
-        className="fill-white"
+        fill="white"
       />
 
       {/* Right eye */}
@@ -75,14 +75,14 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="32"
         rx="4"
         ry="5"
-        className="fill-zinc-800"
+        fill="#1a1a1a"
       />
       {/* Right eye shine */}
       <circle
         cx="57"
         cy="31"
         r="1.5"
-        className="fill-white"
+        fill="white"
       />
 
       {/* Left ear */}
@@ -91,7 +91,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="22"
         rx="6"
         ry="8"
-        className="fill-amber-200"
+        fill="#fcd9b6"
         transform="rotate(-15 36 22)"
       />
       <ellipse
@@ -99,7 +99,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="23"
         rx="3"
         ry="5"
-        className="fill-pink-300"
+        fill="#f4a261"
         transform="rotate(-15 36 23)"
       />
 
@@ -109,7 +109,7 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="22"
         rx="6"
         ry="8"
-        className="fill-amber-200"
+        fill="#fcd9b6"
         transform="rotate(15 64 22)"
       />
       <ellipse
@@ -117,30 +117,30 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="23"
         rx="3"
         ry="5"
-        className="fill-pink-300"
+        fill="#f4a261"
         transform="rotate(15 64 23)"
       />
 
-      {/* Mischievous eyebrows */}
+      {/* Mischievous eyebrows - angled for attitude */}
       <path
-        d="M37 27 Q42 25 47 28"
-        stroke="#52525b"
-        strokeWidth="2"
+        d="M37 27 Q42 24 47 28"
+        stroke="#5c4033"
+        strokeWidth="2.5"
         strokeLinecap="round"
         fill="none"
       />
       <path
-        d="M53 28 Q58 25 63 27"
-        stroke="#52525b"
-        strokeWidth="2"
+        d="M53 28 Q58 24 63 27"
+        stroke="#5c4033"
+        strokeWidth="2.5"
         strokeLinecap="round"
         fill="none"
       />
 
-      {/* Smirk */}
+      {/* Smirk - confident */}
       <path
-        d="M44 46 Q50 50 56 46"
-        stroke="#52525b"
+        d="M44 46 Q50 51 56 46"
+        stroke="#5c4033"
         strokeWidth="2"
         strokeLinecap="round"
         fill="none"
@@ -152,18 +152,18 @@ export function WeaselLogo({ className = "w-12 h-12" }: WeaselLogoProps) {
         cy="62"
         rx="12"
         ry="10"
-        className="fill-amber-100"
+        fill="#fff5eb"
       />
 
-      {/* Tail */}
+      {/* Tail - bushy */}
       <path
-        d="M78 58 Q88 50 82 40 Q78 35 74 42 Q72 52 78 58"
-        className="fill-amber-200"
+        d="M78 58 Q90 48 84 38 Q78 32 74 42 Q70 52 78 58"
+        fill="#fcd9b6"
       />
       <path
-        d="M80 42 Q78 38 76 44"
-        className="fill-amber-800"
-        opacity="0.3"
+        d="M82 42 Q78 36 76 44"
+        fill="#c17f59"
+        opacity="0.4"
       />
     </svg>
   );

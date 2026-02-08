@@ -4,6 +4,7 @@ interface ProductCardProps {
   icon: string;
   color: string;
   borderColor: string;
+  url: string;
 }
 
 export function ProductCard({
@@ -12,10 +13,14 @@ export function ProductCard({
   icon,
   color,
   borderColor,
+  url,
 }: ProductCardProps) {
   return (
-    <div
-      className={`product-card bg-[var(--surface)] rounded-2xl p-8 border-2 ${borderColor} hover:shadow-2xl hover:shadow-[var(--accent)]/10`}
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`product-card block bg-[var(--surface)] rounded-2xl p-8 border-2 ${borderColor} hover:shadow-2xl hover:shadow-[var(--accent)]/10 transition-all`}
     >
       {/* Icon with colored background */}
       <div
@@ -32,16 +37,25 @@ export function ProductCard({
         {description}
       </p>
 
-      {/* Footer with status */}
+      {/* Footer with link */}
       <div className="mt-6 pt-5 border-t border-[var(--accent)]/10">
-        <span className="inline-flex items-center gap-2 font-display text-sm font-medium text-[var(--accent)]">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]"></span>
-          </span>
-          Coming Soon
+        <span className="inline-flex items-center gap-2 font-display text-sm font-medium text-[var(--accent)] group-hover:underline">
+          Try It
+          <svg
+            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+            />
+          </svg>
         </span>
       </div>
-    </div>
+    </a>
   );
 }

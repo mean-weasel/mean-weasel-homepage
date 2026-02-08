@@ -9,6 +9,7 @@ const products = [
     icon: "🔇",
     color: "bg-red-500",
     borderColor: "border-red-200 dark:border-red-900",
+    url: "https://bleep-that-sht.com",
   },
   {
     name: "Bullhorn",
@@ -17,6 +18,7 @@ const products = [
     icon: "📢",
     color: "bg-amber-500",
     borderColor: "border-amber-200 dark:border-amber-900",
+    url: "https://bullhorn.to",
   },
   {
     name: "Seatify",
@@ -25,6 +27,7 @@ const products = [
     icon: "💺",
     color: "bg-emerald-500",
     borderColor: "border-emerald-200 dark:border-emerald-900",
+    url: "https://seatify.app",
   },
 ];
 

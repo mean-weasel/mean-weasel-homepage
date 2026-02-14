@@ -29,6 +29,15 @@ const products = [
     borderColor: "border-emerald-200 dark:border-emerald-900",
     url: "https://seatify.app",
   },
+  {
+    name: "Link Party",
+    description:
+      "Your crew, one shared queue. Stop losing great links in the group chat abyss. Collect, organize, and actually watch them together.",
+    icon: "🔗",
+    color: "bg-violet-500",
+    borderColor: "border-violet-200 dark:border-violet-900",
+    url: "https://linkparty.app",
+  },
 ];
 
 export default function Home() {
@@ -125,7 +134,7 @@ export default function Home() {
           </div>
 
           {/* Product cards with staggered entrance */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {products.map((product, index) => (
               <div
                 key={product.name}

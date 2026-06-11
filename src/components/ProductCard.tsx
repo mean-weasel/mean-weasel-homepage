@@ -5,6 +5,8 @@ interface ProductCardProps {
   color: string;
   borderColor: string;
   url: string;
+  status: "Live" | "In the works";
+  cta?: string;
 }
 
 export function ProductCard({
@@ -14,33 +16,43 @@ export function ProductCard({
   color,
   borderColor,
   url,
+  status,
+  cta = "Open",
 }: ProductCardProps) {
+  const statusClass =
+    status === "Live"
+      ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+      : "bg-[var(--accent)]/10 text-[var(--accent)]";
+
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`product-card block bg-[var(--surface)] rounded-2xl p-8 border-2 ${borderColor} hover:shadow-2xl hover:shadow-[var(--accent)]/10 transition-all`}
+      className={`group product-card block h-full bg-[var(--surface)] rounded-2xl p-8 border-2 ${borderColor} hover:shadow-2xl hover:shadow-[var(--accent)]/10 transition-all`}
     >
-      {/* Icon with colored background */}
-      <div
-        className={`w-14 h-14 ${color} rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg rotate-3 hover:rotate-0 transition-transform`}
-      >
-        {icon}
+      <div className="flex items-start justify-between gap-4 mb-6">
+        <div
+          className={`w-14 h-14 ${color} rounded-xl flex items-center justify-center text-2xl shadow-lg rotate-3 group-hover:rotate-0 transition-transform`}
+        >
+          {icon}
+        </div>
+        <span
+          className={`font-display text-xs font-bold px-3 py-1 rounded-full ${statusClass}`}
+        >
+          {status}
+        </span>
       </div>
 
-      {/* Title */}
       <h3 className="font-display text-xl font-bold mb-3">{name}</h3>
 
-      {/* Description */}
       <p className="font-body text-[var(--muted)] leading-relaxed text-base">
         {description}
       </p>
 
-      {/* Footer with link */}
       <div className="mt-6 pt-5 border-t border-[var(--accent)]/10">
         <span className="inline-flex items-center gap-2 font-display text-sm font-medium text-[var(--accent)] group-hover:underline">
-          Try It
+          {cta}
           <svg
             className="w-4 h-4 transition-transform group-hover:translate-x-1"
             fill="none"

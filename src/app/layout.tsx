@@ -17,14 +17,22 @@ const crimsonPro = Crimson_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Mean Weasel | Unique Apps & SaaS Products",
+  title: "Mean Weasel | Useful Software, No Ceremony",
   description:
-    "Mean Weasel LLC develops unique and fun apps and SaaS products that solve real problems with a touch of personality.",
-  keywords: ["apps", "SaaS", "software", "Mean Weasel", "startups"],
+    "Mean Weasel builds the tools we wish already existed: focused products for people with real work to finish.",
+  keywords: [
+    "Mean Weasel",
+    "BugDrop",
+    "Foil Dictation",
+    "Bleep That Sh*t",
+    "Seatify",
+    "DeckChecker",
+    "software",
+  ],
   openGraph: {
-    title: "Mean Weasel | Unique Apps & SaaS Products",
+    title: "Mean Weasel | Useful Software, No Ceremony",
     description:
-      "We develop unique and fun apps and SaaS products that solve real problems.",
+      "We build the tools we wish already existed.",
     type: "website",
   },
 };

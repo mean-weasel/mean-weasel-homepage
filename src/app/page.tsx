@@ -1,42 +1,90 @@
 import { WeaselLogo } from "@/components/WeaselLogo";
 import { ProductCard } from "@/components/ProductCard";
 
-const products = [
+const liveProducts = [
   {
-    name: "Bleep That Sh*t!",
+    name: "BugDrop",
     description:
-      "Audio and video censorship tool with premium features. Automatically detect and bleep profanity in your content with AI-powered precision.",
+      "Feedback widget that turns screenshots and notes into GitHub issues.",
+    icon: "🐞",
+    color: "bg-sky-500",
+    borderColor: "border-sky-200 dark:border-sky-900",
+    url: "https://bugdrop.dev",
+    status: "Live" as const,
+    cta: "Open BugDrop",
+  },
+  {
+    name: "Foil Dictation",
+    description: "Dictation for real Mac workflows.",
+    icon: "🎙️",
+    color: "bg-indigo-500",
+    borderColor: "border-indigo-200 dark:border-indigo-900",
+    url: "https://sayfoil.com",
+    status: "Live" as const,
+    cta: "Try Foil",
+  },
+  {
+    name: "Debt Is Fun",
+    description: "A live clock for university debt and endowments.",
+    icon: "⏱️",
+    color: "bg-amber-500",
+    borderColor: "border-amber-200 dark:border-amber-900",
+    url: "https://debtisfun.com",
+    status: "Live" as const,
+    cta: "Watch the clock",
+  },
+  {
+    name: "Bleep That Sh*t",
+    description: "Clean up audio and video.",
     icon: "🔇",
     color: "bg-red-500",
     borderColor: "border-red-200 dark:border-red-900",
-    url: "https://bleep-that-sht.com",
-  },
-  {
-    name: "Bullhorn",
-    description:
-      "Schedule and manage social media posts across Twitter, LinkedIn, and Reddit from one simple dashboard. Amplify your message everywhere.",
-    icon: "📢",
-    color: "bg-amber-500",
-    borderColor: "border-amber-200 dark:border-amber-900",
-    url: "https://bullhorn.to",
+    url: "https://bleepthat.sh",
+    status: "Live" as const,
+    cta: "Bleep something",
   },
   {
     name: "Seatify",
-    description:
-      "AI-powered seating arrangement optimization for weddings and corporate events. Let algorithms handle the awkward family dynamics.",
+    description: "Seating charts without the chaos.",
     icon: "💺",
     color: "bg-emerald-500",
     borderColor: "border-emerald-200 dark:border-emerald-900",
     url: "https://seatify.app",
+    status: "Live" as const,
+    cta: "Plan seating",
   },
   {
-    name: "Link Party",
-    description:
-      "Your crew, one shared queue. Stop losing great links in the group chat abyss. Collect, organize, and actually watch them together.",
-    icon: "🔗",
+    name: "DeckChecker",
+    description: "Check decks before they go out.",
+    icon: "📊",
     color: "bg-violet-500",
     borderColor: "border-violet-200 dark:border-violet-900",
-    url: "https://linkparty.app",
+    url: "https://deckchecker.app",
+    status: "Live" as const,
+    cta: "Check a deck",
+  },
+];
+
+const buildingProducts = [
+  {
+    name: "BugDrop Board",
+    description: "A board for tracking and triaging BugDrop feedback.",
+    icon: "🧭",
+    color: "bg-orange-500",
+    borderColor: "border-orange-200 dark:border-orange-900",
+    url: "https://bugdrop.dev/board/",
+    status: "In the works" as const,
+    cta: "Preview the board",
+  },
+  {
+    name: "Foil iOS",
+    description: "Foil dictation for iPhone and iPad.",
+    icon: "📱",
+    color: "bg-indigo-500",
+    borderColor: "border-indigo-200 dark:border-indigo-900",
+    url: "https://sayfoil.com",
+    status: "In the works" as const,
+    cta: "Follow Foil",
   },
 ];
 
@@ -57,7 +105,13 @@ export default function Home() {
               href="#products"
               className="font-display text-sm font-medium text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
             >
-              Our Creations
+              Products
+            </a>
+            <a
+              href="#building"
+              className="ml-6 font-display text-sm font-medium text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+            >
+              Building
             </a>
           </nav>
         </div>
@@ -79,14 +133,15 @@ export default function Home() {
 
             {/* Headline with staggered animation */}
             <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 animate-fade-up delay-200">
-              <span className="block">Apps with</span>
-              <span className="block text-[var(--accent)]">Attitude</span>
+              <span className="block">We build the stuff</span>
+              <span className="block text-[var(--accent)]">
+                we wish already existed.
+              </span>
             </h1>
 
             {/* Subhead - serif for contrast */}
             <p className="font-body text-xl md:text-2xl text-[var(--muted)] mb-12 leading-relaxed animate-fade-up delay-300 max-w-xl mx-auto">
-              We craft delightfully useful software that solves real problems—
-              <em>without</em> the boring corporate aesthetic.
+              Focused products for people with real work to finish.
             </p>
 
             {/* CTA Button */}
@@ -95,7 +150,7 @@ export default function Home() {
                 href="#products"
                 className="group inline-flex items-center gap-3 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-8 py-4 rounded-full font-display font-bold text-lg transition-all shadow-lg shadow-[var(--accent)]/25 hover:shadow-xl hover:shadow-[var(--accent)]/30"
               >
-                See What We&apos;ve Built
+                See products
                 <svg
                   className="w-5 h-5 transition-transform group-hover:translate-y-1"
                   fill="none"
@@ -121,24 +176,25 @@ export default function Home() {
             <div className="inline-flex items-center gap-4 mb-6">
               <div className="h-px w-12 bg-[var(--accent)]/30" />
               <span className="font-display text-sm font-medium text-[var(--accent)] uppercase tracking-widest">
-                Our Creations
+                Live Products
               </span>
               <div className="h-px w-12 bg-[var(--accent)]/30" />
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Built Different
+              Useful software, no ceremony.
             </h2>
             <p className="font-body text-lg text-[var(--muted)] max-w-lg mx-auto">
-              Each product crafted with care, designed to be genuinely useful—and maybe make you smile.
+              A small collection of focused tools from Mean Weasel.
             </p>
           </div>
 
           {/* Product cards with staggered entrance */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {products.map((product, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {liveProducts.map((product, index) => (
               <div
                 key={product.name}
-                className={`animate-fade-up delay-${(index + 5) * 100}`}
+                className="animate-fade-up"
+                style={{ animationDelay: `${(index + 5) * 100}ms` }}
               >
                 <ProductCard {...product} />
               </div>
@@ -146,16 +202,33 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Personality section */}
-        <section className="max-w-5xl mx-auto px-6 py-16">
-          <div className="ornate-border rounded-2xl p-10 md:p-14 text-center">
-            <p className="font-body text-2xl md:text-3xl text-[var(--muted)] leading-relaxed italic">
-              &ldquo;Why settle for forgettable software when you can have something with a little
-              <span className="text-[var(--accent)] font-semibold not-italic"> mischief</span>?&rdquo;
-            </p>
-            <div className="mt-6 flex items-center justify-center gap-2">
-              <WeaselLogo className="w-6 h-6" />
-              <span className="font-display text-sm font-medium">— The Mean Weasel Team</span>
+        {/* Building section */}
+        <section id="building" className="max-w-5xl mx-auto px-6 py-16">
+          <div className="ornate-border rounded-2xl p-8 md:p-10">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+              <div>
+                <p className="font-display text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-3">
+                  In The Works
+                </p>
+                <h2 className="font-display text-3xl md:text-4xl font-bold">
+                  Building now
+                </h2>
+              </div>
+              <p className="font-body text-[var(--muted)] max-w-md">
+                The next thing getting sharpened.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {buildingProducts.map((product, index) => (
+                <div
+                  key={product.name}
+                  className="animate-fade-up"
+                  style={{ animationDelay: `${(index + 11) * 100}ms` }}
+                >
+                  <ProductCard {...product} />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -170,7 +243,7 @@ export default function Home() {
               <span className="font-display font-bold">Mean Weasel LLC</span>
             </div>
             <p className="font-body text-sm text-[var(--muted)]">
-              &copy; {new Date().getFullYear()} Mean Weasel LLC. Crafted with attitude.
+              &copy; {new Date().getFullYear()} Mean Weasel LLC. Useful software, no ceremony.
             </p>
           </div>
         </div>

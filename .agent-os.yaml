@@ -1,0 +1,92 @@
+agent_os:
+  required_version: ">=0.7.4-alpha.0 <0.8.0"
+  policy_version: 1
+  adoption_mode: observe
+  extends:
+    - agent-os/presets/generic
+    - agent-os/presets/web
+  pr_lifecycle:
+    mode: manual
+
+repo:
+  name: "mean-weasel-homepage"
+  primary_stack:
+    - web
+    - node
+    - nextjs
+  owner_boundary: "Owns the public Mean Weasel marketing homepage, static metadata, SEO surfaces, and local Next.js build/lint gates. Domain DNS, hosting account configuration, third-party credentials, and external analytics dashboards are outside this repo unless explicitly configured here."
+
+commands:
+  verify: "npm run verify"
+  install: "npm ci"
+  lint: "npm run lint"
+  format_check: ""
+  typecheck: "npm run build"
+  unit_tests: ""
+  integration_tests: ""
+  e2e_smoke: ""
+  build: "npm run build"
+
+command_applicability:
+  format_check:
+    status: not_applicable
+    reason: "No formatter or format-check script is configured in package.json."
+  unit_tests:
+    status: not_applicable
+    reason: "No unit test runner or unit test script is configured in package.json."
+  integration_tests:
+    status: not_applicable
+    reason: "No integration test runner or integration test script is configured in package.json."
+  e2e_smoke:
+    status: not_applicable
+    reason: "No browser smoke or E2E script is configured yet; local browser QA should use a project subdomain rather than localhost per AGENTS.md."
+
+ci:
+  provider: "local-dogfood"
+  workflow_files:
+    - "package.json"
+    - "scripts/agent-os-local-ci.mjs"
+  required_checks:
+    - "npm run agent-os:local-ci"
+
+deploy:
+  provider: ""
+  preview_url_pattern: ""
+  production_url: ""
+  smoke_command: ""
+
+privacy:
+  sensitive_artifacts:
+    - ".env*"
+    - ".agent-os/"
+    - "node_modules/"
+    - ".next/cache/"
+  safe_evidence:
+    - "local command output"
+    - "git status output"
+    - "Agent OS receipt markdown"
+  redaction_rules:
+    - "Do not include tokens, private keys, or secret values in receipts."
+    - "Do not publish environment variable values or hosting credentials."
+
+risk_categories:
+  - category: standard-code
+    proof_sources:
+      - "npm run lint"
+      - "npm run build"
+    negative_cases:
+      - "Verify unsupported command slots are marked not_applicable instead of fake no-op commands."
+  - category: public-web-seo
+    proof_sources:
+      - "npm run build"
+      - "route output from Next.js build"
+    negative_cases:
+      - "Check generated metadata routes still build when homepage content changes."
+  - category: agent-os-adoption
+    proof_sources:
+      - "agent-os doctor"
+      - "agent-os validate-profile"
+      - "agent-os profile-enrichment"
+      - "agent-os preflight"
+    negative_cases:
+      - "Confirm lane creation remains blocked until the canonical checkout is clean, on the default branch, and policy mode is intentionally raised."

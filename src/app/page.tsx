@@ -159,15 +159,9 @@ export default function Home() {
                 Independent software studio
               </p>
               <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight mb-6 animate-fade-up delay-200">
-                Mean Weasel builds focused software for people with real work
-                to finish.
+                We build tools that get you from idea to done.
               </h1>
-              <p className="font-body text-xl md:text-2xl text-[var(--muted)] mb-9 leading-relaxed animate-fade-up delay-300 max-w-2xl mx-auto lg:mx-0">
-                Feedback tools, dictation, event workflows, media cleanup,
-                public data clocks, shipping proof, and the next generation of
-                workflow tools.
-              </p>
-              <div className="animate-fade-up delay-400 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+              <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
                 <a
                   href="#products"
                   className="group inline-flex items-center justify-center gap-3 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-7 py-3 rounded-lg font-display font-bold text-base transition-all shadow-lg shadow-[var(--accent)]/20 hover:shadow-xl hover:shadow-[var(--accent)]/25"

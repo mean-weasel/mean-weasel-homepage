@@ -1,5 +1,5 @@
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://meanweasel.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://mean-weasel.com"
 ).replace(/\/$/, "");
 
 export const siteName = "Mean Weasel";

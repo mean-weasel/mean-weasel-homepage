@@ -41,6 +41,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Mean Weasel LLC", url: siteUrl }],
   creator: "Mean Weasel LLC",
   publisher: "Mean Weasel LLC",
+  verification: {
+    google: "beKrqVZv_j7vPzY4dcy0y42HOUPmUOuG-yrqkQJUdvQ",
+  },
   alternates: {
     canonical: "/",
   },

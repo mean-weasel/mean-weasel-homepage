@@ -1,9 +1,12 @@
 import { ProductCard } from "@/components/ProductCard";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { WeaselLogo } from "@/components/WeaselLogo";
 import {
   allProjects,
   buildingProjects,
   liveProjects,
+  type Project,
 } from "@/lib/projects";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
@@ -62,7 +65,7 @@ function ProjectSection({
   title: string;
   description: string;
   id: string;
-  projects: typeof liveProjects;
+  projects: Project[];
 }) {
   return (
     <section id={id} className="max-w-6xl mx-auto px-6 py-14 md:py-20">
@@ -108,34 +111,7 @@ export default function Home() {
         }}
       />
 
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--background)]/90 border-b border-[var(--accent)]/10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-          <a
-            href="#top"
-            className="flex items-center gap-3 animate-fade-in"
-            aria-label="Mean Weasel home"
-          >
-            <WeaselLogo className="w-10 h-10 animate-wiggle" />
-            <span className="font-display font-bold text-xl tracking-tight">
-              Mean Weasel
-            </span>
-          </a>
-          <nav className="animate-fade-in delay-200 flex items-center justify-center gap-4 sm:gap-5">
-            <a
-              href="#products"
-              className="font-display text-sm font-medium text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-            >
-              Products
-            </a>
-            <a
-              href="#building"
-              className="font-display text-sm font-medium text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-            >
-              Building
-            </a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="top">
         <section className="max-w-6xl mx-auto px-6 py-16 md:py-24">
@@ -195,8 +171,8 @@ export default function Home() {
 
         <ProjectSection
           id="products"
-          eyebrow="Live Products"
-          title="Useful software, already out in the world."
+          eyebrow="Public Products"
+          title="Useful software, out in the world."
           description="Small, practical products with clear jobs: capture feedback, clean media, plan events, check decks, dictate faster, and make public data easier to feel."
           projects={liveProjects}
         />
@@ -210,20 +186,7 @@ export default function Home() {
         />
       </main>
 
-      <footer className="border-t border-[var(--accent)]/10 mt-8">
-        <div className="max-w-6xl mx-auto px-6 py-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <WeaselLogo className="w-8 h-8" />
-              <span className="font-display font-bold">Mean Weasel LLC</span>
-            </div>
-            <p className="font-body text-sm text-[var(--muted)] text-center md:text-right">
-              &copy; {new Date().getFullYear()} Mean Weasel LLC. Useful
-              software, no ceremony.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

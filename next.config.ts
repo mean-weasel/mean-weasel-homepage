@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["mean-weasel-homepage.127.0.0.1.nip.io"],
   async redirects() {
     return [
       {

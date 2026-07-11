@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductSiteLink } from "@/components/ProductSiteLink";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
@@ -164,15 +165,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 {project.introduction}
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 animate-fade-up delay-400">
-                <a
+                <ProductSiteLink
                   href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  projectName={project.name}
+                  projectSlug={project.slug}
+                  placement="project_hero"
                   className="inline-flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-7 py-3.5 rounded-lg font-display font-bold transition-colors shadow-lg shadow-[var(--accent)]/20"
                 >
                   {project.cta ?? `Open ${project.name}`}
                   <span aria-hidden="true">↗</span>
-                </a>
+                </ProductSiteLink>
                 <span className="font-body text-sm text-[var(--muted)]">
                   For {audienceText}
                 </span>
@@ -296,15 +298,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 See {project.name} in its own habitat.
               </h2>
             </div>
-            <a
+            <ProductSiteLink
               href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              projectName={project.name}
+              projectSlug={project.slug}
+              placement="project_footer"
               className="shrink-0 inline-flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-7 py-3.5 rounded-lg font-display font-bold transition-colors"
             >
               {project.cta ?? `Open ${project.name}`}
               <span aria-hidden="true">↗</span>
-            </a>
+            </ProductSiteLink>
           </div>
         </section>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductSiteLink } from "@/components/ProductSiteLink";
 import type { Project } from "@/lib/projects";
 
 type ProductCardProps = Project;
@@ -81,15 +82,16 @@ export function ProductCard({
             </Link>
           ) : null}
           {url ? (
-            <a
+            <ProductSiteLink
               href={url}
-              target="_blank"
-              rel="noopener noreferrer"
+              projectName={name}
+              projectSlug={slug}
+              placement="homepage_card"
               className="font-display text-xs font-medium text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
-              aria-label={`${cta} (opens in a new tab)`}
+              ariaLabel={`${cta} (opens in a new tab)`}
             >
               {cta} ↗
-            </a>
+            </ProductSiteLink>
           ) : null}
         </div>
       ) : null}

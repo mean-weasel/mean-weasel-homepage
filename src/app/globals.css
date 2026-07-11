@@ -135,6 +135,30 @@ html {
   transform: translateY(-8px) rotate(-1deg);
 }
 
+.project-snapshot {
+  box-shadow:
+    0 28px 70px rgba(23, 32, 42, 0.14),
+    0 10px 24px rgba(232, 93, 4, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none;
+    opacity: 1;
+  }
+
+  .product-card,
+  .product-card:hover {
+    transform: none;
+  }
+}
+
 /* Decorative border style */
 .ornate-border {
   border: 2px solid transparent;

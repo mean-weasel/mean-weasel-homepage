@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/projects/:slug/",
+        destination: "/projects/:slug",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {

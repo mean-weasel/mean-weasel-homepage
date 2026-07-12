@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "verify": "npm run lint && npm run build",
+    "check:seo": "node scripts/run-seo-check.mjs",
+    "check:seo:target": "node scripts/check-seo.mjs",
+    "verify": "npm run lint && npm run build && npm run check:seo",
     "agent-os:local-ci": "node scripts/agent-os-local-ci.mjs"
   },
   "dependencies": {

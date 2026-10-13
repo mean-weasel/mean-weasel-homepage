@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Crimson_Pro } from "next/font/google";
+import localFont from "next/font/local";
 import { allProjects } from "@/lib/projects";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
+import { PageMotion } from "@/components/PageMotion";
 
-// Bold, geometric sans for headings - has personality
-const spaceGrotesk = Space_Grotesk({
+// Bundled fonts keep builds independent of the Google Fonts API.
+const spaceGrotesk = localFont({
+  src: "./fonts/SpaceGrotesk.woff2",
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "700"],
+  display: "swap",
+  weight: "300 700",
 });
-
-// Elegant serif for body - creates contrast
-const crimsonPro = Crimson_Pro({
+const crimsonPro = localFont({
+  src: [
+    { path: "./fonts/CrimsonPro.woff2", weight: "200 900", style: "normal" },
+    { path: "./fonts/CrimsonPro-Italic.woff2", weight: "200 900", style: "italic" },
+  ],
   variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,10 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${spaceGrotesk.variable} ${crimsonPro.variable} antialiased`}
       >
+        <PageMotion />
         {children}
       </body>
     </html>

@@ -24,6 +24,15 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/pricing/", destination: "/pricing", permanent: true },
+      { source: "/services/", destination: "/services", permanent: true },
+      { source: "/use-cases/", destination: "/use-cases", permanent: true },
+      { source: "/services/web-design-phoenix/", destination: "/services/web-design-phoenix", permanent: true },
+      {
+        source: "/gallery/",
+        destination: "/gallery",
+        permanent: true,
+      },
       {
         source: "/projects/:slug/",
         destination: "/projects/:slug",

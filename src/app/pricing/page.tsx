@@ -1,0 +1,25 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ServicePageShell, ServicePageCta, inquiryPath } from "@/components/ServicePageShell";
+import { inquiryHref } from "@/lib/inquiry";
+
+const description = "Explore pricing and scope for Mean Weasel business websites, app design and development, and SEO. Pricing is to be confirmed; every project starts with a clear scope.";
+export const metadata: Metadata = {
+  title: "Pricing & Project Scope", description, alternates: { canonical: "/pricing" },
+  openGraph: { title: "Pricing & Project Scope | Mean Weasel", description, url: "/pricing", images: ["/opengraph-image"] },
+};
+
+export default function PricingPage() {
+  return <ServicePageShell active="pricing" title="Pricing & Project Scope">
+    <section className="service-intro studio-container">
+      <div><p className="studio-eyebrow">PRICING & PROJECT SCOPE</p><h1>Clear scope.<br /><em>A considered estimate.</em></h1><p className="services-lead">Business websites, app design & development, and SEO—built around what your business needs.</p><p>Our pricing is being finalized. For now, explore the options below and tell us what you have in mind. We’ll confirm the work, timing, and costs in a written proposal before you commit.</p><div className="services-actions"><a className="service-button" href="#options">Explore the options ↓</a><Link className="studio-text-link" href={inquiryPath}>Tell us about your project ↗</Link></div></div>
+      <aside className="service-picker"><p className="studio-eyebrow">WHAT SHAPES YOUR ESTIMATE?</p><div className="pricing-factor"><strong>Content & pages</strong><p>How much needs creating, organizing, or moving from an existing site.</p></div><div className="pricing-factor"><strong>Features & connections</strong><p>Interfaces, accounts, integrations, and the workflows people need.</p></div><div className="pricing-factor"><strong>Launch & ongoing needs</strong><p>Platform costs, handoff, and any maintenance or support we agree on.</p></div></aside>
+    </section>
+    <section id="options" className="service-band service-band-sage"><div className="studio-container"><p className="studio-eyebrow">THREE WAYS TO WORK TOGETHER</p><h2>Start with the help<br /><em>you need.</em></h2><div className="pricing-options">
+      <article className="service-detail-card"><p className="service-label">01 / BUSINESS WEBSITES</p><h3>A professional home for your business.</h3><div className="service-price">Pricing to be confirmed</div><h4>Business Website</h4><p>A focused site using your content. Up to five pages, an editable collection, an inquiry form, and foundational SEO.</p><h4>Website + Content</h4><p>Help with your message as well as the build. Up to ten pages, first-draft copy, content organization, and one standard integration.</p><div className="service-card-end"><Link className="studio-text-link" href="/services#website-packages">Compare website packages ↗</Link><Link className="service-button" href={inquiryHref("New business website")}>Ask about a website ↗</Link></div></article>
+      <article className="service-detail-card"><p className="service-label">02 / APP DESIGN & DEVELOPMENT</p><h3>Design and build your next useful tool.</h3><div className="service-price">Pricing to be confirmed</div><p>Custom web apps, customer portals, and tools for your business. We shape the user journey and interface, then build the functionality behind it.</p><ul><li>Project discovery and interface design</li><li>A clearly defined first release</li><li>Development, testing, and handoff</li></ul><p className="service-small">Quoted individually around the features, integrations, and ongoing needs of your app.</p><div className="service-card-end"><Link className="studio-text-link" href="/services#custom">Explore app development ↗</Link><Link className="service-button" href={inquiryHref("Custom app or integration")}>Discuss your app ↗</Link></div></article>
+      <article className="service-detail-card"><p className="service-label">03 / SEO</p><h3>A clearer foundation for search.</h3><div className="service-price">Pricing to be confirmed</div><p>A focused SEO Foundation Project for an existing website, with improvements agreed after a review.</p><ul><li>Technical and on-page review</li><li>Agreed improvements to up to five pages</li><li>Inquiry measurement and a record of changes</li></ul><p className="service-small">Foundational SEO is already included in website packages. Ongoing content and monthly SEO work are scoped separately.</p><div className="service-card-end"><Link className="studio-text-link" href="/services#seo">Explore SEO services ↗</Link><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Discuss SEO ↗</Link></div></article>
+    </div><p className="service-scope-note">Hosting, domains, paid software, photography, and work beyond the agreed scope are separate. We’ll identify recurring costs and confirm any support arrangements in your proposal.</p></div></section>
+    <ServicePageCta />
+  </ServicePageShell>;
+}

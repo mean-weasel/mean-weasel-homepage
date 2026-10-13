@@ -1,38 +1,98 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { WeaselLogo } from "@/components/WeaselLogo";
 
-export function SiteHeader({ projectPage = false }: { projectPage?: boolean }) {
+export function SiteHeader({
+  projectPage = false,
+  servicesPage = false,
+  homePage = false,
+  activePage,
+}: {
+  projectPage?: boolean;
+  servicesPage?: boolean;
+  homePage?: boolean;
+  activePage?: "services" | "use-cases" | "pricing";
+}) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const header = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!menuOpen) return;
+    function dismiss(event: PointerEvent) {
+      if (!header.current?.contains(event.target as Node)) setMenuOpen(false);
+    }
+    function escape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      header.current?.querySelector<HTMLButtonElement>(".studio-menu-toggle")?.focus();
+    }
+    const desktop = matchMedia("(min-width: 801px)");
+    function resize() { if (desktop.matches) setMenuOpen(false); }
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", escape);
+    desktop.addEventListener("change", resize);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", escape);
+      desktop.removeEventListener("change", resize);
+    };
+  }, [menuOpen]);
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--background)]/90 border-b border-[var(--accent)]/10">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-5">
-        <Link
-          href={projectPage ? "/" : "#top"}
-          className="flex items-center gap-3 animate-fade-in"
-          aria-label="Mean Weasel home"
-        >
-          <WeaselLogo className="w-10 h-10 animate-wiggle" />
-          <span className="font-display font-bold text-xl tracking-tight">
-            Mean Weasel
-          </span>
-        </Link>
-        <nav
-          className="animate-fade-in delay-200 flex items-center justify-center gap-4 sm:gap-5"
-          aria-label="Primary navigation"
-        >
-          <Link
-            href="/#products"
-            className="font-display text-sm font-medium text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >
-            Products
+    <>
+      <a
+        className="studio-skip"
+        href={projectPage ? "#project-content" : "#main-content"}
+      >
+        Skip to content
+      </a>
+      <header ref={header} className="studio-header" onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMenuOpen(false);
+      }}>
+        <div className="studio-container studio-nav">
+          <Link href="/" className="studio-brand" aria-label="Mean Weasel home">
+            <WeaselLogo className="w-10 h-10" />
+            <span>
+              mean weasel<span className="brand-period">.</span>
+            </span>
           </Link>
-          <Link
-            href="/#building"
-            className="font-display text-sm font-medium text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+          <button
+            className="studio-menu-toggle"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            Building
-          </Link>
-        </nav>
-      </div>
-    </header>
+            {menuOpen ? "Close" : "Menu"}
+            <span aria-hidden="true">{menuOpen ? "×" : "+"}</span>
+          </button>
+          <nav
+            id="primary-navigation"
+            className={menuOpen ? "is-open" : ""}
+            aria-label="Primary navigation"
+            onClick={() => setMenuOpen(false)}
+
+          >
+            {homePage ? (
+              <>
+                <a href="#services">Services</a>
+                <a href="#products">Examples</a>
+                <Link href="/use-cases">Use cases</Link>
+                <Link href="/pricing">Pricing</Link>
+                <a className="nav-contact" href="#contact">Get in touch ↗</a>
+              </>
+            ) : (
+              <>
+                <Link href="/">Home</Link>
+                <Link href="/services" className={servicesPage || activePage === "services" ? "nav-selected" : ""} aria-current={activePage === "services" ? "page" : undefined}>Services</Link>
+                <Link href="/use-cases" aria-current={activePage === "use-cases" ? "page" : undefined} className={activePage === "use-cases" ? "nav-selected" : ""}>Use cases</Link>
+                {projectPage && <Link href="/#products">Examples</Link>}
+                <Link href="/pricing" aria-current={activePage === "pricing" ? "page" : undefined} className={activePage === "pricing" ? "nav-selected" : ""}>Pricing</Link>
+                <Link className="nav-contact" href={servicesPage ? "#inquiry" : "/services/web-design-phoenix#inquiry"}>Get in touch ↗</Link>
+              </>
+            )}
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }

@@ -10,6 +10,11 @@ export function SiteFooter() {
             <WeaselLogo className="w-8 h-8" />
             <span className="font-display font-bold">Mean Weasel LLC</span>
           </Link>
+          <nav aria-label="Footer navigation" className="footer-page-links">
+            <Link href="/services">Services</Link>
+            <Link href="/use-cases">Use cases</Link>
+            <Link href="/pricing">Pricing</Link>
+          </nav>
           <p className="font-body text-sm text-[var(--muted)] text-center md:text-right">
             &copy; {new Date().getFullYear()} Mean Weasel LLC. Useful
             software, no ceremony.

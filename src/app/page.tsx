@@ -1,14 +1,11 @@
+import { projectSchema } from "@/lib/project-schema";
 import type { Metadata } from "next";
-import { ProductCard } from "@/components/ProductCard";
-import { SiteFooter } from "@/components/SiteFooter";
+import Link from "next/link";
+import { HomeExamples } from "@/components/HomeExamples";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { WeaselLogo } from "@/components/WeaselLogo";
-import {
-  allProjects,
-  buildingProjects,
-  liveProjects,
-  type Project,
-} from "@/lib/projects";
+import { galleryProjects } from "@/lib/gallery";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -75,157 +72,144 @@ const projectJsonLd = {
       "@type": "ItemList",
       "@id": `${siteUrl}/#projects`,
       name: "Mean Weasel projects",
-      itemListElement: allProjects.map((project, index) => ({
+      itemListElement: galleryProjects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        item: {
-          "@type": "SoftwareApplication",
-          name: project.name,
-          description: project.description,
-          applicationCategory: "BusinessApplication",
-          operatingSystem: "Web",
-          url: project.url ?? siteUrl,
-          author: {
-            "@id": `${siteUrl}/#organization`,
-          },
-        },
+        item: projectSchema(project),
       })),
     },
   ],
 };
 
-function ProjectSection({
-  eyebrow,
-  title,
-  description,
-  id,
-  projects,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-  id: string;
-  projects: Project[];
-}) {
-  return (
-    <section id={id} className="max-w-6xl mx-auto px-6 py-14 md:py-20">
-      <div className="mb-10 md:mb-12">
-        <div className="inline-flex items-center gap-4 mb-5">
-          <div className="h-px w-10 bg-[var(--accent)]/40" />
-          <span className="font-display text-sm font-medium text-[var(--accent)] uppercase tracking-widest">
-            {eyebrow}
-          </span>
-        </div>
-        <div className="grid md:grid-cols-[1fr_0.75fr] gap-5 md:gap-10 md:items-end">
-          <h2 className="font-display text-3xl md:text-5xl font-bold">
-            {title}
-          </h2>
-          <p className="font-body text-lg text-[var(--muted)] leading-relaxed">
-            {description}
-          </p>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
-          <div
-            key={project.name}
-            className="animate-fade-up"
-            style={{ animationDelay: `${(index + 3) * 80}ms` }}
-          >
-            <ProductCard {...project} />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export default function Home() {
   return (
-    <div className="min-h-screen hero-bg grid-pattern">
+    <div className="studio-home">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(projectJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-
-      <SiteHeader />
-
-      <main id="top">
-        <section className="max-w-6xl mx-auto px-6 py-16 md:py-24">
-          <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-center">
-            <div className="flex justify-center lg:justify-start animate-scale-in">
-              <div className="relative">
-                <WeaselLogo className="w-28 h-28 md:w-40 md:h-40 animate-wiggle" />
-                <div
-                  aria-hidden="true"
-                  className="absolute -top-3 -right-4 h-1.5 w-12 bg-[var(--accent)] opacity-70 rotate-6"
-                />
-                <div
-                  aria-hidden="true"
-                  className="absolute -bottom-2 -left-5 h-1.5 w-10 bg-cyan-400 opacity-80 -rotate-6"
-                />
-              </div>
-            </div>
-
-            <div className="text-center lg:text-left">
-              <p className="font-display text-sm font-medium text-[var(--accent)] uppercase tracking-widest mb-5 animate-fade-up delay-100">
-                Independent software studio
-              </p>
-              <h1 className="font-display text-4xl md:text-6xl font-bold tracking-tight mb-6 animate-fade-up delay-200">
-                We build tools that get you from idea to done.
-              </h1>
-              <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
-                <a
-                  href="#products"
-                  className="group inline-flex items-center justify-center gap-3 bg-[var(--accent)] hover:bg-[var(--accent-dark)] text-white px-7 py-3 rounded-lg font-display font-bold text-base transition-all shadow-lg shadow-[var(--accent)]/20 hover:shadow-xl hover:shadow-[var(--accent)]/25"
-                >
-                  See live products
-                  <svg
-                    aria-hidden="true"
-                    className="w-5 h-5 transition-transform group-hover:translate-y-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.5}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="#building"
-                  className="inline-flex items-center justify-center px-7 py-3 rounded-lg font-display font-bold text-base border border-[var(--accent)]/30 text-[var(--foreground)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-                >
-                  What is next
-                </a>
-              </div>
+      <SiteHeader homePage />
+      <main id="main-content" className="homepage-main">
+        <div className="home-band home-band-intro">
+        <section
+          className="studio-hero studio-container"
+          aria-labelledby="studio-title"
+        >
+          <div className="hero-copy">
+            <p className="studio-eyebrow">
+              <span className="studio-dot" /> INDEPENDENT SOFTWARE STUDIO
+            </p>
+            <h1 id="studio-title">
+              Useful software.
+              <br />
+              <em>A little wild.</em>
+            </h1>
+            <p className="studio-intro">
+              Apps that solve everyday problems. Tools that make building
+              easier.
+              <br className="desktop-break" /> A collection of things we wanted
+              to exist, so we built them.
+            </p>
+            <div className="home-hero-actions">
+              <Link className="home-cta-button" href="/services/web-design-phoenix#inquiry">
+                Tell us about your project <span aria-hidden="true">↗</span>
+              </Link>
+              <a className="studio-text-link" href="#products">Explore the work <span aria-hidden="true">↓</span></a>
             </div>
           </div>
+          <div className="hero-mark" aria-hidden="true">
+            <div className="hero-orbit">
+              <span className="orbit-top">
+                SMALL STUDIO · CURIOUS BY NATURE
+              </span>
+              <WeaselLogo className="hero-weasel" />
+              <span className="orbit-bottom">
+                MEAN WEASEL · EST. IN CURIOSITY
+              </span>
+            </div>
+            <span className="mark-spark spark-one">✳</span>
+            <span className="mark-spark spark-two">+</span>
+          </div>
+          <div className="hero-bottom">
+            <span>IDEAS INTO APPS. APPS INTO EVERYDAY LIFE.</span>
+            <span>
+              SCROLL TO EXPLORE <span aria-hidden="true">↘</span>
+            </span>
+          </div>
         </section>
+        </div>
+        <div className="home-band home-band-services">
+        <section
+          id="services"
+          className="homepage-services studio-container"
+          aria-labelledby="home-services-title"
+        >
+          <div>
+            <p className="studio-eyebrow">WORK WITH MEAN WEASEL</p>
+            <h2 id="home-services-title">
+              Your business.
+              <br />
+              <em>Built to work better.</em>
+            </h2>
+            <p>
+              Business websites, custom apps, and SEO for Phoenix and beyond.
+              Work directly with Jeremy from first conversation to launch.
+            </p>
+            <Link
+              className="studio-work-link"
+              href="/services"
+            >
+              Explore services <span aria-hidden="true">↗</span>
+            </Link>
+            <Link className="studio-text-link home-service-inquiry" href="/services/web-design-phoenix#inquiry">Let’s talk about your project ↗</Link>
 
-        <ProjectSection
-          id="products"
-          eyebrow="Public Products"
-          title="Useful software, out in the world."
-          description="Small, practical products with clear jobs: capture feedback, clean media, plan events, check decks, dictate faster, and make public data easier to feel."
-          projects={liveProjects}
-        />
-
-        <ProjectSection
-          id="building"
-          eyebrow="In The Works"
-          title="The active workbench."
-          description="Current builds include feedback boards, proof-of-shipping surfaces, dictation companions, creative asset lineage, and visual fidelity tooling."
-          projects={buildingProjects}
-        />
+          </div>
+          <div className="home-services-offers">
+            {[
+              [
+                "01",
+                "Business websites",
+                "Clear websites that turn visitors into inquiries.",
+              ],
+              [
+                "02",
+                "App design & development",
+                "Useful apps, customer portals, and business tools.",
+              ],
+              [
+                "03",
+                "SEO",
+                "Search improvements for the website you already have.",
+              ],
+            ].map(([number, title, description]) => (
+              <Link key={number} href={`/services#${({ "01": "website-packages", "02": "custom", "03": "seo" })[number]}`}>
+                <span>{number}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                  <small>Pricing to be confirmed</small>
+                </div>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+        </div>
+        <div id="products" className="home-band home-band-work">
+          <HomeExamples projects={galleryProjects} />
+        </div>
+        <div className="home-band home-band-studio">
+          <section id="contact" className="home-final-cta studio-container" aria-labelledby="contact-title">
+            <p className="studio-eyebrow">LET’S BUILD SOMETHING USEFUL</p>
+            <h2 id="contact-title">Have a project in mind?<br /><em>Let’s talk about it.</em></h2>
+            <p>A better website, a smoother workflow, or an app you wish existed. Tell us what you’re working on and we’ll figure out a useful next step.</p>
+            <Link className="home-cta-button" href="/services/web-design-phoenix#inquiry">Tell us about your project <span aria-hidden="true">↗</span></Link>
+            <p className="home-cta-note">You’ll hear directly from Jeremy. No finished brief needed, and no commitment to get started.</p>
+          </section>
+        </div>
       </main>
-
       <SiteFooter />
     </div>
   );

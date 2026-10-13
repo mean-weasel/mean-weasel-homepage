@@ -1,8 +1,12 @@
+import { additionalProjects } from "@/lib/additional-projects";
+
 export type ProjectStatus =
   | "Live"
   | "Public beta"
   | "Waitlist"
-  | "In the works";
+  | "In the works"
+  | "Published"
+  | "Manual install";
 
 export type ProjectHighlight = {
   title: string;
@@ -10,6 +14,8 @@ export type ProjectHighlight = {
 };
 
 export type Project = {
+  kind?: "book";
+  authors?: string[];
   name: string;
   slug?: string;
   description: string;
@@ -101,7 +107,8 @@ export const liveProjects: PublishedProject[] = [
     snapshot: {
       eyebrow: "Feedback captured",
       headline: "The button clips on smaller screens.",
-      detail: "Screenshot, annotation, page URL, viewport, and browser context are ready to become a GitHub Issue.",
+      detail:
+        "Screenshot, annotation, page URL, viewport, and browser context are ready to become a GitHub Issue.",
       signals: ["Annotated screenshot", "1440 × 900", "GitHub Issue"],
     },
   },
@@ -117,7 +124,8 @@ export const liveProjects: PublishedProject[] = [
     status: "Public beta",
     cta: "Try Foil",
     category: "Mac productivity",
-    audience: "People who dictate into both human-facing apps and agent workflows",
+    audience:
+      "People who dictate into both human-facing apps and agent workflows",
     headline: "Dictation that understands where the words are going.",
     introduction:
       "Foil is a Mac dictation workspace built around context. It can polish language for people, preserve direct intent for agents, and apply different cleanup behavior depending on the destination app.",
@@ -152,7 +160,8 @@ export const liveProjects: PublishedProject[] = [
     snapshot: {
       eyebrow: "Destination detected",
       headline: "Words shaped for the app in front of you.",
-      detail: "A configurable transcription and cleanup route keeps the spoken intent appropriate for its destination.",
+      detail:
+        "A configurable transcription and cleanup route keeps the spoken intent appropriate for its destination.",
       signals: ["Mac menu bar", "App-specific", "Provider routes"],
     },
   },
@@ -168,7 +177,8 @@ export const liveProjects: PublishedProject[] = [
     status: "Live",
     cta: "Watch the clock",
     category: "Public-interest data",
-    audience: "Students, graduates, families, journalists, and anyone examining higher-education finance",
+    audience:
+      "Students, graduates, families, journalists, and anyone examining higher-education finance",
     headline: "Put student debt beside the wealth of the institution.",
     introduction:
       "Debt Is Fun turns university finance data into a personal, visual comparison. Pick a school and see federal student borrowing alongside institutional endowment wealth through live clocks, rankings, and shareable cards.",
@@ -203,7 +213,8 @@ export const liveProjects: PublishedProject[] = [
     snapshot: {
       eyebrow: "University selected",
       headline: "Two financial realities, one card.",
-      detail: "Federal student borrowing and institutional endowment wealth become a direct, shareable comparison.",
+      detail:
+        "Federal student borrowing and institutional endowment wealth become a direct, shareable comparison.",
       signals: ["Live values", "School rankings", "Shareable card"],
     },
   },
@@ -219,7 +230,8 @@ export const liveProjects: PublishedProject[] = [
     status: "Live",
     cta: "Bleep something",
     category: "Media tools",
-    audience: "Creators, podcasters, educators, and teams preparing audience-safe media",
+    audience:
+      "Creators, podcasters, educators, and teams preparing audience-safe media",
     headline: "Find the words, review the moments, export the clean cut.",
     introduction:
       "Bleep That Sh*t is a transcript-first profanity cleanup tool for audio and video. It offers a fast, private browser workflow for short files and a cloud studio for longer, saved, repeatable projects.",
@@ -254,7 +266,8 @@ export const liveProjects: PublishedProject[] = [
     snapshot: {
       eyebrow: "Transcript reviewed",
       headline: "Three moments marked for a clean export.",
-      detail: "Detected language stays visible and editable so the final cut remains a human decision.",
+      detail:
+        "Detected language stays visible and editable so the final cut remains a human decision.",
       signals: ["Audio + video", "Review first", "Clean export"],
     },
   },
@@ -270,7 +283,8 @@ export const liveProjects: PublishedProject[] = [
     status: "Waitlist",
     cta: "Preview Seatify",
     category: "Event planning",
-    audience: "People planning weddings, galas, company events, dinners, and other assigned-seating occasions",
+    audience:
+      "People planning weddings, galas, company events, dinners, and other assigned-seating occasions",
     headline: "Plan the room without losing the relationships inside it.",
     introduction:
       "Seatify is a seating-chart workspace for arranging guests, tables, and interpersonal constraints visually. It is designed to replace spreadsheet sprawl with a collaborative, purpose-built planning surface.",
@@ -305,7 +319,8 @@ export const liveProjects: PublishedProject[] = [
     snapshot: {
       eyebrow: "Room in progress",
       headline: "Every guest, table, and constraint in one plan.",
-      detail: "A visual workspace turns relationship-heavy seating decisions into something the planning team can share and adjust.",
+      detail:
+        "A visual workspace turns relationship-heavy seating decisions into something the planning team can share and adjust.",
       signals: ["Drag + drop", "Smart constraints", "PDF export"],
     },
   },
@@ -321,7 +336,8 @@ export const liveProjects: PublishedProject[] = [
     status: "Waitlist",
     cta: "Preview DeckChecker",
     category: "Event operations",
-    audience: "Conference producers and event teams managing speaker presentations before show time",
+    audience:
+      "Conference producers and event teams managing speaker presentations before show time",
     headline: "Get every speaker deck checked and show-ready.",
     introduction:
       "DeckChecker is a presentation-operations workspace for collecting speaker decks, running automated checks, managing revisions, and handing approved files to the show team.",
@@ -356,7 +372,8 @@ export const liveProjects: PublishedProject[] = [
     snapshot: {
       eyebrow: "Submission reviewed",
       headline: "42 decks approved. 6 need attention.",
-      detail: "Automated checks and revision status give the event team one view of what is ready before show time.",
+      detail:
+        "Automated checks and revision status give the event team one view of what is ready before show time.",
       signals: ["Speaker intake", "Automated checks", "Approved files"],
     },
   },
@@ -394,8 +411,120 @@ export const buildingProjects: Project[] = [
   },
 ];
 
-export const publishedProjects = liveProjects;
-export const allProjects = [...liveProjects, ...buildingProjects];
+const agentProjects: PublishedProject[] = [
+  {
+    name: "Job Apply",
+    slug: "job-apply",
+    description:
+      "Less form filling. More finding your next role. A job application assistant for Codex and Claude Code.",
+    icon: "↗",
+    color: "bg-cyan-600",
+    borderColor: "border-cyan-200 dark:border-cyan-900",
+    url: "https://job-apply.neonwatty.com",
+    status: "Live",
+    cta: "Explore Job Apply",
+    category: "AI skills & plugins",
+    audience: "Job seekers using Codex or Claude Code",
+    headline: "Your next application, with less repetition.",
+    introduction:
+      "Job Apply is an open-source plugin for Codex and Claude Code that helps find relevant roles, reuse your application information, and fill forms in a visible browser session. You review the answers and submit the application yourself.",
+    problem:
+      "Job applications ask for the same information in different forms. Re-entering a resume, remembering previous answers, and keeping track of progress take time away from finding the right role.",
+    approach:
+      "Job Apply brings job search, preferences, reusable answers, and guided form filling into one agent workflow. It works from your local profile and pauses when information needs your review.",
+    distinction:
+      "The browser stays visible and the final submission stays in your hands. Confirmed information can be reused without turning an application into an unattended send button.",
+    highlights: [
+      {
+        title: "Reusable profile",
+        description:
+          "Start from your resume and retain confirmed answers for future applications.",
+      },
+      {
+        title: "Guided applications",
+        description:
+          "Fill forms through visible browser automation with support for common application platforms.",
+      },
+      {
+        title: "Search preferences",
+        description:
+          "Shape searches around your target roles, compensation, and work preferences.",
+      },
+      {
+        title: "Your final review",
+        description:
+          "Review the completed application and choose when to submit it yourself.",
+      },
+    ],
+    snapshot: {
+      eyebrow: "Ready for review",
+      headline: "Your experience. Fewer repeated fields.",
+      detail:
+        "A reusable profile and visible browser workflow help you move through applications with control over what gets sent.",
+      signals: ["Codex + Claude Code", "Open source", "Manual submission"],
+    },
+  },
+  {
+    name: "Logo Designer",
+    slug: "logo-designer",
+    description:
+      "From a conversation to an identity. Explore, refine, and export SVG logos with your coding agent.",
+    icon: "✳",
+    color: "bg-violet-600",
+    borderColor: "border-violet-200 dark:border-violet-900",
+    url: "https://neonwatty.github.io/logo-designer-skill/",
+    status: "Live",
+    cta: "Explore Logo Designer",
+    category: "AI skills & plugins",
+    audience:
+      "Developers and makers building a visual identity for their projects",
+    headline: "Find your mark, one conversation at a time.",
+    introduction:
+      "Logo Designer is an open-source agent skill for making SVG logos through a guided conversation. Explore different concepts, choose a direction, refine the details, and export artwork for your app or website.",
+    problem:
+      "A new project needs an identity, but a single generated image rarely gives you an editable design or a clear path to refine it. Getting from an idea to usable assets often means starting over.",
+    approach:
+      "The skill moves through a brand interview, several distinct SVG concepts, focused revisions, and exports at standard image sizes. The underlying vector artwork stays editable throughout.",
+    distinction:
+      "The output is a design you can keep shaping. A companion visual canvas offers a path to fine-tune details together with your agent after you have chosen a direction.",
+    highlights: [
+      {
+        title: "Start with the brief",
+        description:
+          "Establish the brand, audience, and visual preferences before exploring shapes.",
+      },
+      {
+        title: "Compare directions",
+        description:
+          "Review several distinct SVG concepts side by side before selecting one.",
+      },
+      {
+        title: "Refine the details",
+        description:
+          "Iterate on shape, color, and spacing while keeping the artwork editable.",
+      },
+      {
+        title: "Export usable assets",
+        description:
+          "Render PNGs at standard sizes for icons, websites, and other product surfaces.",
+      },
+    ],
+    snapshot: {
+      eyebrow: "Concept selected",
+      headline: "An idea becomes an editable identity.",
+      detail:
+        "A guided design process takes you from a short brief to SVG concepts and finished image exports.",
+      signals: ["Editable SVG", "Guided iteration", "PNG exports"],
+    },
+  },
+];
+
+export const publishedProjects = [
+  ...liveProjects,
+  ...agentProjects,
+  ...additionalProjects,
+];
+export const allProjects = [...publishedProjects, ...buildingProjects];
 
 export function getPublishedProject(slug: string) {
   return publishedProjects.find((project) => project.slug === slug);

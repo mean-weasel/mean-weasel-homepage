@@ -17,6 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    { url: `${siteUrl}/services/web-design-phoenix`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${siteUrl}/services`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${siteUrl}/use-cases`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${siteUrl}/pricing`, changeFrequency: "monthly", priority: 0.8 },
     ...projectPages,
   ];
 }

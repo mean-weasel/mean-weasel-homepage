@@ -5,4 +5,4 @@ export const siteUrl = (
 export const siteName = "Mean Weasel";
 
 export const siteDescription =
-  "Mean Weasel is an independent software studio building focused tools for feedback, dictation, events, media cleanup, shipping proof, and creative workflows.";
+  "Explore apps, developer tools, AI plugins, and learning resources by Mean Weasel, an independent software studio. Discover BugDrop, Bleep That Sh*t, Seatify, Foil, Job Apply, Logo Designer, Machine Learning Refined, Meme Search, and YTgify.";

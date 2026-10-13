@@ -15,7 +15,12 @@ export function ProductSiteLink({
   href: string;
   projectName: string;
   projectSlug?: string;
-  placement: "homepage_card" | "project_hero" | "project_footer";
+  placement:
+    | "homepage_card"
+    | "homepage_carousel"
+    | "gallery_card"
+    | "project_hero"
+    | "project_footer";
   className: string;
   ariaLabel?: string;
   children: ReactNode;

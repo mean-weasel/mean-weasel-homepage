@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { inquiryHref } from "@/lib/inquiry";
+import { ServicePageShell, ServicePageCta, inquiryPath } from "@/components/ServicePageShell";
+
+const description = "Explore website and SEO use cases for Phoenix service businesses: quote requests, project galleries, consultation booking, and clearer service pages.";
+export const metadata: Metadata = {
+  title: "Website & SEO Use Cases", description, alternates: { canonical: "/use-cases" },
+  openGraph: { title: "Website & SEO Use Cases | Mean Weasel", description, url: "/use-cases", images: ["/opengraph-image"] },
+};
+
+const cases = [
+  { id: "local-services", label: "POOL CARE · LANDSCAPING · HOME SERVICES", title: "Turn a service question into a useful quote request.", problem: "A visitor needs to know whether you handle their job and serve their neighborhood. A vague homepage leaves them guessing.", journey: ["Find the right service", "Check the service area", "Request a quote"], build: ["Clear pages for the services you actually offer", "Service-area information and helpful FAQs", "A short inquiry form that captures the job, location, and contact details"], fit: "Business Website", href: "/services#business-website", measure: "Completed quote requests and whether they contain enough detail to follow up." },
+  { id: "project-businesses", label: "CONTRACTORS · REMODELERS · DESIGN STUDIOS", title: "Let your work help explain the next project.", problem: "You have photos of good work, but visitors can’t tell what you did, what you offer, or how to start a conversation.", journey: ["Browse a relevant project", "Understand the work", "Describe their own project"], build: ["An editable project gallery with photos and useful context", "Service pages that explain your process and fit", "A project inquiry form with room for the brief"], fit: "Website + Content", href: "/services#website-content", measure: "Which project pages visitors explore and how many inquiries match the work you want." },
+  { id: "professional-services", label: "CONSULTANTS · ACCOUNTANTS · PROFESSIONAL SERVICES", title: "Make the first conversation easier to start.", problem: "Potential customers need to understand your expertise, who you help, and what happens before they commit.", journey: ["Find the right expertise", "Understand the process", "Request a conversation"], build: ["Service descriptions written around customer questions", "A clear introduction, process, and practical FAQs", "A consultation request form or supported booking-tool embed"], fit: "Website + Content", href: "/services#website-content", measure: "Consultation requests, booking completions where trackable, and the fit of incoming inquiries." },
+  { id: "existing-websites", label: "BUSINESSES WITH AN EXISTING WEBSITE", title: "Give your current site a clearer foundation.", problem: "Your site is live, but service pages are hard to navigate, search information is inconsistent, or you don’t know which inquiries it brings in.", journey: ["Review what’s there", "Prioritize the fixes", "Measure the next steps"], build: ["A focused technical and on-page review", "Agreed improvements to up to five pages", "A record of changes and checks on inquiry measurement"], fit: "SEO Foundation Project", href: "/services#seo", measure: "Search Console trends and tracked inquiries over time, with no promise of a particular ranking or volume." },
+];
+
+export default function UseCasesPage() {
+  return <ServicePageShell active="use-cases" title="Website & SEO Use Cases">
+    <section className="service-intro studio-container">
+      <div><p className="studio-eyebrow">BUILT AROUND YOUR CUSTOMERS</p><h1>What should your<br /><em>website help people do?</em></h1><p className="services-lead">Ask for a quote. Explore your work. Book a conversation. Start with the next step that matters to your business.</p><p>These are illustrative ways we could help Phoenix-area businesses—not client case studies or promises of results. We’ll adapt the scope to your customers and how you work.</p><div className="services-actions"><Link className="service-button" href={inquiryPath}>Talk through your use case ↗</Link><Link className="studio-text-link" href="/services">Compare services ↗</Link></div></div>
+      <aside className="service-picker" aria-label="Find your use case"><p className="studio-eyebrow">FIND YOUR STARTING POINT</p>{cases.map((item, i) => <a key={item.id} href={`#${item.id}`}><span>0{i + 1}</span><div><strong>{["Quote requests", "Project portfolios", "Consultation requests", "Existing-site improvements"][i]}</strong><small>{item.fit}</small></div><span aria-hidden="true">↓</span></a>)}</aside>
+    </section>
+    {cases.map((item, i) => <section id={item.id} key={item.id} className={`service-band ${i % 2 === 0 ? "service-band-sage" : "service-band-blue"}`}><div className="studio-container">
+      <p className="studio-eyebrow">0{i + 1} / {item.label}</p>
+      <div className="service-two-column"><div><h2>{item.title}</h2><p>{item.problem}</p><ol className="use-case-journey" aria-label="Example customer journey">{item.journey.map((step, index) => <li key={step}><span>{index + 1}</span>{step}</li>)}</ol></div>
+        <article className="service-detail-card"><h3>What we could build</h3><ul>{item.build.map(value => <li key={value}>{value}</li>)}</ul><h4>What we’d measure</h4><p>{item.measure}</p><div className="use-case-fit"><span className="service-label">A POSSIBLE STARTING POINT</span><Link className="studio-text-link" href={item.href}>{item.fit} ↗</Link><p className="service-small">Pricing to be confirmed. Final scope follows a conversation.</p></div><Link className="service-button" href={inquiryHref(item.fit)}>Discuss this kind of project ↗</Link></article>
+      </div>
+    </div></section>)}
+    <section className="service-band" id="custom-workflows"><div className="studio-container service-two-column"><div><p className="studio-eyebrow">BEYOND A MARKETING WEBSITE</p><h2>A workflow that needs<br /><em>something more.</em></h2><p>If a spreadsheet, inbox, or manual handoff is slowing things down, a custom tool may help. We’ll map the process before deciding what to build.</p><Link className="studio-text-link" href="/services#custom">Explore custom development ↗</Link></div><div className="service-custom-scope"><h3>Examples from our own products</h3><p>These show capabilities we’ve built and maintained, rather than client outcomes.</p><Link className="use-case-proof" href="/projects/bugdrop"><strong>BugDrop ↗</strong><span>Collect useful feedback and send it into a team’s workflow.</span></Link><Link className="use-case-proof" href="/projects/seatify"><strong>Seatify ↗</strong><span>An interactive workspace for seating plans. Currently a waitlist / preview.</span></Link></div></div></section>
+    <ServicePageCta />
+  </ServicePageShell>;
+}

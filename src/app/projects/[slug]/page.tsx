@@ -1,3 +1,4 @@
+import { projectSchema } from "@/lib/project-schema";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -17,6 +18,8 @@ type ProjectPageProps = {
 };
 
 const statusClasses: Record<ProjectStatus, string> = {
+  Published: "bg-sky-500/10 text-sky-700 dark:text-sky-300",
+  "Manual install": "bg-amber-500/10 text-amber-800 dark:text-amber-300",
   Live: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
   "Public beta": "bg-sky-500/10 text-sky-700 dark:text-sky-300",
   Waitlist: "bg-amber-500/10 text-amber-800 dark:text-amber-300",
@@ -71,6 +74,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const projectUrl = `${siteUrl}/projects/${project.slug}`;
+  const entityId = `${projectUrl}/#${project.kind === "book" ? "book" : "software"}`;
   const audienceText = `${project.audience.charAt(0).toLowerCase()}${project.audience.slice(1)}`;
   const relatedProjects = publishedProjects
     .filter((candidate) => candidate.slug !== project.slug)
@@ -79,14 +83,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "SoftwareApplication",
-        "@id": `${projectUrl}/#software`,
-        name: project.name,
-        description: project.introduction,
-        url: project.url,
-        applicationCategory: project.category,
-        operatingSystem: project.slug === "foil" ? "macOS" : "Web",
-        author: { "@id": `${siteUrl}/#organization` },
+        ...projectSchema(project),
+        "@id": entityId,
         mainEntityOfPage: { "@id": `${projectUrl}/#page` },
       },
       {
@@ -96,7 +94,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         name: `${project.name} — ${project.category}`,
         description: project.introduction,
         isPartOf: { "@id": `${siteUrl}/#website` },
-        about: { "@id": `${projectUrl}/#software` },
+        about: { "@id": entityId },
       },
       {
         "@type": "BreadcrumbList",
@@ -128,7 +126,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       />
       <SiteHeader projectPage />
 
-      <main>
+      <main id="project-content">
         <section className="max-w-6xl mx-auto px-6 pt-10 pb-16 md:pt-16 md:pb-24">
           <nav
             aria-label="Breadcrumb"
@@ -191,7 +189,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     >
                       {project.icon}
                     </div>
-                    <span className="font-display font-bold">{project.name}</span>
+                    <span className="font-display font-bold">
+                      {project.name}
+                    </span>
                   </div>
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_5px_rgba(52,211,153,0.14)]" />
                 </div>
@@ -264,7 +264,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 How it helps
               </p>
               <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
-                A small tool with a clear job.
+                {project.kind === "book"
+                  ? "A foundation you can build on."
+                  : "A small tool with a clear job."}
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-5">
@@ -292,10 +294,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="rounded-2xl bg-[var(--foreground)] text-[var(--background)] px-7 py-10 md:px-12 md:py-14 flex flex-col md:flex-row md:items-center md:justify-between gap-7">
             <div>
               <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-[var(--accent)] mb-3">
-                Visit the product
+                {project.kind === "book"
+                  ? "Explore the book"
+                  : "Visit the product"}
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-bold">
-                See {project.name} in its own habitat.
+                {project.kind === "book"
+                  ? "Explore the chapters, code, and companion resources."
+                  : `See ${project.name} in its own habitat.`}
               </h2>
             </div>
             <ProductSiteLink
@@ -323,7 +329,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </h2>
               </div>
               <Link
-                href="/#products"
+                href="/gallery"
                 className="hidden sm:inline font-display text-sm font-bold text-[var(--accent)] hover:underline"
               >
                 See all projects

@@ -1,0 +1,20 @@
+.contact-main { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 28px 64px; align-content: start; padding-block: 48px; min-height: calc(100svh - var(--studio-header-height)); }
+.contact-intro { align-self: end; }
+.contact-main h1 { font-size: clamp(40px, 4.4vw, 64px); line-height: 1.08; letter-spacing: -2px; margin: 16px 0 22px; }
+.contact-main h1 em { font-family: var(--font-body), Georgia, serif; font-weight: 400; color: var(--accent); }
+.contact-main .contact-intro > p:last-child { font-size: 16px; line-height: 1.7; max-width: 440px; }
+.contact-main > .service-form { grid-column: 2; grid-row: 1 / span 2; }
+.contact-next { grid-column: 1; align-self: start; border-top: 1px solid var(--line); padding-top: 24px; }
+.contact-main .contact-next h2 { font-size: 21px; margin: 0 0 12px; letter-spacing: -.4px; }
+.contact-next a { display: inline-block; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.contact-main .service-form label { margin-bottom: 14px; }
+.contact-main .service-form-helper { margin-bottom: 14px; }
+.contact-main .service-fineprint { font-size: 12px; line-height: 1.6; margin-top: 14px; }
+@media (max-width: 800px) {
+  .contact-main { grid-template-columns: 1fr; padding-block: 24px 36px; gap: 20px; }
+  .contact-main > .service-form, .contact-next { grid-column: auto; grid-row: auto; }
+  .contact-main h1 { font-size: 38px; margin-block: 10px 12px; }
+  .contact-main .contact-intro > p:last-child { font-size: 15px; margin: 0; }
+  .contact-main .service-form { padding: 20px; }
+  .contact-main .service-form-helper { font-size: 13px; }
+}

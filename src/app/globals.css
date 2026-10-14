@@ -1678,3 +1678,31 @@ html {
   .homepage-main .project-showcase { padding-block: 6px; }
   .homepage-main .project-showcase .showcase-heading { margin-bottom: 4px; }
 }
+
+/* Lead with client work and preserve useful content on every screen size. */
+.homepage-main .studio-hero h1 { font-size: clamp(44px, 5.5vw, 78px); letter-spacing: -3px; }
+.homepage-main .studio-hero h1 em { letter-spacing: -2px; }
+.homepage-main .studio-intro { font-size: 17px; line-height: 1.75; max-width: 660px; }
+@media (max-width: 800px) {
+  .homepage-main .homepage-services { padding-block: 36px; }
+  .homepage-main .homepage-services > div:first-child > p:not(.studio-eyebrow),
+  .homepage-main .home-services-offers p { display: block; }
+  .homepage-main .homepage-services p { font-size: 15px; line-height: 1.65; }
+  .homepage-main .home-services-offers p { font-size: 14px; }
+  .homepage-main .home-services-offers a { padding-block: 18px; }
+  .homepage-main .home-services-offers h3 { font-size: 20px; }
+}
+@media (max-width: 639px) {
+  .homepage-main .studio-hero { padding-top: 32px; }
+  .homepage-main .studio-hero h1 { font-size: clamp(40px, 10.5vw, 56px); letter-spacing: -2px; line-height: 1.1; }
+  .homepage-main .studio-intro { font-size: 16px; line-height: 1.65; }
+  .homepage-main .project-showcase { --home-preview-height: 220px; padding-block: 32px; }
+  .homepage-main .project-showcase .gallery-description { display: block; font-size: 14px; line-height: 1.65; min-height: 100px; }
+  .homepage-main .project-showcase .showcase-star-date { display: block; }
+  .homepage-main .project-showcase .showcase-heading h2 { font-size: 32px; }
+  .homepage-main .project-showcase .showcase-heading { margin-bottom: 16px; }
+  .homepage-main .project-showcase .preview-topline { display: flex; }
+  .homepage-main .project-showcase .preview-window { height: calc(var(--home-preview-height) - 50px); }
+  .homepage-main .project-showcase .gallery-card-heading { min-height: 54px; }
+  .homepage-main .project-showcase .gallery-card-actions a { font-size: 14px; }
+}

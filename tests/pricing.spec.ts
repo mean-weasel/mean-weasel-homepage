@@ -8,7 +8,7 @@ for (const width of [320, 390, 768, 820, 1024, 1440]) {
     await expect(page.locator(".home-services-offers h3")).toHaveText(["Business websites", "App design & development", "SEO"]);
     await expect(page.locator(".home-services-offers a").nth(1)).toHaveAttribute("href", "/services#custom");
     const footer = page.getByRole("navigation", { name: "Footer navigation" });
-    await expect(footer.getByRole("link")).toHaveText(["Services", "Use cases", "Pricing"]);
+    await expect(footer.getByRole("link")).toHaveText(["Services", "Use cases", "Pricing", "SEO results"]);
     const navigation = page.getByRole("navigation", { name: "Primary navigation" });
     if (width <= 800) await page.getByRole("button", { name: "Menu" }).click();
     await expect(navigation.getByRole("link", { name: "Use cases", exact: true })).toBeVisible();

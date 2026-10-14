@@ -22,7 +22,7 @@ for (const width of [320, 390, 768, 1440]) {
       }
       const cta = page.locator(".service-closing").getByRole("link", { name: "Tell us about your project" });
       await cta.click();
-      await expect(page).toHaveURL(/services\/web-design-phoenix#inquiry$/);
+      await expect(page).toHaveURL(/\/contact$/);
       await expect(page.getByRole("textbox", { name: "Your name", exact: true })).toBeVisible();
       expect(errors).toEqual([]);
     });
@@ -110,11 +110,11 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
 test("homepage anchors and inner-page destinations are distinct", async ({ page }) => {
   await page.goto("/");
   const nav = page.getByRole("navigation", { name: "Primary navigation" });
-  expect(await nav.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href")))).toEqual(["#services", "#products", "/use-cases", "/pricing", "#contact"]);
+  expect(await nav.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href")))).toEqual(["#services", "#products", "/use-cases", "/pricing", "/contact"]);
   await nav.getByRole("link", { name: "Get in touch" }).click();
-  await expect(page).toHaveURL(/\/#contact$/);
+  await expect(page).toHaveURL(/\/contact$/);
   await page.goto("/services");
-  expect(await nav.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href")))).toEqual(["/", "/services", "/use-cases", "/pricing", "/services/web-design-phoenix#inquiry"]);
+  expect(await nav.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href")))).toEqual(["/", "/services", "/use-cases", "/pricing", "/contact"]);
   await nav.getByRole("link", { name: "Use cases", exact: true }).click();
   await expect(nav.getByRole("link", { name: "Use cases", exact: true })).toHaveAttribute("aria-current", "page");
 });

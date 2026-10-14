@@ -94,7 +94,7 @@ for (const viewport of [
       expect((await header.boundingBox())!.y).toBe(0);
     }
     await page.goto("/services/web-design-phoenix");
-    for (const id of ["packages", "seo", "work", "inquiry"]) {
+    for (const id of ["packages", "seo", "work"]) {
       await page.locator(`.services-jump a[href="#${id}"]`).click();
       const target = page.locator(`#${id}`);
       await expect
@@ -175,7 +175,7 @@ for (const width of [390, 1440]) {
 }
 
 test("inquiry validation and pending state prevent incomplete or duplicate submissions", async ({ page }) => {
-  await page.goto("/services/web-design-phoenix#inquiry");
+  await page.goto("/contact");
   let calls = 0;
   let finish!: () => void;
   const pending = new Promise<void>(resolve => { finish = resolve; });

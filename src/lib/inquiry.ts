@@ -76,5 +76,5 @@ export function createInquiryId() {
 
 
 export function inquiryHref(service: string) {
-  return `/services/web-design-phoenix?service=${encodeURIComponent(service)}#inquiry`;
+  return `/contact?service=${encodeURIComponent(service)}`;
 }

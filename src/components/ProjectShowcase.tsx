@@ -118,7 +118,7 @@ export function ProjectShowcase({
       </div>
       </div>
       <div className="showcase-bottom">
-        <Link className="studio-text-link" href="/services/web-design-phoenix#inquiry">
+        <Link className="studio-text-link" href="/contact">
           Have something in mind? Tell us about it <span aria-hidden="true">↗</span>
         </Link>
         <span className="showcase-star-date">GitHub stars as of Oct 11, 2026</span>

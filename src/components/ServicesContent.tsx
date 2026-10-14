@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, type FormEvent } from "react";
-import posthog from "posthog-js";
-import { createInquiryId, inquiryServices } from "@/lib/inquiry";
+import { inquiryHref } from "@/lib/inquiry";
+import { InquiryForm } from "@/components/InquiryForm";
 
 import { websitePackages as packages, includedSeo as seo } from "@/lib/service-offerings";
 
@@ -36,57 +35,6 @@ const faqs = [
 ];
 
 export function ServicesContent({ initialService = "New business website" }: { initialService?: string }) {
-  const [interest, setInterest] = useState(initialService);
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
-  const [error, setError] = useState("");
-  const submissionId = useRef("");
-  const sending = useRef(false);
-  function inquire(service: string) {
-    if (sending.current) return;
-    setInterest(service);
-    setStatus("idle");
-    submissionId.current = "";
-  }
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (sending.current) return;
-    const form = event.currentTarget;
-    const fields = Object.fromEntries(new FormData(form));
-    sending.current = true;
-    setStatus("sending");
-    setError("");
-    try {
-      submissionId.current ||= createInquiryId();
-      const response = await fetch("/api/inquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...fields, requestId: submissionId.current }),
-        signal: AbortSignal.timeout(20_000),
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok !== true) throw new Error("Send failed");
-      setStatus("success");
-      form.reset();
-      submissionId.current = "";
-      if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN) {
-        // Analytics failure must not turn an accepted inquiry into a send error.
-        try {
-          posthog.capture("inquiry_submitted", { service: fields.service });
-        } catch {
-          /* Delivery already succeeded. */
-        }
-      }
-    } catch {
-      setStatus("error");
-      setError(
-        "Your inquiry could not be sent. Your details are still here—please try again, or email jeremy@mean-weasel.com directly.",
-      );
-    } finally {
-      sending.current = false;
-    }
-  }
   return (
     <main id="main-content" className="services-main">
       <section className="services-hero studio-container">
@@ -112,8 +60,8 @@ export function ServicesContent({ initialService = "New business website" }: { i
           <div className="services-actions">
             <a
               className="service-button"
-              href="#inquiry"
-              onClick={() => inquire("New business website")}
+              href={inquiryHref("New business website")}
+
             >
               Tell us about your website <span aria-hidden="true">↗</span>
             </a>
@@ -151,7 +99,7 @@ export function ServicesContent({ initialService = "New business website" }: { i
         <a href="#packages">Website packages</a>
         <a href="#seo">SEO setup</a>
         <a href="#work">Our work</a>
-        <a href="#inquiry">Request an estimate ↗</a>
+        <Link href="/contact">Request an estimate ↗</Link>
       </nav>
       <section
         className="services-outcomes studio-container"
@@ -213,9 +161,9 @@ export function ServicesContent({ initialService = "New business website" }: { i
                 {pkg.timeline} Final timing confirmed in your proposal.
               </p>
               <a
-                href="#inquiry"
+                href={inquiryHref(pkg.name)}
                 className="service-button"
-                onClick={() => inquire(pkg.name)}
+
               >
                 Ask about {pkg.name} <span aria-hidden="true">↗</span>
               </a>
@@ -232,9 +180,9 @@ export function ServicesContent({ initialService = "New business website" }: { i
             </p>
           </div>
           <a
-            href="#inquiry"
+            href={inquiryHref("Custom app or integration")}
             className="studio-text-link"
-            onClick={() => inquire("Custom app or integration")}
+
           >
             Discuss a custom project ↗
           </a>
@@ -292,8 +240,8 @@ export function ServicesContent({ initialService = "New business website" }: { i
           </p>
           <a
             className="service-button"
-            href="#inquiry"
-            onClick={() => inquire("SEO Foundation Project")}
+            href={inquiryHref("SEO Foundation Project")}
+
           >
             Request an SEO project estimate ↗
           </a>
@@ -438,114 +386,7 @@ export function ServicesContent({ initialService = "New business website" }: { i
             </p>
 
           </div>
-          <form
-            onSubmit={submit}
-            onChange={() => {
-              if (!sending.current) {
-                setStatus("idle");
-                submissionId.current = "";
-              }
-            }}
-            className="service-form ph-no-capture ph-mask"
-            data-ph-no-capture
-          >
-            <p className="service-form-intro">
-              Tell us a little about your project.
-            </p>
-            <p className="service-form-helper">Name, email, and a short project description are all you need. The rest is optional.</p>
-            <fieldset disabled={status === "sending"}>
-              <legend className="sr-only">Project inquiry</legend>
-              <div className="service-honeypot" aria-hidden="true">
-                <label>
-                  Leave this field empty
-                  <input name="companyFax" tabIndex={-1} autoComplete="off" />
-                </label>
-              </div>
-              <div className="service-form-row">
-                <label>
-                  Your name
-                  <input
-                    name="name"
-                    autoComplete="name"
-                    required
-                    maxLength={120}
-                  />
-                </label>
-                <label>
-                  Email
-                  <input
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    maxLength={254}
-                  />
-                </label>
-              </div>
-              <label>
-                Business name <span>(optional)</span>
-                <input
-                  name="business"
-                  autoComplete="organization"
-                  maxLength={200}
-                />
-              </label>
-              <label>
-                Current website <span>(optional)</span>
-                <input
-                  name="website"
-                  type="url"
-                  placeholder="https://"
-                  maxLength={2000}
-                />
-              </label>
-              <label>
-                What would you like help with?
-                <select
-                  name="service"
-                  value={interest}
-                  onChange={(e) => setInterest(e.target.value)}
-                >
-                  {inquiryServices.map((option) => (
-                    <option key={option}>{option}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                What would you like this project to help people do?
-                <textarea
-                  name="description"
-                  required
-                  rows={5}
-                  aria-describedby="project-description-help"
-                  placeholder="For example: We’re a Phoenix landscaping business. We’d like customers to see our work and request a quote from their phone."
-                  maxLength={5000}
-                />
-              </label>
-              <p id="project-description-help" className="service-form-helper">Share what you do, what needs to improve, and any timing you have in mind. For an app, describe the task it should help people complete.</p>
-              <button
-                className="service-button"
-                type="submit"
-                disabled={status === "sending"}
-              >
-                {status === "sending"
-                  ? "Sending…"
-                  : "Request a project estimate"}{" "}
-                <span aria-hidden="true">↗</span>
-              </button>
-            </fieldset>
-            <p className="service-fineprint">
-              We’ll use your details to respond to this inquiry. Sending a request doesn’t commit you to a project.
-            </p>
-            <p role="status" aria-live="polite">
-              {status === "success"
-                ? "Thanks—your inquiry has been sent. Jeremy will reply to the email you provided."
-                : status === "sending"
-                  ? "Sending your inquiry…"
-                  : ""}
-            </p>
-            {status === "error" && <p role="alert">{error}</p>}
-          </form>
+          <InquiryForm initialService={initialService} />
             <div className="service-next-steps">
               <h3>What happens next</h3>
               <ol>

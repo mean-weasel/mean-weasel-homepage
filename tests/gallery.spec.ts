@@ -32,11 +32,13 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     const header = await page.locator(".studio-header").boundingBox();
-    if (viewport.height >= 568) {
+    if (viewport.width >= 1000 && viewport.height >= 568) {
       for (const section of await page.locator("main section").all()) {
         expect(Math.abs((await section.boundingBox())!.height - (viewport.height - header!.height))).toBeLessThanOrEqual(1);
       }
     }
+    await expect(page.locator(".home-services-offers p").first()).toBeVisible();
+    await expect(page.locator(".gallery-description").first()).toBeVisible();
     const hero = await page.locator(".studio-hero").boundingBox();
     expect(hero!.height + header!.height).toBeGreaterThanOrEqual(
       viewport.height - 1,

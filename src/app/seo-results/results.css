@@ -1,0 +1,122 @@
+.results-intro { padding-block: clamp(28px, 4vw, 54px); }
+.seo-results h1 { font-size: clamp(38px, 5.2vw, 68px); line-height: 1.04; letter-spacing: -.05em; margin: 22px 0; }
+.seo-results h2 { font-size: clamp(32px, 4vw, 56px); line-height: 1.08; letter-spacing: -.04em; margin: 16px 0 20px; }
+.seo-results h3 { font-size: 24px; line-height: 1.25; margin-bottom: 14px; }
+.seo-results em { font-family: var(--font-body), Georgia, serif; font-weight: 400; }
+.seo-results p { line-height: 1.6; margin-bottom: 18px; }
+.results-lead { max-width: 680px; font-size: 18px; }
+.seo-results .results-note { font-size: 12px; line-height: 1.6; color: #48564f; }
+.result-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: stretch; }
+.result-card { --card-paper: #e6ecdf; background: var(--card-paper); border: 1px solid #253b3520; border-radius: 24px; padding: clamp(22px, 3vw, 40px); min-width: 0; display: flex; flex-direction: column; scroll-margin-top: calc(var(--studio-header-height) + 20px) !important; }
+.result-card-blue { --card-paper: #e4edf2; }
+.seo-results .result-card-header h2 { font-size: clamp(30px, 3vw, 42px); margin: 10px 0; }
+.result-card-header p { font-size: 16px; }
+.result-card-perspective { perspective: 1200px; flex: 1; }
+.result-card-turn { display: grid; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.2,.7,.2,1); height: 100%; }
+.result-card-turn.is-flipped { transform: rotateY(180deg); }
+.result-card-face { grid-area: 1 / 1; min-width: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: var(--card-paper); display: flex; flex-direction: column; padding-top: 12px; }
+.result-card-back { transform: rotateY(180deg); }
+.result-card-face[aria-hidden="true"] { pointer-events: none; }
+.result-card-metrics { display: grid; gap: 16px; margin: 8px 0 22px; }
+.result-card-metrics div, .result-usage-metrics div { display: flex; flex-direction: column-reverse; gap: 3px; }
+.result-card-metrics dd { font-size: clamp(40px, 4vw, 58px); font-weight: 600; line-height: 1.05; letter-spacing: -.045em; }
+.result-card-metrics dt { font-size: 14px; }
+.result-card-metrics .result-account { border-bottom: 1px solid #253b3528; padding-bottom: 16px; }
+.result-card-front > .results-note { margin-top: auto; }
+.result-flip-button { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #253b3540; padding: 18px 0 0; min-height: 54px; margin-top: 20px; font-weight: 600; cursor: pointer; text-align: left; width: 100%; }
+.result-flip-button span { font-size: 26px; }
+.result-flip-button:hover { color: #a8391b; }
+.result-growth { font-size: 58px; letter-spacing: -.045em; display: block; }
+.results-chart figcaption { font-size: 13px; }
+.results-bars { display: flex; align-items: end; gap: 12px; margin: 22px 0; }
+.results-bar-column { flex: 1; min-width: 0; text-align: center; font-size: 12px; }
+.results-bar-column strong { display: block; margin-bottom: 8px; }
+.results-bar { background: #2c5444; border-radius: 4px 4px 0 0; margin-bottom: 8px; }
+.results-bar-column:last-child .results-bar { background: #ab531f; }
+.result-card-back > .studio-text-link { margin-top: auto; align-self: flex-start; min-height: 44px; display: inline-flex; align-items: center; }
+.result-usage-metrics { display: grid; gap: 20px; margin: 16px 0 24px; }
+.result-usage-metrics dd { font-size: 48px; line-height: 1; letter-spacing: -.04em; font-weight: 600; }
+.result-usage-metrics dt { font-size: 15px; max-width: 270px; }
+.results-closing { padding-block: clamp(44px, 6vw, 80px); }
+.results-closing > p { max-width: 620px; }
+.results-closing > .results-note { margin-top: 18px; }
+.results-method { border-bottom: 1px solid #253b3530; margin-top: 24px; padding: 12px 0; }
+.results-method summary { cursor: pointer; padding-block: 12px; font-weight: 500; min-height: 44px; }
+.results-method p { max-width: 840px; font-size: 14px; }
+@media (max-width: 800px) { .result-cards { grid-template-columns: 1fr; gap: 20px; } }
+@media (prefers-reduced-motion: reduce) { .result-card-turn { transition: none; } }
+
+/* Keep both faces stable while giving charts and metric groups room to breathe. */
+.result-card-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 14px 0 20px; }
+.result-card-metrics dd { font-size: clamp(28px, 3.3vw, 46px); font-variant-numeric: tabular-nums; }
+.result-card-metrics dt { font-size: 13px; }
+.result-secondary-metrics dd { font-size: 32px; }
+.result-metric-group { border-top: 1px solid #253b3528; padding-top: 16px; }
+.result-metric-group h4 { font-size: 13px; font-weight: 600; display: flex; flex-wrap: wrap; gap: 4px 14px; justify-content: space-between; }
+.result-metric-group h4 span { font-size: 12px; font-weight: 400; color: #48564f; }
+.result-metric-group .results-note { margin-bottom: 18px; }
+.seo-results .result-metrics-heading { margin: 0 0 20px; }
+.results-bars { gap: clamp(7px, 1vw, 12px); margin: 26px 0 18px; border-bottom: 1px solid #253b3528; padding-bottom: 12px; }
+.results-chart-takeaway { font-size: 15px; margin-top: auto; padding-top: 18px; }
+.result-card-front .results-chart { margin-bottom: 18px; }
+@media (max-width: 360px) {
+  .result-card-metrics { gap: 10px; }
+  .results-bar-column { font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .results-bars { gap: 5px; }
+  .results-bar-column { font-size: 10px; }
+}
+
+.results-period { display: flex; flex-direction: column; gap: 2px; font-size: 11px; line-height: 1.35; white-space: nowrap; }
+@media (max-width: 360px) { .results-period { font-size: 9px; } }
+
+.result-user-growth { border-top: 1px solid #253b3528; padding-top: 16px; margin: 0 0 18px; }
+.result-user-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+.seo-results .result-user-heading h3 { font-size: 16px; margin: 0; }
+.result-user-heading strong { font-size: 30px; font-weight: 600; letter-spacing: -.04em; }
+.result-user-heading > span { font-size: 11px; color: #48564f; }
+.result-user-bars { display: flex; align-items: end; gap: 14px; margin-top: 16px; }
+.result-user-bars .results-bar-column { font-size: 10px; }
+
+/* Charts lead; the solid, full-width control makes both sides discoverable. */
+.result-card { --chart-height: 210px; box-shadow: 0 8px 28px #253b3508; }
+.result-growth { font-size: clamp(48px, 5vw, 68px); font-variant-numeric: tabular-nums; line-height: 1.1; margin-bottom: 6px; }
+.result-card-header { border-bottom: 1px solid #253b3520; margin-bottom: 12px; }
+.result-card-header p { margin-bottom: 18px; }
+.result-flip-button { border: 1px solid #253b35; border-radius: 12px; background: #253b35; color: #fff; padding: 14px 18px; min-height: 56px; margin-top: 18px; transition: background .18s ease; }
+.result-flip-button span { line-height: 1; flex-shrink: 0; }
+.result-flip-button:hover { color: #fff; background: #365b4a; }
+.result-flip-button:focus-visible { outline: 3px solid #ab531f; outline-offset: 4px; }
+.result-card-front .results-chart { margin-bottom: 0; }
+.result-card-back > .studio-text-link { margin-top: 0; font-size: 14px; }
+.results-bars { margin-top: 28px; }
+@media (max-width: 800px) {
+  .result-card { --chart-height: 180px; padding: 24px; }
+  .result-growth { font-size: 54px; }
+  .result-card-header p { font-size: 14px; }
+}
+@media (max-width: 360px) {
+  .result-card { padding: 20px; --chart-height: 160px; }
+  .result-growth { font-size: 48px; }
+  .result-flip-button { font-size: 14px; padding-inline: 12px; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .result-flip-button { transition: none; } }
+
+/* Three case studies without squeezing charts on smaller screens. */
+.result-card-peach { --card-paper: #f3e6d9; }
+.result-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.result-card { padding: 24px; }
+.seo-results .result-card-header h2 { font-size: clamp(28px, 2.4vw, 36px); }
+.result-card-header p { font-size: 14px; }
+.result-growth { font-size: clamp(44px, 4vw, 58px); }
+.result-flip-button { font-size: 14px; gap: 10px; padding-inline: 14px; }
+@media (max-width: 1100px) {
+  .result-cards { grid-template-columns: 1fr; max-width: 680px; }
+  .result-growth { font-size: 54px; }
+}
+@media (max-width: 360px) {
+  .result-card { padding: 20px; }
+  .result-growth { font-size: 48px; }
+}

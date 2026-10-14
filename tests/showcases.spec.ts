@@ -83,11 +83,11 @@ test("all four homepage sections offer a direct path to the inquiry form", async
   const sections = page.locator("main section");
   await expect(sections).toHaveCount(4);
   for (const section of await sections.all()) {
-    await expect(section.locator('a[href="/services/web-design-phoenix#inquiry"]').first()).toBeVisible();
+    await expect(section.locator('a[href="/contact"]').first()).toBeVisible();
   }
   await expect(page.locator("#studio")).toHaveCount(0);
   await page.locator("#contact").getByRole("link", { name: "Tell us about your project" }).click();
-  await expect(page).toHaveURL(/\/services\/web-design-phoenix#inquiry$/);
+  await expect(page).toHaveURL(/\/contact$/);
   await expect(page.getByRole("textbox", { name: "Your name", exact: true })).toBeVisible();
 });
 

@@ -9,11 +9,12 @@ import { galleryProjects } from "@/lib/gallery";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  title: { absolute: "Phoenix Business Websites, Apps & SEO | Mean Weasel" },
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Mean Weasel | Independent Software Studio",
+    title: "Phoenix Business Websites, Apps & SEO | Mean Weasel",
     description: siteDescription,
     url: "/",
     siteName,
@@ -24,13 +25,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Mean Weasel independent software studio project index",
+        alt: "Mean Weasel business websites, apps, and SEO",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mean Weasel | Independent Software Studio",
+    title: "Phoenix Business Websites, Apps & SEO | Mean Weasel",
     description: siteDescription,
     images: ["/twitter-image"],
   },
@@ -99,21 +100,20 @@ export default function Home() {
         >
           <div className="hero-copy">
             <p className="studio-eyebrow">
-              <span className="studio-dot" /> INDEPENDENT SOFTWARE STUDIO
+              <span className="studio-dot" /> PHOENIX BUSINESS WEBSITES · MEAN WEASEL
             </p>
             <h1 id="studio-title">
-              Useful software.
+              Business websites.
               <br />
-              <em>A little wild.</em>
+              <em>Built to bring you business.</em>
             </h1>
             <p className="studio-intro">
-              Apps that solve everyday problems. Tools that make building
-              easier.
-              <br className="desktop-break" /> A collection of things we wanted
-              to exist, so we built them.
+              We design and build websites that help Phoenix-area customers
+              understand your business and get in touch. Need a custom app or
+              help with SEO? We do that too.
             </p>
             <div className="home-hero-actions">
-              <Link className="home-cta-button" href="/services/web-design-phoenix#inquiry">
+              <Link className="home-cta-button" href="/contact">
                 Tell us about your project <span aria-hidden="true">↗</span>
               </Link>
               <a className="studio-text-link" href="#products">Explore the work <span aria-hidden="true">↓</span></a>
@@ -133,7 +133,7 @@ export default function Home() {
             <span className="mark-spark spark-two">+</span>
           </div>
           <div className="hero-bottom">
-            <span>IDEAS INTO APPS. APPS INTO EVERYDAY LIFE.</span>
+            <span>BUSINESS WEBSITES · APP DEVELOPMENT · SEO</span>
             <span>
               SCROLL TO EXPLORE <span aria-hidden="true">↘</span>
             </span>
@@ -163,7 +163,8 @@ export default function Home() {
             >
               Explore services <span aria-hidden="true">↗</span>
             </Link>
-            <Link className="studio-text-link home-service-inquiry" href="/services/web-design-phoenix#inquiry">Let’s talk about your project ↗</Link>
+            <Link className="studio-text-link home-service-inquiry" href="/contact">Let’s talk about your project ↗</Link>
+            <Link className="studio-text-link home-service-inquiry" href="/seo-results">See our SEO results ↗</Link>
 
           </div>
           <div className="home-services-offers">
@@ -205,7 +206,7 @@ export default function Home() {
             <p className="studio-eyebrow">LET’S BUILD SOMETHING USEFUL</p>
             <h2 id="contact-title">Have a project in mind?<br /><em>Let’s talk about it.</em></h2>
             <p>A better website, a smoother workflow, or an app you wish existed. Tell us what you’re working on and we’ll figure out a useful next step.</p>
-            <Link className="home-cta-button" href="/services/web-design-phoenix#inquiry">Tell us about your project <span aria-hidden="true">↗</span></Link>
+            <Link className="home-cta-button" href="/contact">Tell us about your project <span aria-hidden="true">↗</span></Link>
             <p className="home-cta-note">You’ll hear directly from Jeremy. No finished brief needed, and no commitment to get started.</p>
           </section>
         </div>

@@ -13,7 +13,7 @@ export function SiteHeader({
   projectPage?: boolean;
   servicesPage?: boolean;
   homePage?: boolean;
-  activePage?: "services" | "use-cases" | "pricing";
+  activePage?: "services" | "use-cases" | "pricing" | "contact";
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
@@ -78,7 +78,7 @@ export function SiteHeader({
                 <a href="#products">Examples</a>
                 <Link href="/use-cases">Use cases</Link>
                 <Link href="/pricing">Pricing</Link>
-                <a className="nav-contact" href="#contact">Get in touch ↗</a>
+                <Link className="nav-contact" href="/contact">Get in touch ↗</Link>
               </>
             ) : (
               <>
@@ -87,7 +87,7 @@ export function SiteHeader({
                 <Link href="/use-cases" aria-current={activePage === "use-cases" ? "page" : undefined} className={activePage === "use-cases" ? "nav-selected" : ""}>Use cases</Link>
                 {projectPage && <Link href="/#products">Examples</Link>}
                 <Link href="/pricing" aria-current={activePage === "pricing" ? "page" : undefined} className={activePage === "pricing" ? "nav-selected" : ""}>Pricing</Link>
-                <Link className="nav-contact" href={servicesPage ? "#inquiry" : "/services/web-design-phoenix#inquiry"}>Get in touch ↗</Link>
+                <Link className="nav-contact" href="/contact" aria-current={activePage === "contact" ? "page" : undefined}>Get in touch ↗</Link>
               </>
             )}
           </nav>

@@ -7,7 +7,7 @@ import { siteUrl } from "@/lib/site";
 import "@/app/services/web-design-phoenix/services.css";
 import "@/app/services/service-pages.css";
 
-export const inquiryPath = "/services/web-design-phoenix#inquiry";
+export const inquiryPath = "/contact";
 
 export function ServicePageShell({ active, title, children }: {
   active: "services" | "use-cases" | "pricing"; title: string; children: ReactNode;

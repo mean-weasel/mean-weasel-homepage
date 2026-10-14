@@ -147,10 +147,7 @@ export function ServicesContent({ initialService = "New business website" }: { i
               <h3>{pkg.name}</h3>
               <p>{pkg.intro}</p>
               <div className="service-package-fit"><span>A GOOD FIT IF</span><p>{pkg.fit}</p></div>
-              <div className="service-price">
-                <span>Pricing</span>
-                <strong>To be confirmed</strong>
-              </div>
+
               <h4 className="service-included-label">What’s included</h4>
               <ul>
                 {pkg.items.map((item) => (
@@ -234,10 +231,7 @@ export function ServicesContent({ initialService = "New business website" }: { i
             Foundation Project starts with a review, then turns the agreed
             priorities into practical changes you can see and measure.
           </p>
-          <p className="service-price">
-            <span>SEO Foundation Project</span>
-            <strong>Pricing to be confirmed</strong>
-          </p>
+
           <a
             className="service-button"
             href={inquiryHref("SEO Foundation Project")}

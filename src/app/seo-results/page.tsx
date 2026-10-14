@@ -43,7 +43,7 @@ export default function SeoResultsPage() {
         <Link className="studio-text-link" href="/services#seo">Explore what’s included in an SEO project ↗</Link>
       </div></section>
       <section className="results-closing" aria-labelledby="results-cta"><div className="studio-container">
-        <p className="studio-eyebrow">START WITH WHAT YOUR CUSTOMERS ARE LOOKING FOR</p><h2 id="results-cta">Let’s help more people<br /><em>find your business.</em></h2><p>We’ll review your site and search data, identify useful improvements, and agree on a focused scope.</p><Link className="home-cta-button" href={inquiryHref("SEO Foundation Project")}>Talk with us about SEO ↗</Link><p className="results-note">Pricing to be confirmed. Scope agreed before work begins.</p>
+        <p className="studio-eyebrow">START WITH WHAT YOUR CUSTOMERS ARE LOOKING FOR</p><h2 id="results-cta">Let’s help more people<br /><em>find your business.</em></h2><p>We’ll review your site and search data, identify useful improvements, and agree on a focused scope.</p><Link className="home-cta-button" href={inquiryHref("SEO Foundation Project")}>Talk with us about SEO ↗</Link><p className="results-note">Scope and cost agreed before work begins.</p>
       </div></section>
     </main><SiteFooter />
   </div>;

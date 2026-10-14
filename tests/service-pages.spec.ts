@@ -12,7 +12,7 @@ for (const width of [320, 390, 768, 1440]) {
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://mean-weasel.com${route}`);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await expect(page.locator("main")).not.toContainText(/\$\s?\d/);
-      await expect(page.getByText(/Pricing to be confirmed/).first()).toBeVisible();
+      await expect(page.locator("main")).not.toContainText("Pricing to be confirmed");
       for (const link of await page.locator(".service-picker a").all()) {
         const hash = await link.getAttribute("href");
         await link.click();

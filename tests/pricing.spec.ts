@@ -24,13 +24,13 @@ for (const width of [320, 390, 768, 820, 1024, 1440]) {
     await expect(navigation.getByRole("link", { name: "Pricing & scope", exact: true })).toBeVisible();
     if (width <= 800) await page.keyboard.press("Escape");
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(page.locator(".pricing-chapter .service-price")).toHaveText(Array(4).fill("Pricing to be confirmed"));
+    await expect(page.locator(".pricing-chapter .service-button")).toHaveText(Array(4).fill("Request a consultation ↗"));
     expect(await page.locator("main").innerText()).not.toMatch(/\$\s*\d/);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     for (const link of await footer.getByRole("link").all()) {
       expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
     }
-    await page.getByRole("link", { name: "Discuss your app" }).click();
+    await page.locator("#pricing-2").getByRole("link", { name: "Request a consultation" }).click();
     await expect(page.getByLabel("What would you like help with?")).toHaveValue("Custom app or integration");
     await expect(page.getByLabel("Your name", { exact: true })).toBeVisible();
   });

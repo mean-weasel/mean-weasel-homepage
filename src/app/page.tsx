@@ -189,7 +189,7 @@ export default function Home() {
                 <div>
                   <h3>{title}</h3>
                   <p>{description}</p>
-                  <small>Pricing to be confirmed</small>
+                  <small>Explore the service</small>
                 </div>
                 <span aria-hidden="true">↗</span>
               </Link>

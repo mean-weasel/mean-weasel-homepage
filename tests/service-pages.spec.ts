@@ -33,6 +33,7 @@ test("new pages are discoverable and use cases link to the right service", async
   await page.goto("/");
   await page.getByRole("link", { name: "Explore services" }).click();
   await expect(page).toHaveURL(/\/services$/);
+  await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("button", { name: "Services", exact: true }).click();
   await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Use cases", exact: true }).click();
   await expect(page).toHaveURL(/\/use-cases$/);
   await expect(page.locator("main")).toContainText("illustrative");
@@ -107,16 +108,16 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
   });
 }
 
-test("homepage anchors and inner-page destinations are distinct", async ({ page }) => {
-  await page.goto("/");
-  const nav = page.getByRole("navigation", { name: "Primary navigation" });
-  expect(await nav.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href")))).toEqual(["#services", "#products", "/use-cases", "/pricing", "/contact"]);
-  await nav.getByRole("link", { name: "Get in touch" }).click();
-  await expect(page).toHaveURL(/\/contact$/);
-  await page.goto("/services");
-  expect(await nav.locator("a").evaluateAll(links => links.map(a => a.getAttribute("href")))).toEqual(["/", "/services", "/use-cases", "/pricing", "/contact"]);
-  await nav.getByRole("link", { name: "Use cases", exact: true }).click();
-  await expect(nav.getByRole("link", { name: "Use cases", exact: true })).toHaveAttribute("aria-current", "page");
+test("navigation destinations are consistent across pages", async ({ page }) => {
+  for (const route of ["/", "/services", "/about", "/gallery"]) {
+    await page.goto(route);
+    const nav = page.getByRole("navigation", { name: "Primary navigation" });
+    await expect(nav.getByRole("link", { name: "Our work", exact: true })).toHaveAttribute("href", "/gallery");
+    await nav.getByRole("button", { name: "Services", exact: true }).click();
+    await expect(nav.getByRole("link", { name: "Pricing & scope" })).toBeVisible();
+    await nav.getByRole("link", { name: "Use cases", exact: true }).click();
+    await expect(page).toHaveURL(/\/use-cases$/);
+  }
 });
 
 test("use-case motion stays optional", async ({ page }) => {

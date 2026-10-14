@@ -103,14 +103,12 @@ export default function Home() {
               <span className="studio-dot" /> PHOENIX BUSINESS WEBSITES · MEAN WEASEL
             </p>
             <h1 id="studio-title">
-              Business websites.
-              <br />
-              <em>Built to bring you business.</em>
+              Better websites.<br />
+              More visibility.<br />
+              <em>Less busywork.</em>
             </h1>
             <p className="studio-intro">
-              We design and build websites that help Phoenix-area customers
-              understand your business and get in touch. Need a custom app or
-              help with SEO? We do that too.
+              We build business websites and custom apps, improve SEO, and automate repetitive work for small businesses in Phoenix and beyond.
             </p>
             <div className="home-hero-actions">
               <Link className="home-cta-button" href="/contact">
@@ -133,7 +131,7 @@ export default function Home() {
             <span className="mark-spark spark-two">+</span>
           </div>
           <div className="hero-bottom">
-            <span>BUSINESS WEBSITES · APP DEVELOPMENT · SEO</span>
+            <span>WEBSITES · APPS · SEO · AI AUTOMATION</span>
             <span>
               SCROLL TO EXPLORE <span aria-hidden="true">↘</span>
             </span>
@@ -154,7 +152,7 @@ export default function Home() {
               <em>Built to work better.</em>
             </h2>
             <p>
-              Business websites, custom apps, and SEO for Phoenix and beyond.
+              Websites, apps, SEO, and AI automation for Phoenix and beyond.
               Work directly with Jeremy from first conversation to launch.
             </p>
             <Link
@@ -184,8 +182,9 @@ export default function Home() {
                 "SEO",
                 "Search improvements for the website you already have.",
               ],
+              ["04", "AI automation", "Less repetitive work. More time for your business."],
             ].map(([number, title, description]) => (
-              <Link key={number} href={`/services#${({ "01": "website-packages", "02": "custom", "03": "seo" })[number]}`}>
+              <Link key={number} href={`/services#${({ "01": "website-packages", "02": "custom", "03": "seo", "04": "automation" })[number]}`}>
                 <span>{number}</span>
                 <div>
                   <h3>{title}</h3>

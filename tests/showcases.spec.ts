@@ -71,10 +71,10 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
   });
 }
 
-test("gallery bookmarks redirect to homepage examples and navigation points to examples", async ({ page }) => {
+test("gallery is a dedicated destination", async ({ page }) => {
   await page.goto("/gallery?category=native-apps");
-  await expect(page).toHaveURL(/\/#products$/);
-  await expect(page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Examples", exact: true })).toHaveAttribute("href", "#products");
+  await expect(page).toHaveURL(/\/gallery\?category=native-apps$/);
+  await expect(page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Our work", exact: true })).toHaveAttribute("href", "/gallery");
   await expect(page.getByRole("link", { name: "Gallery", exact: true })).toHaveCount(0);
 });
 

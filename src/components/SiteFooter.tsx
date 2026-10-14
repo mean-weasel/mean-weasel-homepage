@@ -15,6 +15,8 @@ export function SiteFooter() {
             <Link href="/use-cases">Use cases</Link>
             <Link href="/pricing">Pricing</Link>
             <Link href="/seo-results">SEO results</Link>
+            <Link href="/gallery">Our work</Link>
+            <Link href="/about">About</Link>
           </nav>
           <p className="font-body text-sm text-[var(--muted)] text-center md:text-right">
             &copy; {new Date().getFullYear()} Mean Weasel LLC. Useful

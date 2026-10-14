@@ -5,19 +5,19 @@ import { SeoProcess } from "@/components/SeoProcess";
 import { inquiryHref } from "@/lib/inquiry";
 import { websitePackages, includedSeo } from "@/lib/service-offerings";
 
-const description = "Compare Phoenix small-business website packages, content help, SEO improvements, and custom app development from Mean Weasel.";
+const description = "Compare Phoenix small-business website packages, content help, SEO improvements, custom app development, and AI automation from Mean Weasel.";
 export const metadata: Metadata = {
-  title: "Websites, App Development & SEO Services", description, alternates: { canonical: "/services" },
-  openGraph: { title: "Websites, Apps & SEO | Mean Weasel", description, url: "/services", images: ["/opengraph-image"] },
+  title: "Websites, Apps, SEO & AI Automation", description, alternates: { canonical: "/services" },
+  openGraph: { title: "Websites, Apps, SEO & Automation | Mean Weasel", description, url: "/services", images: ["/opengraph-image"] },
 };
 
 export default function ServiceBreakdownPage() {
-  return <ServicePageShell active="services" title="Websites, App Development & SEO Services">
+  return <ServicePageShell active="services" title="Websites, Apps, SEO & AI Automation">
     <section className="service-intro studio-container">
       <div>
         <p className="studio-eyebrow">PHOENIX · SCOTTSDALE · THE VALLEY</p>
         <h1>A clearer website.<br /><em>A useful next step.</em></h1>
-        <p className="services-lead">Websites for small businesses, with the content, search foundations, and inquiry flow to support them.</p>
+        <p className="services-lead">Business websites first, with apps, SEO, and AI automation to help your business work better.</p>
         <p>Start with the help you need today. We’ll agree on deliverables, responsibilities, and costs before work begins. For custom apps, we bring interface design and development together around the way your business works.</p>
         <div className="services-actions"><Link className="service-button" href={inquiryPath}>Discuss your project ↗</Link><Link className="studio-text-link" href="/use-cases">See how this could work for you ↗</Link></div>
       </div>
@@ -28,6 +28,7 @@ export default function ServiceBreakdownPage() {
           ["02", "A website and the words", "Help shaping your message from the start.", "website-content"],
           ["03", "An existing site’s SEO", "A focused review and agreed improvements.", "seo"],
           ["04", "App design & development", "An app, tool, or connected workflow.", "custom"],
+          ["05", "AI automation", "Less repetitive work, with you in control.", "automation"],
         ].map(([n, label, detail, id]) => <a href={`#${id}`} key={id}><span>{n}</span><div><strong>{label}</strong><small>{detail}</small></div><span aria-hidden="true">↓</span></a>)}
       </aside>
     </section>
@@ -69,6 +70,10 @@ export default function ServiceBreakdownPage() {
     <section className="service-band" id="custom"><div className="studio-container service-two-column">
       <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>Custom web apps, customer portals, quote calculators, and internal workflows - from interface design through implementation. We start by mapping who uses the tool, what it needs to do, and which systems it connects to.</p><Link className="studio-text-link" href="/#products">Explore the software we build ↗</Link></div>
       <div className="service-custom-scope"><h3>Scope the smallest useful version</h3><ol><li>Define the user journey and the problem to solve.</li><li>Design the interface and review data, accounts, integrations, and access needs.</li><li>Agree on a first release, milestones, and testing.</li><li>Confirm handoff and maintenance responsibilities.</li></ol><div className="service-price">Pricing to be confirmed · scoped individually</div><Link className="service-button" href={inquiryHref("Custom app or integration")}>Discuss a custom project ↗</Link></div>
+    </div></section>
+    <section id="automation" className="service-band service-band-lilac"><div className="studio-container service-two-column">
+      <div><p className="studio-eyebrow">04 / AI AUTOMATION</p><h2>Automate the repetitive<br /><em>parts of your business.</em></h2><p>Connect the tools you already use. Organize information, prepare drafts, and move routine work along with clear points for your team to review.</p><h3 className="seo-process-heading">Built on hands-on experience</h3><p>Our own AI tools show how we turn repeat tasks into guided workflows.</p><Link className="use-case-proof" href="/projects/job-apply"><strong>Job Apply ↗</strong><span>Assistance with repetitive application forms.</span></Link><Link className="use-case-proof" href="/projects/logo-designer"><strong>Logo Designer ↗</strong><span>A guided workflow for creating and refining SVG logos.</span></Link><p className="service-small">These are our products, not client automation case studies.</p></div>
+      <article className="service-detail-card"><h3>Start with one useful workflow.</h3><div className="service-price">Pricing to be confirmed</div><ul><li>Route inquiries and prepare follow-up drafts.</li><li>Connect forms, spreadsheets, and business tools.</li><li>Summarize documents and organize information.</li><li>Draft content for your team to review.</li></ul><h4>How we work</h4><p>Map the task, agree on a small first version, and test it with real examples. We define review steps, handoff, and support before launch.</p><p className="service-small">Scope depends on your tools and data access. Software subscriptions and ongoing support are agreed separately.</p><Link className="service-button" href={inquiryHref("AI automation")}>Discuss an automation ↗</Link></article>
     </div></section>
     <div className="studio-container pricing-discovery"><Link className="studio-text-link" href="/pricing">Explore pricing & project scope ↗</Link></div>
     <ServicePageCta />

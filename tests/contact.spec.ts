@@ -5,7 +5,7 @@ for (const width of [320, 375, 390, 1440]) {
   test(`business positioning and direct inquiry at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 390 ? 667 : 900 });
     await page.goto("/");
-    await expect(page.locator("h1")).toContainText("Business websites.");
+    await expect(page.locator("h1")).toContainText("Better websites.");
     await expect(page.locator(".studio-intro")).toContainText("Phoenix");
     await expect(page.locator(".home-services-offers p").first()).toBeVisible();
     await expect(page.locator(".gallery-description").first()).toBeVisible();

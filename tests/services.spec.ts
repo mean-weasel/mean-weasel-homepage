@@ -73,14 +73,11 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto("/");
     const header = page.locator(".studio-header");
-    const nav = page.getByRole("navigation", { name: "Primary navigation" });
-    for (const [name, id] of [
-      ["Services", "#services"],
-      ["Examples", "#products"],
+    for (const id of [
+      "#services",
+      "#products",
     ]) {
-      const menu = page.getByRole("button", { name: "Menu", exact: true });
-      if (await menu.isVisible()) await menu.click();
-      await nav.getByRole("link", { name, exact: true }).click();
+      await page.goto(`/${id}`);
       await expect
         .poll(async () => Math.abs((await page.locator(id).boundingBox())!.y - (await header.boundingBox())!.height))
         // Browser anchor scrolling rounds fractional CSS pixels.
@@ -146,7 +143,7 @@ test("keyboard skip link and mobile menu remain operable", async ({ page }) => {
   await menu.click();
   await page
     .getByRole("navigation", { name: "Primary navigation" })
-    .getByRole("link", { name: "Services", exact: true })
+    .getByRole("button", { name: "Services", exact: true })
     .focus();
   await page.keyboard.press("Escape");
   await expect(menu).toBeFocused();

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const serviceSections = [["website-packages", "Websites"], ["seo", "SEO"], ["custom", "Custom apps"], ["get-started", "Contact"]] as const;
+const serviceSections = [["website-packages", "Websites"], ["seo", "SEO"], ["custom", "Apps"], ["automation", "Automation"], ["get-started", "Contact"]] as const;
 
 const useCaseSections = [
   ["local-services", "Quote requests"], ["project-businesses", "Portfolios"],

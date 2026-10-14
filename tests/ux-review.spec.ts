@@ -25,7 +25,8 @@ for (const viewport of [
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       const navigation = page.getByRole("navigation", { name: "Primary navigation" });
       if (viewport.width <= 800) await page.getByRole("button", { name: "Menu", exact: true }).click();
-      await expect(navigation.getByRole("link", { name: "Pricing", exact: true })).toBeVisible();
+      await navigation.getByRole("button", { name: "Services", exact: true }).click();
+      await expect(navigation.getByRole("link", { name: "Pricing & scope", exact: true })).toBeVisible();
       const boxes = await navigation.getByRole("link").evaluateAll(links => links.map(link => {
         const { x, y, width, height } = link.getBoundingClientRect();
         return { x, y, width, height };

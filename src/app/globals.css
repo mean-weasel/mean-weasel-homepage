@@ -1706,3 +1706,34 @@ html {
   .homepage-main .project-showcase .gallery-card-heading { min-height: 54px; }
   .homepage-main .project-showcase .gallery-card-actions a { font-size: 14px; }
 }
+
+/* One navigation system across every page, with explicit service destinations. */
+.services-nav-group { position: relative; }
+.services-menu-toggle { min-height: 44px; display: flex; align-items: center; gap: 12px; cursor: pointer; font: inherit; }
+.services-menu-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.services-navigation { position: absolute; top: 100%; left: 0; min-width: 240px; padding: 12px 20px; border: 1px solid var(--line); border-radius: 10px; background: #f8f7f2; box-shadow: 0 12px 30px #253b351a; }
+.services-navigation[hidden] { display: none; }
+.services-navigation a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+.work-page { background: #e7edf2; min-height: calc(100svh - var(--studio-header-height)); padding-bottom: 32px; }
+.work-page-intro { padding-top: 40px; }
+.work-page h1, .about-page h1 { font-size: clamp(42px, 5vw, 72px); line-height: 1.05; letter-spacing: -.04em; margin-block: 16px; }
+.work-page .project-showcase { padding-top: 24px; }
+.about-page { background: #e9eee2; }
+.about-page section { min-height: calc(100svh - var(--studio-header-height)); display: flex; flex-direction: column; justify-content: center; padding-block: 44px; }
+.about-page p { max-width: 680px; line-height: 1.7; margin-bottom: 20px; }
+.about-page p a { text-decoration: underline; }
+.about-page .services-actions { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+@media(max-width:800px) {
+ .studio-nav nav.is-open { max-height: calc(100svh - var(--studio-header-height)); overflow-y: auto; overscroll-behavior: contain; }
+ .services-nav-group { width: 100%; }
+ .services-menu-toggle { width: 100%; justify-content: space-between; }
+ .services-navigation { position: static; min-width: 0; box-shadow: none; margin-bottom: 12px; background: #e9eee2; }
+ .studio-nav .services-navigation a { font-size: 14px; }
+}
+.studio-nav nav .services-navigation a { display: flex; width: 100%; }
+@media(min-width: 1000px) and (max-height: 850px) {
+  .homepage-main .home-services-offers a { padding-block: 12px; }
+  .homepage-main .home-services-offers h3 { font-size: 22px; }
+}
+
+.work-page .showcase-heading { display: none; }

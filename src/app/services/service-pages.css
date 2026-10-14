@@ -71,7 +71,7 @@
 .service-editorial > .service-closing { display: flex; align-items: center; }
 .service-editorial section[id],
 .service-editorial .service-detail-card[id] {
-  scroll-margin-top: calc(var(--studio-header-height) + var(--service-nav-height) + 16px);
+  scroll-margin-top: calc(var(--studio-header-height) + var(--service-nav-height));
 }
 .service-section-nav {
   position: sticky;
@@ -128,3 +128,17 @@
 .seo-included summary { cursor: pointer; min-height: 44px; padding-block: 12px; font-size: 14px; font-weight: 500; }
 
 .service-editorial #custom { background: #f3e6d9; }
+
+.service-band-peach { background: #f3e6d9; }
+.service-band-lilac { background: #ece7f2; }
+.service-editorial #custom-workflows { background: #f3e6d9; }
+.pricing-chapter .service-detail-card { max-width: 760px; margin-inline: auto; }
+.pricing-chapter .service-card-end { width: 100%; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.pricing-scope-note { padding-block: 28px; }
+.service-section-nav > div { gap: 24px; }
+@media(max-width: 639px) { .service-section-nav > div { gap: 0; } .service-section-nav a { font-size: 10px; padding-inline: 3px; } }
+
+.pricing-jumps { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; }
+.pricing-jumps a { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; text-decoration: underline; text-underline-offset: 5px; }
+
+.service-editorial .pricing-chapter h2 { font-size: clamp(26px, 3vw, 36px); }

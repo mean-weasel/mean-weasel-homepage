@@ -1,31 +1,32 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { WeaselLogo } from "@/components/WeaselLogo";
 
 export function SiteHeader({
   projectPage = false,
-  servicesPage = false,
-  homePage = false,
-  activePage,
 }: {
   projectPage?: boolean;
   servicesPage?: boolean;
   homePage?: boolean;
   activePage?: "services" | "use-cases" | "pricing" | "contact";
 }) {
+  const pathname = usePathname();
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!menuOpen && !servicesOpen) return;
     function dismiss(event: PointerEvent) {
-      if (!header.current?.contains(event.target as Node)) setMenuOpen(false);
+      if (!header.current?.contains(event.target as Node)) { setMenuOpen(false); setServicesOpen(false); }
     }
     function escape(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
       setMenuOpen(false);
-      header.current?.querySelector<HTMLButtonElement>(".studio-menu-toggle")?.focus();
+      setServicesOpen(false);
+      header.current?.querySelector<HTMLButtonElement>(menuOpen ? ".studio-menu-toggle" : ".services-menu-toggle")?.focus();
     }
     const desktop = matchMedia("(min-width: 801px)");
     function resize() { if (desktop.matches) setMenuOpen(false); }
@@ -37,7 +38,7 @@ export function SiteHeader({
       document.removeEventListener("keydown", escape);
       desktop.removeEventListener("change", resize);
     };
-  }, [menuOpen]);
+  }, [menuOpen, servicesOpen]);
   return (
     <>
       <a
@@ -47,7 +48,7 @@ export function SiteHeader({
         Skip to content
       </a>
       <header ref={header} className="studio-header" onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setMenuOpen(false);
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) { setMenuOpen(false); setServicesOpen(false); }
       }}>
         <div className="studio-container studio-nav">
           <Link href="/" className="studio-brand" aria-label="Mean Weasel home">
@@ -69,27 +70,17 @@ export function SiteHeader({
             id="primary-navigation"
             className={menuOpen ? "is-open" : ""}
             aria-label="Primary navigation"
-            onClick={() => setMenuOpen(false)}
+            onClick={event => { if ((event.target as HTMLElement).closest("a")) { setMenuOpen(false); setServicesOpen(false); } }}
 
           >
-            {homePage ? (
-              <>
-                <a href="#services">Services</a>
-                <a href="#products">Examples</a>
-                <Link href="/use-cases">Use cases</Link>
-                <Link href="/pricing">Pricing</Link>
-                <Link className="nav-contact" href="/contact">Get in touch ↗</Link>
-              </>
-            ) : (
-              <>
-                <Link href="/">Home</Link>
-                <Link href="/services" className={servicesPage || activePage === "services" ? "nav-selected" : ""} aria-current={activePage === "services" ? "page" : undefined}>Services</Link>
-                <Link href="/use-cases" aria-current={activePage === "use-cases" ? "page" : undefined} className={activePage === "use-cases" ? "nav-selected" : ""}>Use cases</Link>
-                {projectPage && <Link href="/#products">Examples</Link>}
-                <Link href="/pricing" aria-current={activePage === "pricing" ? "page" : undefined} className={activePage === "pricing" ? "nav-selected" : ""}>Pricing</Link>
-                <Link className="nav-contact" href="/contact" aria-current={activePage === "contact" ? "page" : undefined}>Get in touch ↗</Link>
-              </>
-            )}
+            <div className="services-nav-group">
+              <button className="services-menu-toggle" aria-expanded={servicesOpen} aria-controls="services-navigation" onClick={() => setServicesOpen(!servicesOpen)}>Services <span aria-hidden="true">{servicesOpen ? "−" : "+"}</span></button>
+              <div id="services-navigation" className="services-navigation" hidden={!servicesOpen}>
+                {[["/services", "All services"], ["/services#website-packages", "Business websites"], ["/services#custom", "App development"], ["/services#seo", "SEO"], ["/services#automation", "AI automation"], ["/use-cases", "Use cases"], ["/pricing", "Pricing & scope"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
+              </div>
+            </div>
+            {[["/gallery", "Our work"], ["/seo-results", "SEO results"], ["/about", "About"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={pathname === href ? "nav-selected" : ""}>{label}</Link>)}
+            <Link className="nav-contact" href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}>Get in touch ↗</Link>
           </nav>
         </div>
       </header>

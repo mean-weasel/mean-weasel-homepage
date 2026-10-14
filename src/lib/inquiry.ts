@@ -5,6 +5,7 @@ export const inquiryServices = [
   "Website + Content",
   "SEO Foundation Project",
   "Custom app or integration",
+  "AI automation",
 ] as const;
 
 export type Inquiry = {

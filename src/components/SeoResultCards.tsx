@@ -8,14 +8,17 @@ import { useState } from "react";
 const projects = {
   bleep: {
     name: "Bleep That Sh*t", category: "01 / AUDIO & VIDEO", description: "Clean up the language. Keep the content.", url: "https://bleepthat.sh",
+    work: "Researched how people search for audio and video censoring, created targeted pages and guides, and optimized titles, descriptions, and internal links.",
     impressions: [9911, 15061, 22309, 29512, 44776, 41634], clicks: [699, 953, 1206, 1944, 1937, 2029],
   },
   bugdrop: {
     name: "BugDrop", category: "02 / DEVELOPER TOOLS", description: "Make reporting bugs the easy part.", url: "https://bugdrop.dev",
+    work: "Created product, comparison, and use-case pages that explain the tool, answer questions, and guide visitors toward installation.",
     impressions: [204, 510, 1190, 972, 1284, 1015], clicks: [3, 10, 51, 88, 76, 69],
   },
   blog: {
     name: "neonwatty.com", category: "03 / CONTENT & GUIDES", description: "Useful articles. Found through search.", url: "https://neonwatty.com",
+    work: "Researched relevant topics, published practical guides, and optimized articles and related links to help readers discover more.",
     impressions: [103064, 62902, 39328, 33377], clicks: [1712, 1112, 754, 597],
   },
 };
@@ -82,6 +85,7 @@ function ResultCard({ product }: { product: keyof typeof projects }) {
       </div>
     </div>
     <button className="result-flip-button" aria-expanded={flipped} aria-controls={`${product}-details`} aria-label={`${flipped ? "Flip to Google impressions" : backLabel}: ${project.name}`} onClick={() => setFlipped(value => !value)}>{flipped ? "Flip to Google impressions" : backLabel}<span aria-hidden="true">↻</span></button>
+    <div className="result-work"><h3>What we did</h3><p>{project.work}</p></div>
   </article>;
 }
 

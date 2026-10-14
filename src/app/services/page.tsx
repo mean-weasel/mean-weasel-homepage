@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ServicePageShell, ServicePageCta, inquiryPath } from "@/components/ServicePageShell";
+import { SeoProcess } from "@/components/SeoProcess";
 import { inquiryHref } from "@/lib/inquiry";
 import { websitePackages, includedSeo } from "@/lib/service-offerings";
 
@@ -53,13 +54,20 @@ export default function ServiceBreakdownPage() {
 
     <section className="service-band service-band-blue" id="seo">
       <div className="studio-container service-two-column">
-        <div><p className="studio-eyebrow">02 / SEARCH FOUNDATIONS</p><h2>Make your website<br /><em>easier to understand.</em></h2><p>Every website package includes the SEO setup below. Already have a site? We can scope a separate round of improvements.</p><Link className="studio-text-link" href="/seo-results">See results from our apps and articles ↗</Link><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></div>
-        <article className="service-detail-card"><h3>SEO Foundation Project</h3><p>For an existing website that needs a clear set of priorities and practical fixes.</p><div className="service-price">Pricing to be confirmed</div><h4>What we work through</h4><ul><li>Review available Search Console data and the site’s technical setup.</li><li>Agree on improvements to up to five pages.</li><li>Implement the titles, headings, internal links, and other fixes listed in your proposal.</li><li>Review your Google Business Profile where relevant and check inquiry measurement.</li><li>Provide a record of changes and recommended next steps.</li></ul><p className="service-small">Access, platform limitations, and the review findings determine the final scope. Rankings and lead volumes aren’t guaranteed; ongoing content and monthly SEO work are scoped separately.</p><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Discuss an SEO project ↗</Link></article>
+        <div><p className="studio-eyebrow">02 / SEARCH FOUNDATIONS</p><h2>Make your website<br /><em>easier to understand.</em></h2><p>From research to implementation. We research what people search for, create useful content, optimize pages, and track performance in Google.</p><Link className="studio-text-link" href="/seo-results">See results from our apps and articles ↗</Link><h3 className="seo-process-heading">How an SEO project works</h3><SeoProcess compact /><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
+        <article className="service-detail-card"><h3>SEO Foundation Project</h3><p>For an existing website that needs a clear set of priorities and practical fixes.</p><div className="service-price">Pricing to be confirmed</div><h4>What we can help with</h4><ul>
+          <li><strong>Keyword research &amp; search intent</strong> - understand what customers search for and what they need.</li>
+          <li><strong>Content strategy &amp; creation</strong> - plan useful topics and create pages that answer real questions.</li>
+          <li><strong>On-page SEO</strong> - improve titles, descriptions, headings, and copy.</li>
+          <li><strong>Internal linking</strong> - connect related pages so visitors can find their next step.</li>
+          <li><strong>Technical SEO</strong> - help Google access and understand your website.</li>
+          <li><strong>Performance measurement</strong> - track search visibility, clicks, and available inquiry data.</li>
+        </ul><p className="service-small">The foundation project covers a review, agreed improvements to up to five existing pages, and recommended next steps. We review your Google Business Profile where relevant. New content and ongoing SEO are scoped separately.</p><p className="service-small">We confirm deliverables based on your website, access, and priorities. Rankings and lead volumes aren’t guaranteed.</p><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Discuss an SEO project ↗</Link></article>
       </div>
     </section>
 
     <section className="service-band" id="custom"><div className="studio-container service-two-column">
-      <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>Custom web apps, customer portals, quote calculators, and internal workflows—from interface design through implementation. We start by mapping who uses the tool, what it needs to do, and which systems it connects to.</p><Link className="studio-text-link" href="/#products">Explore the software we build ↗</Link></div>
+      <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>Custom web apps, customer portals, quote calculators, and internal workflows - from interface design through implementation. We start by mapping who uses the tool, what it needs to do, and which systems it connects to.</p><Link className="studio-text-link" href="/#products">Explore the software we build ↗</Link></div>
       <div className="service-custom-scope"><h3>Scope the smallest useful version</h3><ol><li>Define the user journey and the problem to solve.</li><li>Design the interface and review data, accounts, integrations, and access needs.</li><li>Agree on a first release, milestones, and testing.</li><li>Confirm handoff and maintenance responsibilities.</li></ol><div className="service-price">Pricing to be confirmed · scoped individually</div><Link className="service-button" href={inquiryHref("Custom app or integration")}>Discuss a custom project ↗</Link></div>
     </div></section>
     <div className="studio-container pricing-discovery"><Link className="studio-text-link" href="/pricing">Explore pricing & project scope ↗</Link></div>

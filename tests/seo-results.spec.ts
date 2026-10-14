@@ -6,6 +6,21 @@ for (const width of [320, 390, 1024, 1440]) {
     await page.goto('/seo-results');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const chapters = page.locator('.results-main > section');
+    const headerHeight = await page.locator('.studio-header').evaluate(el => el.getBoundingClientRect().height);
+    const backgrounds = [];
+    for (const chapter of await chapters.all()) {
+      const dimensions = await chapter.evaluate(el => ({ height: el.getBoundingClientRect().height, width: el.clientWidth, contentWidth: el.scrollWidth, background: getComputedStyle(el).backgroundColor }));
+      expect(dimensions.height).toBeGreaterThanOrEqual(900 - headerHeight - 2);
+      expect(dimensions.contentWidth).toBeLessThanOrEqual(dimensions.width);
+      backgrounds.push(dimensions.background);
+    }
+    expect(new Set(backgrounds).size).toBe(3);
+    for (const content of await page.locator('.results-process > .studio-container, .results-closing > .studio-container').all()) {
+      const box = (await content.boundingBox())!;
+      expect(box.x).toBeGreaterThanOrEqual(20);
+      expect(box.x + box.width).toBeLessThanOrEqual(width - 20);
+    }
     for (const name of ['Bleep That Sh*t', 'BugDrop', 'neonwatty.com']) {
       const card = page.getByRole('article', { name });
       const flip = card.getByRole('button');

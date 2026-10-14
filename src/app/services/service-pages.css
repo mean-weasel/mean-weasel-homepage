@@ -123,3 +123,8 @@
 .pricing-factor p { margin-top: 8px; }
 .pricing-discovery { padding-block: 24px; }
 @media (max-width: 1023px) { .pricing-options { grid-template-columns: 1fr; } }
+
+.service-editorial .seo-process-heading { margin-top: 24px; font-size: 20px; }
+.seo-included summary { cursor: pointer; min-height: 44px; padding-block: 12px; font-size: 14px; font-weight: 500; }
+
+.service-editorial #custom { background: #f3e6d9; }

@@ -120,3 +120,18 @@
   .result-card { padding: 20px; }
   .result-growth { font-size: 48px; }
 }
+
+.result-work { border-top: 1px solid #253b3528; margin-top: 24px; padding-top: 20px; }
+.seo-results .result-work h3 { font-size: 14px; margin: 0 0 8px; }
+.seo-results .result-work p { font-size: 14px; line-height: 1.6; margin: 0; }
+.results-process { padding-top: clamp(40px, 6vw, 72px); }
+.seo-results .results-process h2 { font-size: clamp(30px, 3vw, 42px); }
+
+/* Distinct full-width chapters grow naturally when mobile content needs more room. */
+.results-proof { background: #f8f7f2; padding-bottom: 44px; }
+.results-process { background: #e7edf2; }
+.results-closing { background: #f3e6d9; }
+.results-main > section { min-height: calc(100svh - var(--studio-header-height)); }
+.results-process, .results-closing { display: flex; align-items: center; padding-block: clamp(40px, 6vw, 80px); }
+.results-closing p { max-width: 620px; }
+.results-closing .results-note { margin-top: 18px; }

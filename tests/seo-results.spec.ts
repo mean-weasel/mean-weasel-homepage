@@ -11,11 +11,11 @@ for (const width of [320, 390, 1024, 1440]) {
     const backgrounds = [];
     for (const chapter of await chapters.all()) {
       const dimensions = await chapter.evaluate(el => ({ height: el.getBoundingClientRect().height, width: el.clientWidth, contentWidth: el.scrollWidth, background: getComputedStyle(el).backgroundColor }));
-      expect(dimensions.height).toBeGreaterThanOrEqual(900 - headerHeight - 2);
+      expect(Math.abs(dimensions.height - (900 - headerHeight))).toBeLessThanOrEqual(1);
       expect(dimensions.contentWidth).toBeLessThanOrEqual(dimensions.width);
       backgrounds.push(dimensions.background);
     }
-    expect(new Set(backgrounds).size).toBe(3);
+    expect(new Set(backgrounds).size).toBe(4);
     for (const content of await page.locator('.results-process > .studio-container, .results-closing > .studio-container').all()) {
       const box = (await content.boundingBox())!;
       expect(box.x).toBeGreaterThanOrEqual(20);

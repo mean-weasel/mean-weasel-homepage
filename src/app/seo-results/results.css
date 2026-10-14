@@ -135,3 +135,32 @@
 .results-process, .results-closing { display: flex; align-items: center; padding-block: clamp(40px, 6vw, 80px); }
 .results-closing p { max-width: 620px; }
 .results-closing .results-note { margin-top: 18px; }
+
+.results-hero { background: #f8f7f2; display: flex; align-items: safe center; }
+.results-proof { background: #edf0e8; padding-block: 24px; }
+.results-proof .result-card { --chart-height: clamp(100px, 16svh, 160px); padding: 20px; }
+.results-proof .result-card-header p { margin-bottom: 10px; }
+.results-proof .result-card-header h2 { font-size: 28px; }
+.results-proof .result-growth { font-size: 44px; }
+.results-proof .result-work { margin-top: 16px; padding-top: 12px; }
+.results-proof .results-method { margin-top: 12px; }
+@media (min-width: 1101px) and (max-height: 800px) {
+ .results-proof { padding-block: 16px; }
+ .results-proof .result-card { --chart-height: 95px; padding: 16px; }
+ .results-proof .result-card-header p { display: none; }
+ .results-proof .results-bars { margin-top: 12px; margin-bottom: 8px; }
+ .results-proof .result-card-header { margin-bottom: 0; }
+ .results-proof .result-card-face { padding-top: 8px; }
+ .results-proof .result-work p { font-size: 13px; }
+ .results-proof .result-growth { font-size: 38px; }
+}
+@media (min-width: 1101px) {
+ .results-proof .result-card { --chart-height: clamp(75px, 11svh, 120px); }
+ .results-proof .result-card-header p { display: none; }
+ .results-proof .result-card-header { margin-bottom: 0; }
+ .results-proof .result-card-face > h3 { font-size: 18px; margin-bottom: 8px; }
+ .results-proof .result-card-face { padding-top: 8px; }
+ .results-proof .results-bars { margin-top: 12px; margin-bottom: 8px; }
+ .results-proof .result-flip-button { margin-top: 10px; }
+ .results-proof .result-card-turn { height: auto; }
+}

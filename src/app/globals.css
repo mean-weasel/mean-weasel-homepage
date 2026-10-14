@@ -1737,3 +1737,35 @@ html {
 }
 
 .work-page .showcase-heading { display: none; }
+
+/* Screen chapters: exact viewport sizing, with accessible scrolling for long content. */
+html:has(.homepage-main, .service-editorial, .results-main, .work-page, .about-page) {
+  --chapter-offset: var(--studio-header-height);
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--chapter-offset);
+}
+html:has(.service-section-nav) { --chapter-offset: calc(var(--studio-header-height) + 56px); }
+:is(.homepage-main > .home-band, .service-editorial > section, .results-main > section, .work-page, .about-page > section) {
+  height: calc(100svh - var(--chapter-offset, var(--studio-header-height)));
+  min-height: 0 !important;
+  max-height: calc(100svh - var(--chapter-offset, var(--studio-header-height)));
+  overflow-y: auto;
+  overflow-x: clip;
+  scroll-snap-align: start;
+  scroll-margin-top: 0 !important;
+}
+.service-editorial > .service-band, .service-editorial > .service-closing,
+.results-main > .results-process, .results-main > .results-closing {
+  align-items: safe center;
+}
+.service-editorial > section > .studio-container,
+.results-main > section > .studio-container { flex-shrink: 0; }
+.studio-home > footer { scroll-snap-align: start; }
+@media (prefers-reduced-motion: reduce) {
+ html:has(.homepage-main, .service-editorial, .results-main, .work-page, .about-page) { scroll-behavior: auto; }
+}
+.service-editorial > .service-band, .service-editorial > .service-closing,
+.results-main > .results-process, .results-main > .results-closing {
+  align-items: safe center !important;
+}
+.service-editorial > .service-intro { align-items: safe center !important; }

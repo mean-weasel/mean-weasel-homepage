@@ -16,7 +16,7 @@ for (const viewport of [
     page.on("request", (request) => {
       if (/fonts\.(googleapis|gstatic)\.com/.test(request.url())) remoteFonts.push(request.url());
     });
-    for (const route of ["/", "/gallery", "/about", "/services", "/use-cases", "/pricing", "/seo-results", "/contact", "/services/web-design-phoenix", "/projects/bugdrop", "/projects/bleep-that-shit", "/projects/seatify", "/projects/foil", "/projects/job-apply", "/projects/logo-designer", "/projects/machine-learning-refined", "/projects/meme-search", "/projects/ytgify", "/projects/debt-is-fun", "/projects/deckchecker"]) {
+    for (const route of ["/", "/gallery", "/about", "/services", "/how-we-work", "/seo-results", "/contact", "/services/web-design-phoenix", "/projects/bugdrop", "/projects/bleep-that-shit", "/projects/seatify", "/projects/foil", "/projects/job-apply", "/projects/logo-designer", "/projects/machine-learning-refined", "/projects/meme-search", "/projects/ytgify", "/projects/debt-is-fun", "/projects/deckchecker"]) {
       const response = await page.goto(route);
       expect(response?.status()).toBe(200);
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -26,7 +26,7 @@ for (const viewport of [
       const navigation = page.getByRole("navigation", { name: "Primary navigation" });
       if (viewport.width <= 800) await page.getByRole("button", { name: "Menu", exact: true }).click();
       await navigation.getByRole("button", { name: "Services", exact: true }).click();
-      await expect(navigation.getByRole("link", { name: "Pricing & scope", exact: true })).toBeVisible();
+      await expect(navigation.getByRole("link", { name: "How we work", exact: true })).toBeVisible();
       const boxes = await navigation.getByRole("link").evaluateAll(links => links.map(link => {
         const { x, y, width, height } = link.getBoundingClientRect();
         return { x, y, width, height };

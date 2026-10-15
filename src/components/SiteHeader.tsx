@@ -76,11 +76,11 @@ export function SiteHeader({
             <div className="services-nav-group">
               <button className="services-menu-toggle" aria-expanded={servicesOpen} aria-controls="services-navigation" onClick={() => setServicesOpen(!servicesOpen)}>Services <span aria-hidden="true">{servicesOpen ? "−" : "+"}</span></button>
               <div id="services-navigation" className="services-navigation" hidden={!servicesOpen}>
-                {[["/services", "All services"], ["/services#website-packages", "Business websites"], ["/services#custom", "App development"], ["/services#seo", "SEO"], ["/services#automation", "AI automation"], ["/use-cases", "Use cases"], ["/pricing", "Pricing & scope"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
+                {[["/services", "All services"], ["/services#website-packages", "Business websites"], ["/services#seo", "SEO & content"], ["/services#custom", "App design & development"], ["/services#automation", "AI automation"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
               </div>
             </div>
-            {[["/gallery", "Our work"], ["/seo-results", "SEO results"], ["/about", "About"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={pathname === href ? "nav-selected" : ""}>{label}</Link>)}
-            <Link className="nav-contact" href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}>Get in touch ↗</Link>
+            {[["/gallery", "Our work"], ["/seo-results", "SEO results"], ["/how-we-work", "How we work"], ["/about", "About"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={pathname === href ? "nav-selected" : ""}>{label}</Link>)}
+            <Link className="nav-contact" href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}>Request a consultation ↗</Link>
           </nav>
         </div>
       </header>

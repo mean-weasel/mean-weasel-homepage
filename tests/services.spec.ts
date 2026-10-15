@@ -163,8 +163,8 @@ for (const width of [390, 1440]) {
       await expect(page.getByLabel("What would you like help with?")).toHaveValue(service);
       await expect(page.getByLabel("Your name", { exact: true })).toBeVisible();
     }
-    await page.goto("/use-cases");
-    await page.locator("#local-services").getByRole("link", { name: "Discuss this kind of project" }).click();
+    await page.goto("/services");
+    await page.locator("#business-website").getByRole("link", { name: "Ask about Business Website" }).click();
     await expect(page.getByLabel("What would you like help with?")).toHaveValue("Business Website");
     await page.goto("/services/web-design-phoenix?service=invalid#inquiry");
     await expect(page.getByLabel("What would you like help with?")).toHaveValue("New business website");

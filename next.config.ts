@@ -24,12 +24,15 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/pricing", destination: "/how-we-work", permanent: true },
+      { source: "/use-cases", destination: "/services", permanent: true },
+      { source: "/how-we-work/", destination: "/how-we-work", permanent: true },
       { source: "/about/", destination: "/about", permanent: true },
       { source: "/seo-results/", destination: "/seo-results", permanent: true },
       { source: "/contact/", destination: "/contact", permanent: true },
-      { source: "/pricing/", destination: "/pricing", permanent: true },
+      { source: "/pricing/", destination: "/how-we-work", permanent: true },
       { source: "/services/", destination: "/services", permanent: true },
-      { source: "/use-cases/", destination: "/use-cases", permanent: true },
+      { source: "/use-cases/", destination: "/services", permanent: true },
       { source: "/services/web-design-phoenix/", destination: "/services/web-design-phoenix", permanent: true },
       {
         source: "/gallery/",

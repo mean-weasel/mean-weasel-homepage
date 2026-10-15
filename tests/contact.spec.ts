@@ -10,7 +10,7 @@ for (const width of [320, 375, 390, 1440]) {
     await expect(page.locator(".home-services-offers p").first()).toBeVisible();
     await expect(page.locator(".gallery-description").first()).toBeVisible();
     if (width <= 800) await page.getByRole("button", { name: "Menu", exact: true }).click();
-    await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Get in touch" }).click();
+    await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Request a consultation" }).click();
     await expect(page).toHaveURL(/\/contact$/);
     await expect(page.getByLabel("Your name", { exact: true })).toBeInViewport();
     await expect(page.getByLabel("Business name")).not.toBeVisible();

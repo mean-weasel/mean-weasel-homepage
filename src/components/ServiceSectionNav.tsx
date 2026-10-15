@@ -4,14 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 const serviceSections = [["website-packages", "Websites"], ["seo", "SEO"], ["custom", "Apps"], ["automation", "Automation"], ["get-started", "Contact"]] as const;
 
-const useCaseSections = [
-  ["local-services", "Quote requests"], ["project-businesses", "Portfolios"],
-  ["professional-services", "Consultations"], ["existing-websites", "Existing sites"],
-  ["custom-workflows", "Custom tools"], ["get-started", "Contact"],
-] as const;
-
-export function ServiceSectionNav({ page = "services" }: { page?: "services" | "use-cases" }) {
-  const sections = page === "services" ? serviceSections : useCaseSections;
+export function ServiceSectionNav() {
+  const sections = serviceSections;
   const navRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState("");
   useEffect(() => {
@@ -38,17 +32,8 @@ export function ServiceSectionNav({ page = "services" }: { page?: "services" | "
       window.removeEventListener("resize", update);
     };
   }, [sections]);
-  return <nav ref={navRef} className={`service-section-nav ${page === "use-cases" ? "use-case-section-nav" : ""}`} aria-label={page === "services" ? "Service sections" : "Use case sections"}>
+  return <nav ref={navRef} className="service-section-nav" aria-label="Service sections">
     <div className="studio-container">
-      {page === "use-cases" && <label className="section-jump-mobile">
-        <span>On this page</span>
-        <select aria-label="Jump to a use case" value={active} onChange={event => {
-          if (event.target.value) window.location.hash = event.target.value;
-        }}>
-          <option value="" disabled>Choose a use case</option>
-          {sections.map(([id, label]) => <option key={id} value={id}>{label}</option>)}
-        </select>
-      </label>}
       {sections.map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a>)}
     </div>
   </nav>;

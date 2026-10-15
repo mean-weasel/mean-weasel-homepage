@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 test.use({ reducedMotion: "reduce" });
 
 for (const width of [320, 390, 768, 1440]) {
-  for (const route of ["/services", "/use-cases"]) {
+  for (const route of ["/services", "/how-we-work"]) {
     test(`${route} reads and navigates at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       const errors: string[] = [];
@@ -20,7 +20,7 @@ for (const width of [320, 390, 768, 1440]) {
         const headerBottom = await page.locator(".studio-header").evaluate(el => el.getBoundingClientRect().bottom);
         expect(top).toBeGreaterThanOrEqual(headerBottom - 2);
       }
-      const cta = page.locator(".service-closing").getByRole("link", { name: "Tell us about your project" });
+      const cta = page.locator(".service-closing").getByRole("link", { name: "Request a consultation" });
       await cta.click();
       await expect(page).toHaveURL(/\/contact$/);
       await expect(page.getByRole("textbox", { name: "Your name", exact: true })).toBeVisible();
@@ -28,19 +28,6 @@ for (const width of [320, 390, 768, 1440]) {
     });
   }
 }
-
-test("new pages are discoverable and use cases link to the right service", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("link", { name: "Explore services" }).click();
-  await expect(page).toHaveURL(/\/services$/);
-  await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("button", { name: "Services", exact: true }).click();
-  await page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Use cases", exact: true }).click();
-  await expect(page).toHaveURL(/\/use-cases$/);
-  await expect(page.locator("main")).toContainText("illustrative");
-  await page.locator("#project-businesses").getByRole("link", { name: "Website + Content" }).click();
-  await expect(page).toHaveURL(/\/services#website-content$/);
-  await expect(page.locator("#website-content h3")).toHaveText("Website + Content");
-});
 
 for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }, { width: 320, height: 568 }, { width: 844, height: 390 }]) {
   test(`service chapters fill the viewport and navigation stays accessible at ${viewport.width}x${viewport.height}`, async ({ page }) => {
@@ -78,54 +65,40 @@ test("service section motion respects user preferences", async ({ page }) => {
   await expect(page.locator("#seo h2")).toBeVisible();
 });
 
-for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }, { width: 320, height: 568 }, { width: 844, height: 390 }]) {
-  test(`use cases have full-screen chapters and contextual navigation at ${viewport.width}x${viewport.height}`, async ({ page }) => {
-    await page.setViewportSize(viewport);
-    await page.goto("/use-cases");
-    const nav = page.getByRole("navigation", { name: "Use case sections" });
-    const header = page.locator(".studio-header");
-    const headerBox = (await header.boundingBox())!;
-    const navBox = (await nav.boundingBox())!;
-    for (const section of await page.locator("main > section").all()) {
-      expect((await section.boundingBox())!.height).toBeGreaterThanOrEqual(viewport.height - headerBox.height - navBox.height - 2);
-    }
-    for (const id of ["local-services", "project-businesses", "professional-services", "existing-websites", "custom-workflows", "get-started"]) {
-      if (viewport.width <= 800) {
-        const select = nav.getByRole("combobox");
-        await select.selectOption(id);
-        await expect(select).toHaveValue(id);
-      } else {
-        const link = nav.locator(`a[href="#${id}"]`);
-        await link.click();
-        await expect(link).toHaveAttribute("aria-current", "location");
-      }
-      const target = (await page.locator(`#${id}`).boundingBox())!;
-      const bounds = (await nav.boundingBox())!;
-      expect(target.y).toBeGreaterThanOrEqual(bounds.y + bounds.height - 2);
-      expect(bounds.y).toBeCloseTo(headerBox.height, 0);
-    }
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  });
-}
-
 test("navigation destinations are consistent across pages", async ({ page }) => {
   for (const route of ["/", "/services", "/about", "/gallery"]) {
     await page.goto(route);
     const nav = page.getByRole("navigation", { name: "Primary navigation" });
     await expect(nav.getByRole("link", { name: "Our work", exact: true })).toHaveAttribute("href", "/gallery");
     await nav.getByRole("button", { name: "Services", exact: true }).click();
-    await expect(nav.getByRole("link", { name: "Pricing & scope" })).toBeVisible();
-    await nav.getByRole("link", { name: "Use cases", exact: true }).click();
-    await expect(page).toHaveURL(/\/use-cases$/);
+    await expect(nav.getByRole("link", { name: "How we work" })).toBeVisible();
+    await nav.getByRole("link", { name: "How we work", exact: true }).click();
+    await expect(page).toHaveURL(/\/how-we-work$/);
   }
 });
 
-test("use-case motion stays optional", async ({ page }) => {
+test("process page motion stays optional", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("/use-cases");
+  await page.goto("/how-we-work");
   await expect.poll(() => page.locator(".service-intro > div").evaluate(el => getComputedStyle(el).animationName)).toBe("section-arrival");
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("smooth");
   await page.emulateMedia({ reducedMotion: "reduce" });
   expect(await page.locator(".service-intro > div").evaluate(el => getComputedStyle(el).animationName)).toBe("none");
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
+});
+
+test("consolidated pages preserve old links and connect proof to services", async ({ page, request }) => {
+  for (const [oldPath, newPath] of [["/pricing", "/how-we-work"], ["/pricing/", "/how-we-work"], ["/use-cases", "/services"], ["/use-cases/", "/services"]]) {
+    const response = await request.get(oldPath, { maxRedirects: 0 });
+    expect(response.status()).toBe(308);
+    expect(response.headers().location).toBe(newPath);
+  }
+  await page.goto('/services');
+  await expect(page.locator('.service-example').first()).toContainText('landscaper');
+  await page.locator('#business-website summary').click();
+  await expect(page.locator('#business-website')).toContainText('Up to five pages');
+  await page.goto('/gallery');
+  await page.getByRole('link', { name: 'See our SEO results' }).click();
+  await page.getByRole('link', { name: 'Explore SEO results' }).click();
+  await expect(page).toHaveURL(/\/seo-results$/);
 });

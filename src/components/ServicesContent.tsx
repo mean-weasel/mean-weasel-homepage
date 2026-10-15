@@ -69,7 +69,7 @@ export function ServicesContent({ initialService = "New business website" }: { i
               Explore our work
             </a>
             <Link href="/services" className="studio-text-link">Compare services</Link>
-            <Link href="/use-cases" className="studio-text-link">Explore use cases</Link>
+            <Link href="/how-we-work" className="studio-text-link">How we work</Link>
           </div>
         </div>
         <figure className="services-hero-proof">

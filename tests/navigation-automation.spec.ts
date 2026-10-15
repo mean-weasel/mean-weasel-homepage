@@ -12,8 +12,8 @@ for (const width of [320, 390, 820, 1440]) {
     await expect(page.locator('#automation')).toBeVisible();
     await page.locator('#automation').getByRole('link', { name: 'Discuss an automation' }).click();
     await expect(page.locator('select[name="service"]')).toHaveValue('AI automation');
-    await page.goto('/pricing');
-    const chapters = page.locator('.pricing-chapter');
+    await page.goto('/how-we-work');
+    const chapters = page.locator('main > section');
     await expect(chapters).toHaveCount(4);
     const colors = [];
     for (const chapter of await chapters.all()) {

@@ -3,7 +3,7 @@ test.use({ reducedMotion: 'reduce' });
 for (const viewport of [{width:1440,height:900}, {width:390,height:844}, {width:320,height:568}]) {
  test(`chapters occupy exactly one available screen at ${viewport.width}px`, async ({page}) => {
   await page.setViewportSize(viewport);
-  for (const route of ['/seo-results', '/services', '/pricing', '/use-cases']) {
+  for (const route of ['/seo-results', '/services', '/how-we-work', '/gallery', '/about']) {
    await page.goto(route);
    const header = (await page.locator('.studio-header').boundingBox())!.height;
    const nav = page.locator('.service-section-nav');

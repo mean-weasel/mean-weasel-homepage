@@ -172,19 +172,11 @@ export default function Home() {
                 "Business websites",
                 "Clear websites that turn visitors into inquiries.",
               ],
-              [
-                "02",
-                "App design & development",
-                "Useful apps, customer portals, and business tools.",
-              ],
-              [
-                "03",
-                "SEO",
-                "Search improvements for the website you already have.",
-              ],
+              ["02", "SEO & content", "Help customers find and understand your business."],
+              ["03", "App design & development", "Useful apps, customer portals, and business tools."],
               ["04", "AI automation", "Less repetitive work. More time for your business."],
             ].map(([number, title, description]) => (
-              <Link key={number} href={`/services#${({ "01": "website-packages", "02": "custom", "03": "seo", "04": "automation" })[number]}`}>
+              <Link key={number} href={`/services#${({ "01": "website-packages", "02": "seo", "03": "custom", "04": "automation" })[number]}`}>
                 <span>{number}</span>
                 <div>
                   <h3>{title}</h3>

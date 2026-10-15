@@ -142,3 +142,14 @@
 .pricing-jumps a { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; text-decoration: underline; text-underline-offset: 5px; }
 
 .service-editorial .pricing-chapter h2 { font-size: clamp(26px, 3vw, 36px); }
+
+.service-editorial[data-page="how-we-work"] { --service-nav-height: 0px; }
+.service-inclusions { width: 100%; margin-top: 16px; }
+.service-inclusions summary { cursor: pointer; min-height: 44px; padding-block: 12px; font-weight: 500; }
+.service-example { margin-block: 24px; max-width: 850px; }
+.work-process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 36px; }
+.service-editorial .work-process li { padding: 24px; border: 1px solid #ced5c7; border-radius: 12px; background: #fcfbf7; }
+.work-process span { color: var(--accent); }
+.work-process h3 { margin-block: 16px; }
+@media(max-width: 1000px) { .work-process { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media(max-width: 600px) { .work-process { grid-template-columns: 1fr; } }

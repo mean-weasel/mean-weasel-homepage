@@ -45,7 +45,7 @@ for (const width of [320, 390, 1024, 1440]) {
     }
     await page.getByText('About these results and their limits', { exact: true }).click();
     await expect(page.getByText(/All three are our own sites, not client engagements/)).toBeVisible();
-    await page.getByRole('link', { name: 'Talk with us about SEO' }).click();
+    await page.getByRole('link', { name: 'Request an SEO consultation' }).click();
     await expect(page).toHaveURL(/contact\?service=SEO%20Foundation%20Project/);
     await expect(page.locator('select[name="service"]')).toHaveValue('SEO Foundation Project');
   });
@@ -54,6 +54,6 @@ for (const width of [320, 390, 1024, 1440]) {
 test('flip is instant with reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/seo-results');
-  await page.getByRole('button', { name: 'Flip to users: BugDrop', exact: true }).click();
+  await page.getByRole('button', { name: 'Flip to product adoption: BugDrop', exact: true }).click();
   expect(await page.locator('#bugdrop .result-card-turn').evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
 });

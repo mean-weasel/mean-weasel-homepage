@@ -25,7 +25,7 @@ export default function GalleryPage() {
       <ProjectShowcase title="Business websites" category="work-websites" projects={projects(["bleep-that-shit", "bugdrop"])} />
     </section>
     <section id="search-results" className="work-service work-seo results-proof" aria-labelledby="work-seo-title">
-      <header className="studio-container work-service-intro"><p className="studio-eyebrow">OUR WORK / SEO & CONTENT</p><h2 id="work-seo-title">Useful pages. Real visibility.</h2><p>Google impressions and audience results from our apps and articles. Flip each card to see more.</p><Link className="studio-text-link" href="/services#seo">SEO & content services ↗</Link></header>
+      <header className="studio-container work-service-intro"><p className="studio-eyebrow">OUR WORK / SEO & CONTENT</p><h2 id="work-seo-title">Help the right customers discover your business.</h2><p>We create useful content and improve your website for discovery through Google and AI assistants like ChatGPT.</p><p className="results-evidence-note">Search charts show Google results, not AI search visibility.</p></header>
       <SeoProof />
     </section>
     <section id="apps" className="work-service work-apps" aria-labelledby="work-apps-title">

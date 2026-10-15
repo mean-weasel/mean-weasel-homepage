@@ -83,7 +83,7 @@ function ResultCard({ product }: { product: keyof typeof projects }) {
   const project = projects[product];
   const bleep = product === "bleep";
   const blog = product === "blog";
-  const backLabel = blog ? "Flip to Google clicks" : bleep ? "Flip to minutes processed" : "Flip to users";
+  const backLabel = blog ? "Flip to Google clicks" : bleep ? "Flip to product usage" : "Flip to product adoption";
   return <article id={product} className={`result-card ${blog ? "result-card-peach" : bleep ? "result-card-sage" : "result-card-blue"}`} aria-labelledby={`${product}-title`}>
     <header className="result-card-header"><span className="studio-eyebrow">{project.category}</span><h2 id={`${product}-title`}>{project.name}</h2><p>{project.description}</p></header>
     <div className="result-card-perspective">
@@ -92,7 +92,9 @@ function ResultCard({ product }: { product: keyof typeof projects }) {
           <SearchChart values={project.impressions} metric="impressions" />
         </div>
         <div id={`${product}-details`} className="result-card-face result-card-back" inert={!flipped} aria-hidden={!flipped}>
+          <p className="result-face-label">{blog ? "Google search traffic" : bleep ? "Product usage" : "Product adoption"}</p>
           {blog ? <SearchChart values={project.clicks} metric="clicks" /> : bleep ? <BleepUsage /> : <BugDropUsage />}
+          {!blog && <p className="result-attribution-note">Across the app, not attributed to Google.</p>}
           <a className="studio-text-link" href={project.url}>Visit {project.name} ↗</a>
         </div>
       </div>

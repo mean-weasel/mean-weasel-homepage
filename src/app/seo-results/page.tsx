@@ -25,9 +25,9 @@ export default function SeoResultsPage() {
       <header className="results-intro studio-container">
         <Link className="studio-text-link" href="/gallery#search-results">← Our work</Link>
         <p className="studio-eyebrow">OUR PRODUCTS · REAL AUDIENCES</p>
-        <h1 id="results-title">Built to be useful.<br /><em>Found through search.</em></h1>
-        <p className="results-lead">See our apps and articles in Google Search. Flip each card to explore its audience or search clicks.</p>
-        <a className="home-cta-button" href="#results">Explore the results ↓</a>
+        <h1 id="results-title">Help the right customers<br /><em>discover your business.</em></h1>
+        <p className="results-lead">We create useful content and improve your website for discovery through Google and AI assistants like ChatGPT.</p>
+        <p className="results-evidence-note">Search charts show Google results, not AI search visibility.</p><a className="home-cta-button" href="#results">Explore the results ↓</a>
       </header>
       </section>
       <section id="results" className="results-proof" aria-label="SEO results from our own sites">

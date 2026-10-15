@@ -164,3 +164,19 @@
  .results-proof .result-flip-button { margin-top: 10px; }
  .results-proof .result-card-turn { height: auto; }
 }
+
+/* Separate service ambitions, measured search results, and product usage. */
+.results-evidence-note { font-size: 13px; color: #48564f; }
+.result-card-face .result-face-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 6px; color: #48564f; }
+.result-card-face .result-attribution-note { font-size: 12px; line-height: 1.4; margin: 0 0 8px; color: #48564f; }
+.results-consultation { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 24px; padding: 24px; background: #e4eadf; border: 1px solid #253b3520; border-radius: 16px; }
+.results-consultation h3 { font-size: 22px; line-height: 1.25; margin: 0 0 8px; }
+.results-consultation p { max-width: 560px; font-size: 14px; line-height: 1.6; margin: 0; }
+.results-consultation-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex-shrink: 0; }
+.results-consultation-actions .studio-text-link { min-height: 44px; display: inline-flex; align-items: center; margin: 0; font-size: 14px; }
+.results-consultation-actions .home-cta-button { margin: 0; font-size: 14px; }
+@media (max-width: 800px) {
+  .results-consultation { flex-direction: column; align-items: stretch; padding: 20px; gap: 16px; }
+  .results-consultation-actions { align-items: stretch; }
+  .results-consultation-actions .home-cta-button { text-align: center; justify-content: center; }
+}

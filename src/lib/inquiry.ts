@@ -6,7 +6,19 @@ export const inquiryServices = [
   "SEO Foundation Project",
   "Custom app or integration",
   "AI automation",
+  "Not sure yet",
 ] as const;
+
+export const inquiryServiceLabels: Record<(typeof inquiryServices)[number], string> = {
+  "New business website": "A new business website",
+  "Website redesign": "Improve an existing website",
+  "Business Website": "Business website - I have the content",
+  "Website + Content": "Business website - help with content",
+  "SEO Foundation Project": "Help customers find us on Google",
+  "Custom app or integration": "An app or custom business tool",
+  "AI automation": "Save time with AI automation",
+  "Not sure yet": "Not sure yet - help me decide",
+};
 
 export type Inquiry = {
   name: string;

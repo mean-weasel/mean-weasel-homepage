@@ -18,3 +18,21 @@
   .contact-main .service-form { padding: 20px; }
   .contact-main .service-form-helper { font-size: 13px; }
 }
+
+/* Keep the conversation approachable and the form easy to scan. */
+.contact-main .service-form { border-radius: 18px; box-shadow: 0 12px 36px #29332808; }
+.contact-main .service-form label { font-size: 14px; font-weight: 500; }
+.contact-main .service-form input,
+.contact-main .service-form select,
+.contact-main .service-form textarea { border-radius: 8px; }
+.contact-main .service-form :is(input, select, textarea, button, summary):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.contact-main .service-form .inquiry-optional summary { min-height: 44px; display: list-item; padding-block: 12px; cursor: pointer; }
+.contact-main .service-form [role="status"]:not(:empty) { padding: 16px; border-radius: 8px; background: #e9eee2; color: #293328; font-size: 15px; }
+.contact-main .service-form [role="alert"] { padding: 16px; border-radius: 8px; background: #f9e8de; color: #743c28; }
+.contact-main .service-form button:disabled { cursor: default; opacity: .7; }
+@media (max-width: 480px) {
+  .contact-main .service-form-row { grid-template-columns: 1fr; gap: 0; }
+}

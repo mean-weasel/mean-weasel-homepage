@@ -17,7 +17,7 @@ for (const width of [1440, 390, 320]) {
     await page.getByLabel("Your name", { exact: true }).fill("Preview Visitor");
     await page.getByLabel("Email", { exact: true }).fill("preview@example.com");
     await page
-      .getByLabel("What would you like this project to help people do?")
+      .getByLabel("What would you like to improve?")
       .fill("Request a quote for my business.");
     const ids: string[] = [];
     let attempts = 0;
@@ -36,7 +36,7 @@ for (const width of [1440, 390, 320]) {
       });
     });
     const submit = page.getByRole("button", {
-      name: "Request a project estimate",
+      name: "Request a consultation",
     });
     await submit.click();
     await expect(page.locator("form").getByRole("alert")).toContainText(
@@ -181,12 +181,12 @@ test("inquiry validation and pending state prevent incomplete or duplicate submi
     await pending;
     await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
   });
-  const submit = page.getByRole("button", { name: "Request a project estimate" });
+  const submit = page.getByRole("button", { name: "Request a consultation" });
   await submit.click();
   expect(calls).toBe(0);
   await page.getByLabel("Your name", { exact: true }).fill("Preview QA");
   await page.getByLabel("Email", { exact: true }).fill("qa@example.com");
-  await page.getByLabel("What would you like this project to help people do?").fill("Check the inquiry workflow.");
+  await page.getByLabel("What would you like to improve?").fill("Check the inquiry workflow.");
   await submit.click();
   await expect(page.getByRole("button", { name: "Sending…" })).toBeDisabled();
   await expect(page.getByLabel("Your name", { exact: true })).toBeDisabled();

@@ -2,7 +2,7 @@
 
 import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import posthog from "posthog-js";
-import { createInquiryId, inquiryServices } from "@/lib/inquiry";
+import { createInquiryId, inquiryServices, inquiryServiceLabels } from "@/lib/inquiry";
 
 const subscribe = () => () => {};
 const clientReady = () => true;
@@ -50,7 +50,7 @@ export function InquiryForm({ initialService = "New business website" }: { initi
     } catch {
       setStatus("error");
       setError(
-        "Your inquiry could not be sent. Your details are still here—please try again, or email jeremy@mean-weasel.com directly.",
+        "Your inquiry could not be sent. Your details are still here - please try again, or email jeremy@mean-weasel.com directly.",
       );
     } finally {
       sending.current = false;
@@ -70,9 +70,10 @@ export function InquiryForm({ initialService = "New business website" }: { initi
               }
             }}
             className="service-form ph-no-capture ph-mask"
+            aria-busy={status === "sending"}
             data-ph-no-capture
           >
-            <p className="service-form-helper">A few sentences are enough. No finished brief needed.</p>
+            <p className="service-form-helper">Start with a few sentences. No technical knowledge needed.</p>
             {!ready && <p className="service-form-helper">Loading the inquiry form. If it does not load, email <a href="mailto:jeremy@mean-weasel.com">jeremy@mean-weasel.com</a>.</p>}
             <fieldset disabled={!ready || status === "sending"}>
               <legend className="sr-only">Project inquiry</legend>
@@ -111,22 +112,22 @@ export function InquiryForm({ initialService = "New business website" }: { initi
                   onChange={(e) => setInterest(e.target.value)}
                 >
                   {inquiryServices.map((option) => (
-                    <option key={option}>{option}</option>
+                    <option key={option} value={option}>{inquiryServiceLabels[option]}</option>
                   ))}
                 </select>
               </label>
               <label>
-                What would you like this project to help people do?
+                What would you like to improve?
                 <textarea
                   name="description"
                   required
-                  rows={3}
+                  rows={4}
                   aria-describedby="project-description-help"
                   placeholder="For example: We need a website where customers can see our work and request a quote."
                   maxLength={5000}
                 />
               </label>
-              <p id="project-description-help" className="service-form-helper">Tell us what you need and any timing you have in mind.</p>
+              <p id="project-description-help" className="service-form-helper">What does your business do, and what would make things easier? Add a deadline if you have one.</p>
               <details className="inquiry-optional">
                 <summary>Add business details <span>(optional)</span></summary>
               <label>
@@ -150,11 +151,11 @@ export function InquiryForm({ initialService = "New business website" }: { initi
               <button
                 className="service-button"
                 type="submit"
-                disabled={status === "sending"}
+                disabled={status === "sending" || status === "success"}
               >
                 {status === "sending"
                   ? "Sending…"
-                  : "Request a project estimate"}{" "}
+                  : status === "success" ? "Request sent" : "Request a consultation"}{" "}
                 <span aria-hidden="true">↗</span>
               </button>
             </fieldset>
@@ -163,7 +164,7 @@ export function InquiryForm({ initialService = "New business website" }: { initi
             </p>
             <p role="status" aria-live="polite">
               {status === "success"
-                ? "Thanks—your inquiry has been sent. Jeremy will reply to the email you provided."
+                ? "Thanks - your inquiry has been sent. Jeremy will reply by email to discuss your needs and next steps."
                 : status === "sending"
                   ? "Sending your inquiry…"
                   : ""}

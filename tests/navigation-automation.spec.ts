@@ -11,8 +11,8 @@ for (const width of [320, 390, 820, 1440]) {
     await expect(page).toHaveURL(/\/services#automation$/);
     await expect(page.locator('#automation')).toBeVisible();
     await expect(page.locator('.automation-offers h3')).toHaveText(['Inquiry handling & follow-up', 'Forms & everyday admin', 'Content preparation']);
-    await expect(page.locator('.automation-examples a').first()).toHaveAttribute('href', '/projects/job-apply');
-    await expect(page.locator('.automation-examples a').last()).toHaveAttribute('href', '/projects/foil');
+    await expect(page.locator('.automation-examples').getByRole('link', { name: 'Job Apply' })).toHaveAttribute('href', '/projects/job-apply');
+    await expect(page.locator('.automation-examples').getByRole('link', { name: 'Foil for Mac' })).toHaveAttribute('href', '/projects/foil');
     await page.locator('#automation').getByRole('link', { name: 'Tell us what you’re doing manually' }).click();
     await expect(page.locator('select[name="service"]')).toHaveValue('AI automation');
     await page.goto('/how-we-work');

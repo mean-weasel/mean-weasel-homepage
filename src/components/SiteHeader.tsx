@@ -79,7 +79,7 @@ export function SiteHeader({
                 {[["/services", "All services"], ["/services#website-packages", "Business websites"], ["/services#seo", "SEO & content"], ["/services#custom", "App design & development"], ["/services#automation", "AI automation"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined}>{label}</Link>)}
               </div>
             </div>
-            {[["/gallery", "Our work"], ["/seo-results", "SEO results"], ["/how-we-work", "How we work"], ["/about", "About"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={pathname === href ? "nav-selected" : ""}>{label}</Link>)}
+            {[["/gallery", "Our work"], ["/how-we-work", "How we work"], ["/about", "About"]].map(([href, label]) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} className={pathname === href ? "nav-selected" : ""}>{label}</Link>)}
             <Link className="nav-contact" href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}>Request a consultation ↗</Link>
           </nav>
         </div>

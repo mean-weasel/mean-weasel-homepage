@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const serviceSections = [["website-packages", "Websites"], ["seo", "SEO"], ["custom", "Apps"], ["automation", "Automation"], ["get-started", "Contact"]] as const;
+import "./SectionNav.css";
 
-export function ServiceSectionNav() {
-  const sections = serviceSections;
+const serviceSections = [["website-packages", "Websites"], ["seo", "SEO & content"], ["custom", "App development"], ["automation", "AI automation"]] as const;
+
+export function SectionNav({ sections, label }: { sections: ReadonlyArray<readonly [string, string]>; label: string }) {
   const navRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState("");
   useEffect(() => {
@@ -32,9 +33,24 @@ export function ServiceSectionNav() {
       window.removeEventListener("resize", update);
     };
   }, [sections]);
-  return <nav ref={navRef} className="service-section-nav" aria-label="Service sections">
+  useEffect(() => {
+    const link = navRef.current?.querySelector<HTMLElement>('[aria-current="location"]');
+    const row = link?.parentElement;
+    if (!link || !row) return;
+    const bounds = link.getBoundingClientRect();
+    const viewport = row.getBoundingClientRect();
+    if (bounds.left < viewport.left || bounds.right > viewport.right) {
+      row.scrollTo({ left: row.scrollLeft + bounds.left - viewport.left - (row.clientWidth - bounds.width) / 2,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    }
+  }, [active]);
+  return <nav ref={navRef} className="service-section-nav" aria-label={label}>
     <div className="studio-container">
       {sections.map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? "location" : undefined}>{label}</a>)}
     </div>
   </nav>;
+}
+
+export function ServiceSectionNav() {
+  return <SectionNav sections={serviceSections} label="Service sections" />;
 }

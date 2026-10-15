@@ -61,7 +61,7 @@ test("service section motion respects user preferences", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
   expect(await page.locator(".service-intro > div").evaluate(el => getComputedStyle(el).animationName)).toBe("none");
-  await page.getByRole("navigation", { name: "Service sections" }).getByRole("link", { name: "SEO", exact: true }).click();
+  await page.getByRole("navigation", { name: "Service sections" }).getByRole("link", { name: "SEO & content", exact: true }).click();
   await expect(page.locator("#seo h2")).toBeVisible();
 });
 
@@ -98,7 +98,7 @@ test("consolidated pages preserve old links and connect proof to services", asyn
   await page.locator('#business-website summary').click();
   await expect(page.locator('#business-website')).toContainText('Up to five pages');
   await page.goto('/gallery');
-  await page.getByRole('link', { name: 'See our SEO results' }).click();
-  await page.getByRole('link', { name: 'Explore SEO results' }).click();
-  await expect(page).toHaveURL(/\/seo-results$/);
+  await page.getByRole('navigation', { name: 'Work by service' }).first().getByRole('link', { name: 'SEO results', exact: true }).click();
+  await expect(page).toHaveURL(/\/gallery#search-results$/);
+  await expect(page.locator('#search-results .result-card')).toHaveCount(3);
 });

@@ -5,4 +5,4 @@ export const siteUrl = (
 export const siteName = "Mean Weasel";
 
 export const siteDescription =
-  "Business websites for Phoenix-area small businesses, plus custom app design and development SEO, and AI automation. Work directly with Mean Weasel from the first conversation to launch.";
+  "Business websites, SEO and content, custom app design and development, and AI automation for small businesses in Phoenix and beyond. Work directly with Mean Weasel.";

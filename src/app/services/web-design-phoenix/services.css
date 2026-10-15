@@ -516,7 +516,7 @@
 .services-main #inquiry {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
 }
 .service-form fieldset {
   min-width: 0;

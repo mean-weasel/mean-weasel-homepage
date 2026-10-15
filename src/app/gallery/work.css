@@ -1,0 +1,32 @@
+.work-websites { background: #ebeee4; }
+.work-seo { background: #f3ede2; }
+.work-apps { background: #e7edf2; }
+.work-automation { background: #eee9f3; }
+.work-service { padding-block: 28px; }
+.work-service-intro h1, .work-service-intro h2 { font-size: clamp(30px, 3.5vw, 48px); line-height: 1.1; letter-spacing: -.035em; margin-block: 12px; }
+.work-service-intro > p:not(.studio-eyebrow) { max-width: 820px; margin-block: 12px; }
+.work-service .project-showcase { height: auto; min-height: 0; padding-block: 16px; }
+.work-service .showcase-heading { display: none; }
+.work-service .showcase-bottom { margin-top: 12px; }
+.work-more { padding-block: 16px; font-size: 13px; }
+.work-more a { text-decoration: underline; }
+.work-seo .results-grid { margin-top: 20px; }
+@media (max-width: 600px) {
+  .work-service { padding-block: 24px; }
+}
+.work-service-intro > .studio-text-link { margin-top: 0; min-height: 44px; align-items: center; padding-block: 0; }
+.work-service .project-showcase { --work-preview-height: clamp(160px, 22svh, 210px); }
+.work-service .gallery-preview { height: var(--work-preview-height); aspect-ratio: auto; padding: 10px 16px; }
+.work-service .preview-topline { margin-bottom: 6px; flex-shrink: 0; }
+.work-service .preview-window { height: calc(var(--work-preview-height) - 50px); width: auto; aspect-ratio: 1.44; max-width: 100%; align-self: center; flex-shrink: 0; }
+.work-service .preview-window img { height: calc(100% - 18px); object-fit: contain; }
+.work-service .showcase-controls button { top: calc(var(--work-preview-height) / 2 - 20px); }
+.work-service .gallery-card-content { padding-top: 12px; }
+.work-service .gallery-card-heading { min-height: 34px; }
+.work-service .gallery-description { min-height: 66px; margin-block: 6px 8px; }
+.work-service .showcase-bottom .studio-text-link { margin-top: 0; }
+.work-service .gallery-card-actions { margin-bottom: 4px; }
+.work-service .gallery-card-footer { padding-top: 4px; }
+.work-service .showcase-viewport { padding-bottom: 6px; }
+.work-seo .result-work h3 { font-size: 14px; margin: 0 0 8px; }
+.work-seo .result-work p { font-size: 14px; line-height: 1.6; margin: 0; }

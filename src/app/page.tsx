@@ -9,12 +9,12 @@ import { galleryProjects } from "@/lib/gallery";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Phoenix Business Websites, Apps & SEO | Mean Weasel" },
+  title: { absolute: "Websites, SEO, Apps & AI Automation | Mean Weasel" },
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Phoenix Business Websites, Apps & SEO | Mean Weasel",
+    title: "Websites, SEO, Apps & AI Automation | Mean Weasel",
     description: siteDescription,
     url: "/",
     siteName,
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Mean Weasel business websites, apps, and SEO",
+        alt: "Mean Weasel business websites, SEO, apps, and AI automation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Phoenix Business Websites, Apps & SEO | Mean Weasel",
+    title: "Websites, SEO, Apps & AI Automation | Mean Weasel",
     description: siteDescription,
     images: ["/twitter-image"],
   },
@@ -108,7 +108,7 @@ export default function Home() {
               <em>Less busywork.</em>
             </h1>
             <p className="studio-intro">
-              We build business websites and custom apps, improve SEO, and automate repetitive work for small businesses in Phoenix and beyond.
+              Business websites first. SEO, custom apps, and AI automation to help you get found and get more done. Based in Phoenix, working beyond.
             </p>
             <div className="home-hero-actions">
               <Link className="home-cta-button" href="/contact">
@@ -131,7 +131,7 @@ export default function Home() {
             <span className="mark-spark spark-two">+</span>
           </div>
           <div className="hero-bottom">
-            <span>WEBSITES · APPS · SEO · AI AUTOMATION</span>
+            <span>WEBSITES · SEO · APPS · AI AUTOMATION</span>
             <span>
               SCROLL TO EXPLORE <span aria-hidden="true">↘</span>
             </span>
@@ -152,8 +152,7 @@ export default function Home() {
               <em>Built to work better.</em>
             </h2>
             <p>
-              Websites, apps, SEO, and AI automation for Phoenix and beyond.
-              Work directly with Jeremy from first conversation to launch.
+              Start with the help you need today. Work directly with Jeremy, from the first conversation through delivery.
             </p>
             <Link
               className="studio-work-link"
@@ -162,7 +161,7 @@ export default function Home() {
               Explore services <span aria-hidden="true">↗</span>
             </Link>
             <Link className="studio-text-link home-service-inquiry" href="/contact">Let’s talk about your project ↗</Link>
-            <Link className="studio-text-link home-service-inquiry" href="/seo-results">See our SEO results ↗</Link>
+            <Link className="studio-text-link home-service-inquiry" href="/gallery#search-results">See our SEO results ↗</Link>
 
           </div>
           <div className="home-services-offers">
@@ -170,11 +169,11 @@ export default function Home() {
               [
                 "01",
                 "Business websites",
-                "Clear websites that turn visitors into inquiries.",
+                "Show what you offer and make it easy to get in touch.",
               ],
               ["02", "SEO & content", "Help customers find and understand your business."],
               ["03", "App design & development", "Useful apps, customer portals, and business tools."],
-              ["04", "AI automation", "Less repetitive work. More time for your business."],
+              ["04", "AI automation", "Simplify follow-ups, routine admin, and content drafts."],
             ].map(([number, title, description]) => (
               <Link key={number} href={`/services#${({ "01": "website-packages", "02": "seo", "03": "custom", "04": "automation" })[number]}`}>
                 <span>{number}</span>
@@ -196,7 +195,7 @@ export default function Home() {
           <section id="contact" className="home-final-cta studio-container" aria-labelledby="contact-title">
             <p className="studio-eyebrow">LET’S BUILD SOMETHING USEFUL</p>
             <h2 id="contact-title">Have a project in mind?<br /><em>Let’s talk about it.</em></h2>
-            <p>A better website, a smoother workflow, or an app you wish existed. Tell us what you’re working on and we’ll figure out a useful next step.</p>
+            <p>A better website, more visibility in search, a custom app, or less manual work. Tell us what you need - we’ll help you choose a starting point.</p>
             <Link className="home-cta-button" href="/contact">Tell us about your project <span aria-hidden="true">↗</span></Link>
             <p className="home-cta-note">You’ll hear directly from Jeremy. No finished brief needed, and no commitment to get started.</p>
           </section>

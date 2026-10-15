@@ -36,6 +36,7 @@ export default function ServiceBreakdownPage() {
         <p className="studio-eyebrow">01 / WEBSITE PACKAGES</p>
         <h2>A solid home for<br /><em>your business.</em></h2>
         <p className="service-section-copy">For new sites and redesigns. Both options include mobile-friendly design, foundational SEO, and a walkthrough at handoff.</p>
+        <Link className="studio-text-link" href="/gallery#websites">Explore our website work ↗</Link>
         <div className="service-detail-grid">
           {websitePackages.map((offer, index) => <article className="service-detail-card" id={index === 0 ? "business-website" : "website-content"} key={offer.name}>
             <p className="service-label">{index === 0 ? "YOU BRING THE CONTENT" : "WE SHAPE IT TOGETHER"}</p>
@@ -53,7 +54,7 @@ export default function ServiceBreakdownPage() {
 
     <section className="service-band service-band-blue" id="seo">
       <div className="studio-container service-two-column">
-        <div><p className="studio-eyebrow">02 / SEO & CONTENT</p><h2>Make your website<br /><em>easier to understand.</em></h2><p>From research to implementation. We research what people search for, create useful content, optimize pages, and track performance in Google.</p><Link className="studio-text-link" href="/seo-results">See results from our apps and articles ↗</Link><p className="service-example"><strong>For example:</strong> Improve a service page so customers can find what you offer, see where you work, and request a quote.</p><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
+        <div><p className="studio-eyebrow">02 / SEO & CONTENT</p><h2>Make your website<br /><em>easier to understand.</em></h2><p>From research to implementation. We research what people search for, create useful content, optimize pages, and track performance in Google.</p><Link className="studio-text-link" href="/gallery#search-results">See results from our apps and articles ↗</Link><p className="service-example"><strong>For example:</strong> Improve a service page so customers can find what you offer, see where you work, and request a quote.</p><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
         <article className="service-detail-card"><h3>SEO Foundation Project</h3><p>For an existing website that needs a clear set of priorities and practical fixes.</p><h4>What we can help with</h4><ul>
           <li><strong>Keyword research &amp; search intent</strong> - understand what customers search for and what they need.</li>
           <li><strong>Content strategy &amp; creation</strong> - plan useful topics and create pages that answer real questions.</li>
@@ -66,7 +67,7 @@ export default function ServiceBreakdownPage() {
     </section>
 
     <section className="service-band" id="custom"><div className="studio-container service-two-column">
-      <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>Custom web apps, customer portals, quote calculators, and internal workflows - from interface design through implementation. We start by mapping who uses the tool, what it needs to do, and which systems it connects to.</p><Link className="studio-text-link" href="/gallery">Explore the software we build ↗</Link></div>
+      <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>Custom web apps, customer portals, quote calculators, and internal workflows - from interface design through implementation. We start by mapping who uses the tool, what it needs to do, and which systems it connects to.</p><Link className="studio-text-link" href="/gallery#apps">Explore the software we build ↗</Link></div>
       <div className="service-custom-scope"><h3>Build around one clear need</h3><p className="service-example"><strong>For example:</strong> A customer portal for project updates, or a quote calculator that replaces a spreadsheet.</p><ol><li>Define the user journey and the problem to solve.</li><li>Design the interface and review data, accounts, integrations, and access needs.</li><li>Agree on a first release, milestones, and testing.</li><li>Confirm handoff and maintenance responsibilities.</li></ol><Link className="service-button" href={inquiryHref("Custom app or integration")}>Discuss a custom project ↗</Link></div>
     </div></section>
     <section id="automation" className="service-band service-band-lilac automation-section"><div className="studio-container">
@@ -77,7 +78,7 @@ export default function ServiceBreakdownPage() {
         <article><h3>Content preparation</h3><p>Turn your notes or dictated updates into website copy, emails, and social drafts for approval.</p></article>
       </div>
       <div className="automation-detail-grid">
-        <div className="automation-examples"><h3>See what we’ve built</h3><p className="service-small">Our own products demonstrate the approach. These are examples of capabilities, not client results.</p>
+        <div className="automation-examples"><h3>See what we’ve built</h3><Link className="studio-text-link" href="/gallery#automation">Explore our AI automation examples ↗</Link><p className="service-small">Our own products demonstrate the approach. These are examples of capabilities, not client results.</p>
           <Link className="use-case-proof" href="/projects/job-apply"><strong>Job Apply ↗</strong><span>Reuses information and fills forms for review. A similar approach could simplify customer onboarding.</span></Link>
           <Link className="use-case-proof" href="/projects/foil"><strong>Foil for Mac ↗</strong><span>Turns speech into cleaned-up text. The same idea could help turn a business owner’s spoken notes into useful drafts.</span></Link>
         </div>

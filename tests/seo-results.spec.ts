@@ -25,7 +25,7 @@ for (const width of [320, 390, 1024, 1440]) {
       const card = page.getByRole('article', { name });
       const flip = card.getByRole('button');
       await expect(card.locator('.result-card-front .results-bar')).toHaveCount(4);
-      await expect(card.locator('.result-card-back .results-chart .results-bar')).toHaveCount(4);
+      await expect(card.locator('.result-card-back .results-chart .results-bar')).toHaveCount(name === 'Bleep That Sh*t' ? 3 : 4);
       await expect(card.getByRole('img')).toHaveAccessibleName(/Cumulative Google Search impressions since June 12, 2026: through Jul 11.*through Oct 11/);
       await expect(card.getByRole('heading', { name: name === 'neonwatty.com' ? '238,671 Impressions from Google' : name === 'BugDrop' ? '4,461 Impressions from Google' : '138,231 Impressions from Google', exact: true })).toBeVisible();
       await expect(card.getByRole('link', { name: `Visit ${name}` })).toHaveCount(0);
@@ -35,8 +35,8 @@ for (const width of [320, 390, 1024, 1440]) {
       await expect(flip).toHaveAttribute('aria-expanded', 'true');
       await expect(card.getByRole('link', { name: `Visit ${name}` })).toBeVisible();
       await expect(flip).toBeFocused();
-      await expect(card.getByRole('heading', { name: name === 'neonwatty.com' ? '4,175 Clicks from Google' : name === 'BugDrop' ? '182 Users' : '3,108 Registered users', exact: true })).toBeVisible();
-      await expect(card.getByRole('img', { name: name === 'neonwatty.com' ? /Cumulative Google Search clicks/ : name === 'BugDrop' ? /Total users/ : /Total registered users/ })).toBeVisible();
+      await expect(card.getByRole('heading', { name: name === 'neonwatty.com' ? '4,175 Clicks from Google' : name === 'BugDrop' ? '182 Users' : '14,800+ Minutes processed by users', exact: true })).toBeVisible();
+      await expect(card.getByRole('img', { name: name === 'neonwatty.com' ? /Cumulative Google Search clicks/ : name === 'BugDrop' ? /Total BugDrop users/ : /Recorded media minutes processed/ })).toBeVisible();
       await expect(card.getByRole('heading', { name: /Clicks from Google/ })).toHaveCount(name === 'neonwatty.com' ? 1 : 0);
       await page.keyboard.press('Space');
       await expect(flip).toHaveAttribute('aria-expanded', 'false');

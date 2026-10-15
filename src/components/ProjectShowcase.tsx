@@ -12,11 +12,15 @@ export function ProjectShowcase({
   category,
   projects,
   children,
+  examplesLink,
+  panel,
 }: {
   title: string;
   category: string;
   projects: GalleryProject[];
   children?: ReactNode;
+  examplesLink?: { href: string; label: string };
+  panel?: ReactNode;
 }) {
   const [viewport, carousel] = useEmblaCarousel({ loop: true, align: "start", duration: 25 });
   const [position, setPosition] = useState<Position>({ overflow: false, indices: [1] });
@@ -26,6 +30,7 @@ export function ProjectShowcase({
     function measure() {
       if (!carousel) return;
       const slides = carousel.slideNodes();
+      if (!slides.length) return;
       const width = slides[0]?.getBoundingClientRect().width ?? 1;
       const gap = parseFloat(getComputedStyle(slides[0]).marginRight) || 0;
       const visibleCount = Math.min(slides.length, Math.max(1,
@@ -64,6 +69,7 @@ export function ProjectShowcase({
         </div>
       </div>
       {children}
+      {panel ? <div id={`showcase-${category}`}>{panel}</div> : <>
       <div className="showcase-toolbar">
         <div className="showcase-progress">
           <strong role="status" aria-live="polite">
@@ -117,11 +123,13 @@ export function ProjectShowcase({
         </div>
       </div>
       </div>
+      </>}
       <div className="showcase-bottom">
+        {examplesLink && <Link className="studio-text-link" href={examplesLink.href}>{examplesLink.label} <span aria-hidden="true">↗</span></Link>}
         <Link className="studio-text-link" href="/contact">
           Have something in mind? Tell us about it <span aria-hidden="true">↗</span>
         </Link>
-        <span className="showcase-star-date">GitHub stars as of Oct 11, 2026</span>
+        {!examplesLink && <span className="showcase-star-date">GitHub stars as of Oct 11, 2026</span>}
       </div>
     </section>
   );

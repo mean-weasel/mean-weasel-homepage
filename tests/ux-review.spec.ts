@@ -32,7 +32,8 @@ for (const viewport of [
         return { x, y, width, height };
       }));
       for (const box of boxes) {
-        expect(box.height).toBeGreaterThanOrEqual(44);
+        // Allow subpixel floating-point rounding of the 44px CSS minimum.
+        expect(box.height).toBeGreaterThanOrEqual(44 - 0.01);
         expect(box.x).toBeGreaterThanOrEqual(0);
         expect(box.x + box.width).toBeLessThanOrEqual(viewport.width);
       }

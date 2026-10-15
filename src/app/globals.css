@@ -1791,3 +1791,15 @@ html:has(.service-section-nav) { --chapter-offset: calc(var(--studio-header-heig
 .about-proof span { font-size: 15px; line-height: 1.7; }
 .about-proof a, .about-page .studio-text-link { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
 @media(max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+
+.home-seo-examples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-block: 24px; }
+.home-seo-examples article { background: #f6f4ed; border: 1px solid #30372c25; border-radius: 12px; padding: 28px; }
+.home-seo-examples h3 { font-size: 25px; margin-block: 12px; }
+.home-seo-examples article > p:not(.studio-eyebrow) { font-size: 14px; line-height: 1.6; }
+.home-seo-examples a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; text-decoration: underline; margin-top: 16px; }
+@media (max-width: 639px) {
+  .home-seo-examples { grid-template-columns: 1fr; gap: 10px; margin-block: 12px; }
+  .home-seo-examples article { padding: 14px 18px; }
+  .home-seo-examples h3 { font-size: 21px; margin-block: 6px; }
+  .home-seo-examples a { margin-top: 4px; }
+}

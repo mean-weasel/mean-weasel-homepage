@@ -46,20 +46,33 @@ function SearchChart({ values, metric }: { values: number[]; metric: "impression
   </>;
 }
 
-function AudienceGrowth({ bleep }: { bleep: boolean }) {
-  // Verified October 14, 2026: retained auth accounts / production installation records.
-  // BugDrop's 184 current records match Marketplace; these cutoffs exclude two newer installs.
-  // These are creation-date cohorts, not archived counts including deleted accounts/installs.
-  const values = bleep ? [873, 1520, 2254, 3108] : [85, 115, 143, 182];
-  const dates = ["Jul 11", "Aug 11", "Sep 11", "Oct 11"];
-  const total = values[values.length - 1];
-  const metric = bleep ? "Registered users" : "Users";
+function BleepUsage() {
+  // PostHog production completions verified October 15, 2026 at 17:00 UTC.
+  // Studio deduplicated by project; public completions by event UUID.
+  // Monthly cumulative minutes rounded to whole minutes, not estimated history.
+  const values = [9112, 13351, 14826];
+  const dates = ["Aug 31", "Sep 30", "Oct 15"];
   return <>
-    <h3><span className="result-growth">{format(total)}</span> {metric}</h3>
+    <h3><span className="result-growth">14,800+</span> Minutes processed by users</h3>
     <figure className="results-chart">
-      <figcaption>Cumulative users · Jul–Oct 2026</figcaption>
-      <div className="results-bars" role="img" aria-label={`Total ${metric.toLowerCase()}: ${values.map((value, i) => `${dates[i]}, ${format(value)}`).join("; ")}. Retained ${bleep ? "accounts" : "installations"} by creation date, not attributed to Google. Bars start at zero; each chart is scaled to its own peak.`}>
-        {values.map((value, i) => <div className="results-bar-column" key={dates[i]}><strong>{format(value)}</strong><div className="results-bar" style={{height: `calc(var(--chart-height) * ${value / total})`}} /><span>{dates[i]}</span></div>)}
+      <figcaption>Cumulative · Aug 1-Oct 15, 2026</figcaption>
+      <div className="results-bars" role="img" aria-label={`Recorded media minutes processed across Studio and public Bleep, since August 1, 2026: ${values.map((value, i) => `through ${dates[i]}, ${format(value)}`).join("; ")}. October is a partial month. Bars start at zero. Not attributed to Google.`}>
+        {values.map((value, i) => <div className="results-bar-column" key={dates[i]}><strong>{format(value)}</strong><div className="results-bar" style={{ height: `calc(var(--chart-height) * ${value / values[values.length - 1]})` }} /><span>{dates[i]}</span></div>)}
+      </div>
+    </figure>
+  </>;
+}
+
+function BugDropUsage() {
+  // Retained production installations verified October 14, 2026, by creation date.
+  const values = [85, 115, 143, 182];
+  const dates = ["Jul 11", "Aug 11", "Sep 11", "Oct 11"];
+  return <>
+    <h3><span className="result-growth">182</span> Users</h3>
+    <figure className="results-chart">
+      <figcaption>Cumulative users · Jul-Oct 2026</figcaption>
+      <div className="results-bars" role="img" aria-label={`Total BugDrop users: ${values.map((value, i) => `${dates[i]}, ${format(value)}`).join("; ")}. Retained installations by creation date, not individual people or usage attributed to Google. Bars start at zero.`}>
+        {values.map((value, i) => <div className="results-bar-column" key={dates[i]}><strong>{format(value)}</strong><div className="results-bar" style={{ height: `calc(var(--chart-height) * ${value / 182})` }} /><span>{dates[i]}</span></div>)}
       </div>
     </figure>
   </>;
@@ -70,7 +83,7 @@ function ResultCard({ product }: { product: keyof typeof projects }) {
   const project = projects[product];
   const bleep = product === "bleep";
   const blog = product === "blog";
-  const backLabel = blog ? "Flip to Google clicks" : bleep ? "Flip to registered users" : "Flip to users";
+  const backLabel = blog ? "Flip to Google clicks" : bleep ? "Flip to minutes processed" : "Flip to users";
   return <article id={product} className={`result-card ${blog ? "result-card-peach" : bleep ? "result-card-sage" : "result-card-blue"}`} aria-labelledby={`${product}-title`}>
     <header className="result-card-header"><span className="studio-eyebrow">{project.category}</span><h2 id={`${product}-title`}>{project.name}</h2><p>{project.description}</p></header>
     <div className="result-card-perspective">
@@ -79,7 +92,7 @@ function ResultCard({ product }: { product: keyof typeof projects }) {
           <SearchChart values={project.impressions} metric="impressions" />
         </div>
         <div id={`${product}-details`} className="result-card-face result-card-back" inert={!flipped} aria-hidden={!flipped}>
-          {blog ? <SearchChart values={project.clicks} metric="clicks" /> : <AudienceGrowth bleep={bleep} />}
+          {blog ? <SearchChart values={project.clicks} metric="clicks" /> : bleep ? <BleepUsage /> : <BugDropUsage />}
           <a className="studio-text-link" href={project.url}>Visit {project.name} ↗</a>
         </div>
       </div>

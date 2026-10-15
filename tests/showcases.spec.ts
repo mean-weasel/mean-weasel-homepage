@@ -5,12 +5,13 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
   test(`homepage examples switch categories and scroll at ${viewport.width}px`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto("/");
+    await page.getByRole("button", { name: "App development", exact: true }).click();
     const web = page.getByRole("region", { name: "Our work", exact: true });
     await expect(web.getByRole("article")).toHaveCount(4);
     await expect(page.locator("main section")).toHaveCount(4);
     const track = web.locator(".showcase-track");
-    const next = web.getByRole("button", { name: "Next Web apps projects" });
-    const previous = web.getByRole("button", { name: "Previous Web apps projects" });
+    const next = web.getByRole("button", { name: "Next App development projects" });
+    const previous = web.getByRole("button", { name: "Previous App development projects" });
     await expect(previous).toBeEnabled();
     await expect(next).toHaveText("→");
     await expect(previous).toHaveText("←");
@@ -19,8 +20,6 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
     const sectionBox = (await web.boundingBox())!;
     const cardBox = (await track.boundingBox())!;
     if (viewport.width === 390) expect(cardBox.y - sectionBox.y).toBeLessThan(300);
-    const trackOffset = await track.evaluate(el => el.getBoundingClientRect().top - el.closest("section")!.getBoundingClientRect().top);
-    const trackHeight = await track.evaluate(el => el.getBoundingClientRect().height);
     const controlsBox = (await next.boundingBox())!;
     const initialTrackBox = (await track.boundingBox())!;
     expect(controlsBox.height).toBeGreaterThanOrEqual(44);
@@ -46,25 +45,11 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
     await expect(web.getByRole("status")).toHaveText(ranges[3]);
     await page.keyboard.press("ArrowLeft");
     await expect(web.getByRole("status")).toHaveText(viewport.width === 1440 ? "4, 1, 2 of 4" : "4 of 4");
-    await page.getByRole("group", { name: "Choose examples" }).getByRole("button", { name: "Apps & extensions", exact: false }).click();
-    await expect(page.locator(".showcase-track article")).toHaveCount(2);
-    await expect(page.locator(".showcase-track")).toContainText("Foil");
-    await expect(page.locator(".showcase-track")).toContainText("YTgify");
-    await expect(web.getByRole("status")).toHaveText(viewport.width === 1440 ? "1–2 of 2" : "1 of 2");
-    const tools = page.getByRole("group", { name: "Choose examples" }).getByRole("button", { name: "Developer tools", exact: false });
-    await tools.focus(); await page.keyboard.press("Enter");
-    await expect(tools).toBeFocused();
-    await expect(tools).toHaveAttribute("aria-pressed", "true");
-    await expect(page.locator(".showcase-track")).toContainText("Job Apply");
-    await expect(page.locator(".showcase-track")).toContainText("Logo Designer");
-    await page.getByRole("group", { name: "Choose examples" }).getByRole("button", { name: "Books & learning", exact: false }).click();
-    await expect(page.locator(".showcase-track article")).toHaveCount(1);
-    await expect(page.locator(".showcase-track")).toContainText("Machine Learning Refined");
-    await expect(web.locator(".showcase-controls")).toHaveCount(0);
-    expect(await track.evaluate(el => el.getBoundingClientRect().top - el.closest("section")!.getBoundingClientRect().top)).toBeCloseTo(trackOffset, 0);
-    expect(await track.evaluate(el => el.getBoundingClientRect().height)).toBeCloseTo(trackHeight, 0);
-    await page.getByRole("group", { name: "Choose examples" }).getByRole("button", { name: "Web apps", exact: false }).click();
-    await expect(page.locator(".showcase-track article")).toHaveCount(4);
+    for (const [label, anchor, count] of [["Business websites", "websites", 2], ["SEO results", "search-results", 3], ["AI automation", "automation", 3], ["App development", "apps", 4]] as const) {
+      await page.getByRole('button', { name: label, exact: true }).click();
+      await expect(web.getByRole('article')).toHaveCount(count);
+      await expect(web.locator(`.showcase-bottom a[href="/gallery#${anchor}"]`)).toBeVisible();
+    }
     const backgrounds = await page.locator(".home-band").evaluateAll(els => els.map(el => getComputedStyle(el).backgroundColor));
     expect(new Set(backgrounds).size).toBe(4);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -96,8 +81,9 @@ for (const width of [390, 1440]) {
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/#products");
-    const next = page.getByRole("button", { name: "Next Web apps projects" });
-    const previous = page.getByRole("button", { name: "Previous Web apps projects" });
+    await page.getByRole("button", { name: "App development", exact: true }).click();
+    const next = page.getByRole("button", { name: "Next App development projects" });
+    const previous = page.getByRole("button", { name: "Previous App development projects" });
     await expect(next).toBeVisible();
     const viewport = page.locator(".showcase-viewport");
     // Last slide starts immediately left of the first, and enters smoothly.
@@ -136,7 +122,8 @@ for (const width of [390, 1440]) {
 test("dragging through the boundary preserves project order", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/#products");
-  const previous = page.getByRole("button", { name: "Previous Web apps projects" });
+    await page.getByRole("button", { name: "App development", exact: true }).click();
+  const previous = page.getByRole("button", { name: "Previous App development projects" });
   await previous.click();
   await expect(page.getByRole("status")).toHaveText("4 of 4");
   const box = (await page.locator(".showcase-viewport").boundingBox())!;

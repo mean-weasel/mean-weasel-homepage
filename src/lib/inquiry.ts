@@ -14,7 +14,7 @@ export const inquiryServiceLabels: Record<(typeof inquiryServices)[number], stri
   "Website redesign": "Improve an existing website",
   "Business Website": "Business website - I have the content",
   "Website + Content": "Business website - help with content",
-  "SEO Foundation Project": "Help customers find us on Google",
+  "SEO Foundation Project": "Help customers find us on Google and AI search",
   "Custom app or integration": "An app or custom business tool",
   "AI automation": "Save time with AI automation",
   "Not sure yet": "Not sure yet - help me decide",

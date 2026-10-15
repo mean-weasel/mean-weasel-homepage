@@ -4,7 +4,7 @@ const steps = [
   ["Review", "We look at your website, search data, and how customers get in touch."],
   ["Agree priorities", "You get a focused plan. We agree on scope, timing, and cost before starting."],
   ["Improve", "We make the agreed page, content, and technical improvements."],
-  ["Measure", "We compare search performance and available inquiry data, then recommend next steps."],
+  ["Measure", "We review Google results, identifiable AI referrals, and available inquiries separately."],
 ];
 
 export function SeoProcess({ compact = false }: { compact?: boolean }) {

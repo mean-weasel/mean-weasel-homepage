@@ -4,7 +4,7 @@ import { ServicePageShell, ServicePageCta, inquiryPath } from "@/components/Serv
 import { inquiryHref } from "@/lib/inquiry";
 import { websitePackages, includedSeo } from "@/lib/service-offerings";
 
-const description = "Compare Phoenix small-business website packages, content help, SEO improvements, custom app development, and AI automation from Mean Weasel.";
+const description = "Compare Phoenix small-business website packages, content and SEO for Google and AI search, custom app development, and AI automation from Mean Weasel.";
 export const metadata: Metadata = {
   title: "Websites, Apps, SEO & AI Automation", description, alternates: { canonical: "/services" },
   openGraph: { title: "Websites, Apps, SEO & Automation | Mean Weasel", description, url: "/services", images: ["/opengraph-image"] },
@@ -24,7 +24,7 @@ export default function ServiceBreakdownPage() {
         <p className="studio-eyebrow">WHAT DO YOU NEED HELP WITH?</p>
         {[
           ["01", "Business websites", "A clear home for your business, with content help if needed.", "website-packages"],
-          ["02", "SEO & content", "Help customers find and understand your business.", "seo"],
+          ["02", "SEO & content", "Help customers discover you through Google and AI search.", "seo"],
           ["03", "App design & development", "A useful tool built around your customers or team.", "custom"],
           ["04", "AI automation", "Less repetitive work, with you in control.", "automation"],
         ].map(([n, label, detail, id]) => <a href={`#${id}`} key={id}><span>{n}</span><div><strong>{label}</strong><small>{detail}</small></div><span aria-hidden="true">↓</span></a>)}
@@ -54,15 +54,15 @@ export default function ServiceBreakdownPage() {
 
     <section className="service-band service-band-blue" id="seo">
       <div className="studio-container service-two-column">
-        <div><p className="studio-eyebrow">02 / SEO & CONTENT</p><h2>Make your website<br /><em>easier to understand.</em></h2><p>From research to implementation. We research what people search for, create useful content, optimize pages, and track performance in Google.</p><Link className="studio-text-link" href="/gallery#search-results">See results from our apps and articles ↗</Link><p className="service-example"><strong>For example:</strong> Improve a service page so customers can find what you offer, see where you work, and request a quote.</p><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
+        <div><p className="studio-eyebrow">02 / SEO & CONTENT</p><h2>Help the right customers<br /><em>discover your business.</em></h2><p>We create useful content and improve your website for discovery through Google and AI assistants like ChatGPT.</p><Link className="studio-text-link" href="/gallery#search-results">See our Google search results ↗</Link><p className="service-example"><strong>For example:</strong> Improve a service page so customers can find what you offer, see where you work, and request a quote.</p><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
         <article className="service-detail-card"><h3>SEO Foundation Project</h3><p>For an existing website that needs a clear set of priorities and practical fixes.</p><h4>What we can help with</h4><ul>
           <li><strong>Keyword research &amp; search intent</strong> - understand what customers search for and what they need.</li>
-          <li><strong>Content strategy &amp; creation</strong> - plan useful topics and create pages that answer real questions.</li>
+          <li><strong>Content strategy &amp; creation</strong> - create clear, useful pages that answer customers’ questions.</li>
           <li><strong>On-page SEO</strong> - improve titles, descriptions, headings, and copy.</li>
-          <li><strong>Internal linking</strong> - connect related pages so visitors can find their next step.</li>
-          <li><strong>Technical SEO</strong> - help Google access and understand your website.</li>
-          <li><strong>Performance measurement</strong> - track search visibility, clicks, and available inquiry data.</li>
-        </ul><p className="service-small">The foundation project covers a review, agreed improvements to up to five existing pages, and recommended next steps. We review your Google Business Profile where relevant. New content and ongoing SEO are scoped separately.</p><p className="service-small">We confirm deliverables based on your website, access, and priorities. Rankings and lead volumes aren’t guaranteed.</p><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Discuss an SEO project ↗</Link></article>
+          <li><strong>AI search readiness</strong> - clarify your services, business details, and answers for AI assistants.</li>
+          <li><strong>Technical SEO</strong> - improve page access, structure, and links between related content.</li>
+          <li><strong>Performance measurement</strong> - report Google results and identifiable AI referrals separately, where data is available.</li>
+        </ul><p className="service-small">The foundation project covers a review, agreed improvements to up to five existing pages, and recommended next steps. We review your Google Business Profile where relevant. New content and ongoing SEO are scoped separately.</p><p className="service-small">We confirm deliverables based on your website, access, and priorities. Rankings, AI mentions, and lead volumes aren’t guaranteed.</p><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Discuss an SEO project ↗</Link></article>
       </div>
     </section>
 

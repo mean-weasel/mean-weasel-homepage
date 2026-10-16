@@ -161,7 +161,7 @@ export default function Home() {
               Explore services <span aria-hidden="true">↗</span>
             </Link>
             <Link className="studio-text-link home-service-inquiry" href="/contact">Let’s talk about your project ↗</Link>
-            <Link className="studio-text-link home-service-inquiry" href="/gallery#search-results">See our SEO results ↗</Link>
+            <Link className="studio-text-link home-service-inquiry" href="/gallery#search-results">See our Google search results ↗</Link>
 
           </div>
           <div className="home-services-offers">
@@ -171,7 +171,7 @@ export default function Home() {
                 "Business websites",
                 "Show what you offer and make it easy to get in touch.",
               ],
-              ["02", "SEO & content", "Help customers find and understand your business."],
+              ["02", "SEO & content", "Help customers discover you through Google and AI assistants like ChatGPT."],
               ["03", "App design & development", "Useful apps, customer portals, and business tools."],
               ["04", "AI automation", "Simplify follow-ups, routine admin, and content drafts."],
             ].map(([number, title, description]) => (

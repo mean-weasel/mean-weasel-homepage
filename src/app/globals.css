@@ -1604,7 +1604,7 @@ html {
 @media (max-width: 639px) {
   .homepage-main .project-showcase { --home-preview-height: clamp(110px, 17svh, 160px); justify-content: center; padding-block: 18px; }
   .homepage-main .project-showcase .showcase-heading { margin-bottom: 12px; }
-  .homepage-main .project-showcase .showcase-description { display: none; }
+  .homepage-main .project-showcase .showcase-description { display: block; font-size: 13px; line-height: 1.5; margin-top: 6px; }
   .homepage-main .project-showcase .example-filters { margin-bottom: 8px; }
   .homepage-main .project-showcase .showcase-toolbar { margin-bottom: 6px; }
   .homepage-main .project-showcase .gallery-description { min-height: 84px; }
@@ -1658,8 +1658,8 @@ html {
 }
 .homepage-main .project-showcase .preview-window img { height: calc(100% - 18px); object-fit: contain; }
 @media (min-width: 640px) and (max-height: 850px) {
-  .homepage-main .project-showcase { --home-preview-height: 200px; padding-block: 16px; }
-  .homepage-main .project-showcase .showcase-description { display: none; }
+  .homepage-main .project-showcase { --home-preview-height: 180px; padding-block: 16px; }
+  .homepage-main .project-showcase .showcase-description { display: block; font-size: 13px; line-height: 1.5; margin-top: 6px; }
   .homepage-main .project-showcase .showcase-heading h2 { font-size: 36px; }
 }
 @media (max-width: 639px) {

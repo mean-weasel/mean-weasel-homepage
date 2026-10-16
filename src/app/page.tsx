@@ -108,7 +108,7 @@ export default function Home() {
               <em>Less busywork.</em>
             </h1>
             <p className="studio-intro">
-              Business websites first. SEO, custom apps, and AI automation to help you get found and get more done. Based in Phoenix, working beyond.
+              We build websites for small businesses, improve discovery through Google and AI search, and create apps and automations that save time. Based in Phoenix, working beyond.
             </p>
             <div className="home-hero-actions">
               <Link className="home-cta-button" href="/contact">
@@ -152,7 +152,7 @@ export default function Home() {
               <em>Built to work better.</em>
             </h2>
             <p>
-              Start with the help you need today. Work directly with Jeremy, from the first conversation through delivery.
+              Work directly with us from first conversation to delivery. We build and run our own apps, create their content, and measure how people find and use them.
             </p>
             <Link
               className="studio-work-link"
@@ -195,9 +195,9 @@ export default function Home() {
           <section id="contact" className="home-final-cta studio-container" aria-labelledby="contact-title">
             <p className="studio-eyebrow">LET’S BUILD SOMETHING USEFUL</p>
             <h2 id="contact-title">Have a project in mind?<br /><em>Let’s talk about it.</em></h2>
-            <p>A better website, more visibility in search, a custom app, or less manual work. Tell us what you need - we’ll help you choose a starting point.</p>
+            <p>Tell us what you want to improve. We’ll follow up to discuss your priorities, scope, and next steps.</p>
             <Link className="home-cta-button" href="/contact">Tell us about your project <span aria-hidden="true">↗</span></Link>
-            <p className="home-cta-note">You’ll hear directly from Jeremy. No finished brief needed, and no commitment to get started.</p>
+            <p className="home-cta-note">No finished brief needed. No commitment to start a conversation.</p>
           </section>
         </div>
       </main>

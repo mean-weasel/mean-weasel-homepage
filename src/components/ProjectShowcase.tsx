@@ -65,7 +65,7 @@ export function ProjectShowcase({
       <div className="showcase-heading">
         <div>
           <h2>Our work</h2>
-          <p className="showcase-description">Explore the apps, tools, and ideas we’ve brought to life.</p>
+          <p className="showcase-description">Our own products show how we approach websites, search, and automation.</p>
         </div>
       </div>
       {children}

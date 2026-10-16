@@ -14,6 +14,7 @@ export function ProjectShowcase({
   children,
   examplesLink,
   panel,
+  consultation,
 }: {
   title: string;
   category: string;
@@ -21,6 +22,7 @@ export function ProjectShowcase({
   children?: ReactNode;
   examplesLink?: { href: string; label: string };
   panel?: ReactNode;
+  consultation?: { href: string; label: string };
 }) {
   const [viewport, carousel] = useEmblaCarousel({ loop: true, align: "start", duration: 25 });
   const [position, setPosition] = useState<Position>({ overflow: false, indices: [1] });
@@ -117,6 +119,7 @@ export function ProjectShowcase({
             key={project.slug}
             project={project}
             index={index}
+            businessFriendly={Boolean(consultation)}
             placement="homepage_carousel"
           />
         ))}
@@ -126,10 +129,10 @@ export function ProjectShowcase({
       </>}
       <div className="showcase-bottom">
         {examplesLink && <Link className="studio-text-link" href={examplesLink.href}>{examplesLink.label} <span aria-hidden="true">↗</span></Link>}
-        <Link className="studio-text-link" href="/contact">
-          Have something in mind? Tell us about it <span aria-hidden="true">↗</span>
+        <Link className="studio-text-link" href={consultation?.href ?? "/contact"}>
+          {consultation?.label ?? "Have something in mind? Tell us about it"} <span aria-hidden="true">↗</span>
         </Link>
-        {!examplesLink && <span className="showcase-star-date">GitHub stars as of Oct 11, 2026</span>}
+        {!examplesLink && !consultation && <span className="showcase-star-date">GitHub stars as of Oct 11, 2026</span>}
       </div>
     </section>
   );

@@ -24,3 +24,24 @@ for (const width of [390, 1440]) {
     }
   });
 }
+
+for (const width of [390, 1440]) {
+  test(`work consultations preserve service choice at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    for (const [section, service] of [
+      ['websites', 'New business website'],
+      ['search-results', 'SEO Foundation Project'],
+      ['apps', 'Custom app or integration'],
+      ['automation', 'AI automation'],
+    ]) {
+      await page.goto(`/gallery#${section}`);
+      await page.locator(`#${section} .work-actions`).getByRole('link', { name: 'Request a consultation' }).click();
+      await expect(page.getByLabel('What would you like help with?')).toHaveValue(service);
+      if (section !== 'search-results') {
+        await page.goto(`/gallery#${section}`);
+        await page.locator(`#${section} .showcase-bottom`).getByRole('link').click();
+        await expect(page.getByLabel('What would you like help with?')).toHaveValue(service);
+      }
+    }
+  });
+}

@@ -23,11 +23,13 @@ export function GalleryCard({
   project,
   index,
   priority = false,
+  businessFriendly = false,
   placement = "gallery_card",
 }: {
   project: GalleryProject;
   index: number;
   priority?: boolean;
+  businessFriendly?: boolean;
   placement?: "gallery_card" | "homepage_carousel";
 }) {
   return (
@@ -91,7 +93,7 @@ export function GalleryCard({
             Visit website <Arrow diagonal />
           </ProductSiteLink>
         </div>
-        <div className="gallery-card-footer">
+        {!businessFriendly && <div className="gallery-card-footer">
           <span>{project.galleryCategory}</span>
           {project.repository && (
             <a
@@ -116,7 +118,7 @@ export function GalleryCard({
               <span className="source-label">GitHub</span>
             </a>
           )}
-        </div>
+        </div>}
       </div>
     </article>
   );

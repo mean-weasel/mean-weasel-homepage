@@ -13,7 +13,10 @@ for (const width of [320, 390, 768, 1440]) {
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await expect(page.locator("main")).not.toContainText(/\$\s?\d/);
       await expect(page.locator("main")).not.toContainText("Pricing to be confirmed");
-      for (const link of await page.locator(".service-picker a").all()) {
+      const intro = await page.locator(".service-intro").boundingBox();
+      const heading = await page.locator("h1").boundingBox();
+      expect(heading!.y).toBeGreaterThanOrEqual(intro!.y);
+      for (const link of await page.locator(".service-picker > a").all()) {
         const hash = await link.getAttribute("href");
         await link.click();
         const top = await page.locator(hash!).evaluate(el => el.getBoundingClientRect().top);

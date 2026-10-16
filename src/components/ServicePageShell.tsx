@@ -33,7 +33,7 @@ export function ServicePageCta() {
       <h2>Tell us what you need.<br /><em>We’ll help shape the next step.</em></h2>
       <p>A current website, a rough idea, or a process that takes too much time. You don’t need a finished brief to reach out.</p>
       <Link className="service-button" href={inquiryPath}>Request a consultation <span aria-hidden="true">↗</span></Link>
-      <p className="service-small">You’ll hear directly from Jeremy. Scope and pricing are agreed before work begins.</p>
+      <p className="service-small">We’ll reply to discuss your goals. Scope and pricing are agreed before work begins.</p>
     </div>
   </section>;
 }

@@ -153,19 +153,23 @@ test("keyboard skip link and mobile menu remain operable", async ({ page }) => {
 for (const width of [390, 1440]) {
   test(`package interest carries into inquiries at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    for (const [route, label, service] of [
-      ["/services", "Ask about Website + Content", "Website + Content"],
-      ["/services", "Discuss an SEO project", "SEO Foundation Project"],
-      ["/services", "Discuss a custom project", "Custom app or integration"],
+    for (const [section, service] of [
+      ["#website-content", "Website + Content"],
+      ["#seo", "SEO Foundation Project"],
+      ["#custom", "Custom app or integration"],
+      ["#automation", "AI automation"],
     ]) {
-      await page.goto(route);
-      await page.getByRole("link", { name: label }).click();
+      await page.goto("/services");
+      await page.locator(section).getByRole("link", { name: "Request a consultation" }).click();
       await expect(page.getByLabel("What would you like help with?")).toHaveValue(service);
       await expect(page.getByLabel("Your name", { exact: true })).toBeVisible();
     }
     await page.goto("/services");
-    await page.locator("#business-website").getByRole("link", { name: "Ask about Business Website" }).click();
+    await page.locator("#business-website").getByRole("link", { name: "Request a consultation" }).click();
     await expect(page.getByLabel("What would you like help with?")).toHaveValue("Business Website");
+    await page.goto("/services");
+    await page.getByRole("link", { name: "Help me choose" }).click();
+    await expect(page.getByLabel("What would you like help with?")).toHaveValue("Not sure yet");
     await page.goto("/services/web-design-phoenix?service=invalid#inquiry");
     await expect(page.getByLabel("What would you like help with?")).toHaveValue("New business website");
   });

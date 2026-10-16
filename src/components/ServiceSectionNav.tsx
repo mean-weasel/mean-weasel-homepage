@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import "./SectionNav.css";
 
-const serviceSections = [["website-packages", "Websites"], ["seo", "SEO & content"], ["custom", "App development"], ["automation", "AI automation"]] as const;
+const serviceSections = [["website-packages", "Websites"], ["seo", "SEO & content"], ["custom", "Apps"], ["automation", "AI automation"]] as const;
 
 export function SectionNav({ sections, label }: { sections: ReadonlyArray<readonly [string, string]>; label: string }) {
   const navRef = useRef<HTMLElement>(null);

@@ -15,19 +15,20 @@ export default function ServiceBreakdownPage() {
     <section className="service-intro studio-container">
       <div>
         <p className="studio-eyebrow">PHOENIX · SCOTTSDALE · THE VALLEY</p>
-        <h1>A clearer website.<br /><em>A useful next step.</em></h1>
-        <p className="services-lead">Business websites first, with SEO, apps, and AI automation to help your business work better.</p>
-        <p>Start with the help you need today. We’ll agree on deliverables, responsibilities, and costs before work begins. For custom apps, we bring interface design and development together around the way your business works.</p>
+        <h1>What would help<br /><em>your business grow?</em></h1>
+        <p className="services-lead">A better website, more ways to be found, or less manual work. Start with what you need.</p>
+        <p className="service-intro-reassurance">We agree on scope and cost before work begins.</p>
         <div className="services-actions"><Link className="service-button" href={inquiryPath}>Request a consultation ↗</Link><Link className="studio-text-link" href="/how-we-work">How we work ↗</Link></div>
       </div>
       <aside className="service-picker" aria-label="Find a service">
         <p className="studio-eyebrow">WHAT DO YOU NEED HELP WITH?</p>
         {[
-          ["01", "Business websites", "A clear home for your business, with content help if needed.", "website-packages"],
-          ["02", "SEO & content", "Help customers discover you through Google and AI search.", "seo"],
-          ["03", "App design & development", "A useful tool built around your customers or team.", "custom"],
-          ["04", "AI automation", "Less repetitive work, with you in control.", "automation"],
+          ["01", "Business websites", "I need a new or better website.", "website-packages"],
+          ["02", "SEO & content", "I want customers to find us through Google and AI search.", "seo"],
+          ["03", "App design & development", "I need a custom tool for customers or staff.", "custom"],
+          ["04", "AI automation", "I want to reduce repetitive work across our existing tools.", "automation"],
         ].map(([n, label, detail, id]) => <a href={`#${id}`} key={id}><span>{n}</span><div><strong>{label}</strong><small>{detail}</small></div><span aria-hidden="true">↓</span></a>)}
+        <div className="service-picker-help"><p>Not sure which fits? Tell us what you want to improve.</p><Link className="studio-text-link" href={inquiryHref("Not sure yet")}>Help me choose ↗</Link></div>
       </aside>
     </section>
 
@@ -44,7 +45,7 @@ export default function ServiceBreakdownPage() {
 
             <p><strong>A good fit when</strong><br />{offer.fit}</p>
             <details className="service-inclusions"><summary>What’s included</summary><ul>{offer.items.map(item => <li key={item}>{item}</li>)}</ul></details>
-            <div className="service-card-end"><p className="service-small">{offer.timeline} Final timing is confirmed in your proposal.</p><Link className="service-button" href={inquiryHref(offer.name)}>Ask about {offer.name} ↗</Link></div>
+            <div className="service-card-end"><p className="service-small">{offer.timeline} Final timing is confirmed in your proposal.</p><Link className="service-button" href={inquiryHref(offer.name)}>Request a consultation ↗</Link></div>
           </article>)}
         </div>
         <p className="service-example"><strong>For example:</strong> A landscaper could show completed projects and collect quote requests. A consultant could explain their services and invite a first conversation.</p><p className="service-scope-note">Hosting, domains, paid software, photography, and additional work are separate. We’ll confirm recurring costs and any support arrangements in your written scope.</p>
@@ -54,24 +55,27 @@ export default function ServiceBreakdownPage() {
 
     <section className="service-band service-band-blue" id="seo">
       <div className="studio-container service-two-column">
-        <div><p className="studio-eyebrow">02 / SEO & CONTENT</p><h2>Help the right customers<br /><em>discover your business.</em></h2><p>We create useful content and improve your website for discovery through Google and AI assistants like ChatGPT.</p><Link className="studio-text-link" href="/gallery#search-results">See our Google search results ↗</Link><p className="service-example"><strong>For example:</strong> Improve a service page so customers can find what you offer, see where you work, and request a quote.</p><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
-        <article className="service-detail-card"><h3>SEO Foundation Project</h3><p>For an existing website that needs a clear set of priorities and practical fixes.</p><h4>What we can help with</h4><ul>
-          <li><strong>Keyword research &amp; search intent</strong> - understand what customers search for and what they need.</li>
-          <li><strong>Content strategy &amp; creation</strong> - create clear, useful pages that answer customers’ questions.</li>
-          <li><strong>On-page SEO</strong> - improve titles, descriptions, headings, and copy.</li>
-          <li><strong>AI search readiness</strong> - clarify your services, business details, and answers for AI assistants.</li>
-          <li><strong>Technical SEO</strong> - improve page access, structure, and links between related content.</li>
-          <li><strong>Performance measurement</strong> - report Google results and identifiable AI referrals separately, where data is available.</li>
-        </ul><p className="service-small">The foundation project covers a review, agreed improvements to up to five existing pages, and recommended next steps. We review your Google Business Profile where relevant. New content and ongoing SEO are scoped separately.</p><p className="service-small">We confirm deliverables based on your website, access, and priorities. Rankings, AI mentions, and lead volumes aren’t guaranteed.</p><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Discuss an SEO project ↗</Link></article>
+        <div><p className="studio-eyebrow">02 / SEO & CONTENT</p><h2>Help the right customers<br /><em>discover your business.</em></h2><p>We create useful content and improve your website for discovery through Google and AI assistants like ChatGPT.</p><div className="services-actions"><Link className="service-button" href={inquiryHref("SEO Foundation Project")}>Request a consultation ↗</Link><Link className="studio-text-link" href="/gallery#search-results">See our Google search results ↗</Link></div><p className="service-example"><strong>For example:</strong> Improve a service page so customers can find what you offer, see where you work, and request a quote.</p><details className="seo-included"><summary>SEO setup included with a new website</summary><ul className="service-checklist">{includedSeo.map(item => <li key={item}>{item}</li>)}</ul></details></div>
+        <article className="service-detail-card seo-offer"><h3>SEO Foundation Project</h3><p>For an existing website that needs better visibility and a clear plan.</p>
+          <ul><li>Find out what your customers are searching for.</li><li>Improve up to five existing pages and address agreed search issues.</li><li>Measure progress and leave you with clear next steps.</li></ul>
+          <p className="service-small seo-scope-summary">New content and ongoing SEO are quoted separately.</p>
+          <details className="service-inclusions"><summary>Scope and approach</summary><ul>
+            <li><strong>Keyword research &amp; search intent</strong> - understand what customers need.</li>
+            <li><strong>On-page SEO</strong> - improve titles, descriptions, headings, and copy.</li>
+            <li><strong>AI search readiness</strong> - clarify services, business details, and answers for AI assistants.</li>
+            <li><strong>Technical SEO</strong> - improve page access, structure, and internal links.</li>
+            <li><strong>Performance measurement</strong> - report Google results and identifiable AI referrals separately, where available.</li>
+          </ul><p className="service-small">We review your Google Business Profile where relevant. Final scope depends on your website, access, and priorities. Rankings, AI mentions, and lead volumes aren’t guaranteed.</p></details>
+        </article>
       </div>
     </section>
 
     <section className="service-band" id="custom"><div className="studio-container service-two-column">
-      <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>Custom web apps, customer portals, quote calculators, and internal workflows - from interface design through implementation. We start by mapping who uses the tool, what it needs to do, and which systems it connects to.</p><Link className="studio-text-link" href="/gallery#apps">Explore the software we build ↗</Link></div>
-      <div className="service-custom-scope"><h3>Build around one clear need</h3><p className="service-example"><strong>For example:</strong> A customer portal for project updates, or a quote calculator that replaces a spreadsheet.</p><ol><li>Define the user journey and the problem to solve.</li><li>Design the interface and review data, accounts, integrations, and access needs.</li><li>Agree on a first release, milestones, and testing.</li><li>Confirm handoff and maintenance responsibilities.</li></ol><Link className="service-button" href={inquiryHref("Custom app or integration")}>Discuss a custom project ↗</Link></div>
+      <div><p className="studio-eyebrow">03 / APP DESIGN & DEVELOPMENT</p><h2>When the next step<br /><em>needs its own tool.</em></h2><p>When your business needs its own tool, we design and build it around your customers or team. Think customer portals, quote calculators, or a custom web app.</p><Link className="studio-text-link" href="/gallery#apps">Explore the software we build ↗</Link></div>
+      <div className="service-custom-scope"><h3>Build around one clear need</h3><p className="service-example"><strong>For example:</strong> A customer portal for project updates, or a quote calculator that replaces a spreadsheet.</p><Link className="service-button" href={inquiryHref("Custom app or integration")}>Request a consultation ↗</Link><ol><li>Define the user journey and the problem to solve.</li><li>Design the interface and review data, accounts, integrations, and access needs.</li><li>Agree on a first release, milestones, and testing.</li><li>Confirm handoff and maintenance responsibilities.</li></ol></div>
     </div></section>
     <section id="automation" className="service-band service-band-lilac automation-section"><div className="studio-container">
-      <header className="automation-heading"><p className="studio-eyebrow">04 / AI AUTOMATION</p><h2>Less repetitive work.<br /><em>More time for your business.</em></h2><p>Start with one task. We connect your tools and prepare work for your team to review.</p></header>
+      <header className="automation-heading"><p className="studio-eyebrow">04 / AI AUTOMATION</p><h2>Less repetitive work.<br /><em>More time for your business.</em></h2><p>Make the tools you already use work together. Start with one repetitive task, with your team reviewing the results.</p><Link className="service-button" href={inquiryHref("AI automation")}>Request a consultation ↗</Link></header>
       <div className="automation-offers">
         <article><h3>Inquiry handling &amp; follow-up</h3><p>Organize quote requests, add them to your customer tracker, and draft a reply for approval.</p></article>
         <article><h3>Forms &amp; everyday admin</h3><p>Reuse customer information to prepare onboarding forms and documents, ready for review.</p></article>
@@ -82,7 +86,7 @@ export default function ServiceBreakdownPage() {
           <Link className="use-case-proof" href="/projects/job-apply"><strong>Job Apply ↗</strong><span>Reuses information and fills forms for review. A similar approach could simplify customer onboarding.</span></Link>
           <Link className="use-case-proof" href="/projects/foil"><strong>Foil for Mac ↗</strong><span>Turns speech into cleaned-up text. The same idea could help turn a business owner’s spoken notes into useful drafts.</span></Link>
         </div>
-        <div className="automation-process"><h3>Start with one workflow</h3><ol><li>Choose a task and map the tools you use.</li><li>Build a focused version and test real examples.</li><li>Agree on review steps, handoff, and support.</li></ol><p className="service-small">We agree on scope and cost first. Software subscriptions and ongoing support are separate.</p><Link className="service-button" href={inquiryHref("AI automation")}>Tell us what you’re doing manually ↗</Link></div>
+        <div className="automation-process"><h3>Start with one workflow</h3><ol><li>Choose a task and map the tools you use.</li><li>Build a focused version and test real examples.</li><li>Agree on review steps, handoff, and support.</li></ol><p className="service-small">We agree on scope and cost first. Software subscriptions and ongoing support are separate.</p></div>
       </div>
     </div></section>
     <div className="studio-container pricing-discovery"><Link className="studio-text-link" href="/how-we-work">See our process and how we quote ↗</Link></div>

@@ -152,3 +152,24 @@
   .automation-detail-grid { gap: 24px; }
   .automation-process { border-left: 0; border-top: 1px solid #d8d1e0; padding: 24px 0 0; }
 }
+
+/* Put the decision before the details, especially on small screens. */
+.service-picker > a { padding-block: 18px; }
+.service-picker-help { padding-top: 18px; }
+.service-editorial .service-picker-help p { font-size: 13px; line-height: 1.5; }
+.service-picker-help .studio-text-link { margin-top: 4px; }
+.seo-offer > ul { margin-bottom: 0; }
+.service-editorial .seo-scope-summary { margin-top: 16px; }
+.automation-heading > .service-button { margin-bottom: 24px; }
+@media (max-width: 800px) {
+  .service-editorial[data-page="services"] .service-intro { gap: 16px; align-content: safe center; }
+  .service-editorial[data-page="services"] .service-intro > div:first-child { display: contents; }
+  .service-editorial[data-page="services"] .service-intro h1 { margin: 0; }
+  .service-editorial[data-page="services"] .service-intro .services-lead { margin: 0; }
+  .service-editorial[data-page="services"] .service-intro .service-intro-reassurance { order: 3; margin: 0; font-size: 12px; }
+  .service-editorial[data-page="services"] .service-intro .services-actions { order: 4; margin: 0; }
+  .service-picker { padding: 18px; }
+  .service-picker > a { min-height: 66px; padding-block: 12px; gap: 12px; }
+  .service-picker small { margin-top: 4px; line-height: 1.4; }
+  .service-picker-help { padding-top: 12px; }
+}
